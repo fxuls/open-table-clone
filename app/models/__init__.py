@@ -6,3 +6,4 @@ from .timeslot import Timeslot
 from .occasion import Occasion
 from .restaurant import Restaurant
 from .image import Image
+from .review import Review
