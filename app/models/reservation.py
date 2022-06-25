@@ -24,8 +24,8 @@ class Reservation(db.Model):
             'party_size': self.party_size,
             'day': self.day,
             'special_request': self.special_request,
-            'user': self.user,
-            'restaurant': self.restaurant,
-            'timeslot': self.timeslot,
-            'occasion': self.occasion,
+            'user': self.user.to_dict(),
+            'restaurant': self.restaurant.to_dict(),
+            'timeslot': self.timeslot.timeslot,
+            'occasion': self.occasion.type,
         }

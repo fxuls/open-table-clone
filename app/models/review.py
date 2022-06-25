@@ -26,6 +26,6 @@ class Review(db.Model):
             'ambience_rating': self.ambience_rating,
             'value_rating': self.value_rating,
             'review_text': self.review_text,
-            'user': self.user,
-            'restaurant': self.restaurant,
+            'user': self.user.to_dict(),
+            'restaurant': self.restaurant.to_dict(),
         }

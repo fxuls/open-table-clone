@@ -13,5 +13,5 @@ class ReviewLink(db.Model):
         return {
             'id': self.id,
             'url': self.url,
-            'reservation': self.reservation,
+            'reservation': self.reservation.to_dict(),
         }
