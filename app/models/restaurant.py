@@ -25,4 +25,24 @@ class Restaurant(db.Model):
     cuisine_type = db.relationship("CuisineType")
     opening_time = db.relationship("Timeslot", foreign_keys=[opening_time_id])
     closing_time = db.relationship("Timeslot", foreign_keys=[closing_time_id])
-    locaiton = db.relationship("Location")
+    location = db.relationship("Location")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'url': self.url,
+            'price': self.price,
+            'rating': self.rating,
+            'capacity': self.capacity,
+            'address_line_1': self.address_line_1,
+            'address_line_2': self.address_line_2,
+            'zip_code': self.zip_code,
+            'reservation_notes': self.reservation_notes,
+            'preview_image_url': self.preview_image_url,
+            'owner': self.owner,
+            'cuisine_type': self.cuisine_type,
+            'opening_time': self.opening_time,
+            'closing_time': self.closing_time,
+            'location': self.location,
+        }
