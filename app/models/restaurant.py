@@ -27,6 +27,8 @@ class Restaurant(db.Model):
     closing_time = db.relationship("Timeslot", foreign_keys=[closing_time_id])
     location = db.relationship("Location")
 
+    images = db.relationship("Image")
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -45,4 +47,5 @@ class Restaurant(db.Model):
             'opening_time': self.opening_time,
             'closing_time': self.closing_time,
             'location': self.location,
+            'images': self.images,
         }
