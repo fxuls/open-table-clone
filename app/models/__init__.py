@@ -7,3 +7,4 @@ from .occasion import Occasion
 from .restaurant import Restaurant
 from .image import Image
 from .review import Review
+from .reservation import Reservation
