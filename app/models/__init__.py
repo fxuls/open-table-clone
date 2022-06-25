@@ -8,3 +8,4 @@ from .restaurant import Restaurant
 from .image import Image
 from .review import Review
 from .reservation import Reservation
+from .review_link import ReviewLink
