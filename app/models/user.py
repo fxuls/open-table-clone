@@ -13,8 +13,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"))
 
-    location = db.relationship("Location", back_populates="users")
-
+    location = db.relationship("Location")
 
     @property
     def password(self):
