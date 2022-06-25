@@ -7,3 +7,9 @@ class CuisineType(db.Model):
     type = db.Column(db.String(50), nullable=False, unique=True)
 
     restaurants = db.relationship("Restaurant", back_populates="cuisine_type")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'type': self.type,
+        }
