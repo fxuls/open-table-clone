@@ -7,3 +7,9 @@ class Image(db.Model):
     url = db.Column(db.String(120), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"), nullable=False)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'url': self.url,
+            'restaurant_id': self.url,
+        }
