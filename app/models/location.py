@@ -7,5 +7,3 @@ class Location(db.Model):
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(100), nullable=False)
     timezone = db.Column(db.String(10), nullable=False)
-
-    users = db.relationship("Users", back_populates="location")
