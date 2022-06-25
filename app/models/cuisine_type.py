@@ -6,7 +6,6 @@ class CuisineType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(50), nullable=False, unique=True)
 
-    restaurants = db.relationship("Restaurant", back_populates="cuisine_type")
 
     def to_dict(self):
         return {
