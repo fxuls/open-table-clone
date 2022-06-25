@@ -7,3 +7,11 @@ class Location(db.Model):
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(100), nullable=False)
     timezone = db.Column(db.String(10), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'city': self.city,
+            'state': self.state,
+            'timezone': self.timezone,
+        }
