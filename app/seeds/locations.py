@@ -1,7 +1,7 @@
 from app.models import db, Location
 
 
-# Adds a demo user, you can add other users here if you want
+# Adds 25 most populated cities with timezones, plus some extras
 def seed_locations():
     nyc = Location(
         city='New York City', state='New York', timezone='GMT-4')
