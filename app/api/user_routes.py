@@ -4,10 +4,10 @@ from app.models import User
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/<int:userId>')
-def user(userId):
+@user_routes.route('/<int:user_id>')
+def user(user_id):
     """
-    Gets details of a user by userId
+    Gets details of a user by user_id
     """
-    user = User.query.get(userId)
+    user = User.query.get(user_id)
     return user.to_dict()
