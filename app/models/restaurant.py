@@ -10,7 +10,7 @@ class Restaurant(db.Model):
     rating = db.Column(db.Float(precision=2))
     capacity = db.Column(db.Integer)
     address_line_1 = db.Column(db.String(85), nullable=False)
-    address_line_2 = db.Column(db.String(85), nullable=False)
+    address_line_2 = db.Column(db.String(85))
     zip_code = db.Column(db.Integer, nullable=False)
     reservation_notes = db.Column(db.String(255))
     preview_image_url = db.Column(db.String(120))

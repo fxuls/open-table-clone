@@ -26,7 +26,7 @@ def upgrade():
     sa.Column('rating', sa.Float(precision=2), nullable=True),
     sa.Column('capacity', sa.Integer(), nullable=True),
     sa.Column('address_line_1', sa.String(length=85), nullable=False),
-    sa.Column('address_line_2', sa.String(length=85), nullable=False),
+    sa.Column('address_line_2', sa.String(length=85), nullable=True),
     sa.Column('zip_code', sa.Integer(), nullable=False),
     sa.Column('reservation_notes', sa.String(length=255), nullable=True),
     sa.Column('preview_image_url', sa.String(length=120), nullable=True),
