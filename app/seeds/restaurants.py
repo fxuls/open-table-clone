@@ -113,21 +113,45 @@ def seed_restaurants():
         zip_code=19107, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656477917/Thai_food_in_Las_Vegas_dvxrcl.jpg',
         cuisine_id=22, opening_time_id=45, closing_time_id=89, location_id=21)
     asia = Restaurant(
-        type='Asian')
+        name='TAO Asian Bistro', url='tao-asian-bistro-washington-dc',
+        price=3, rating=0, capacity=10, address_line_1='2520 Tuscany Street',
+        zip_code=92881, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656551851/48162300_b3giet.png',
+        cuisine_id=23, opening_time_id=45, closing_time_id=96, location_id=22)
     texm = Restaurant(
-        type='Tex-Mex')
+        name='Justin Queso\'s Tex-Mex Restaurant & Bar', url='justin-quesos-tex-mex-restaurant-and-bar-boston',
+        price=2, rating=0, capacity=10, address_line_1='6001 Melrose Avenue',
+        zip_code=90038, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656552111/41918399_n33x01.jpg',
+        cuisine_id=24, opening_time_id=47, closing_time_id=89, location_id=23)
     midd = Restaurant(
-        type='Middle Eastern')
+        name='Saffy\'s', url='saffys-baltimore',
+        price=3, rating=0, capacity=10, address_line_1='1114 Avenue of the Americas',
+        zip_code=10036, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656552591/48267442_um4aan.jpg',
+        cuisine_id=25, opening_time_id=45, closing_time_id=93, location_id=24)
     rama = Restaurant(
-        type='Ramen')
+        name='Raijin Ramen', url='raijin-ramen-tucson',
+        price=2, rating=0, capacity=10, address_line_1='2955 E. Speedway Boulevard',
+        zip_code=85716, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656552826/Kintaro_Ramen_-_Stierch_-_Aug_2019_szjsdj.jpg',
+        cuisine_id=26, opening_time_id=61, closing_time_id=89, location_id=25)
     sush = Restaurant(
-        type='Sushi')
+        name='Takami Sushi', url='takami-sushi-pittsburgh',
+        price=3, rating=0, capacity=10, address_line_1='4720 E. Cactus Road', address_line_2='Suite E',
+        zip_code=77027, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656476988/Tapas__2_aure29.jpg',
+        cuisine_id=27, opening_time_id=45, closing_time_id=89, location_id=26)
     hala = Restaurant(
-        type='Halal')
+        name='Jojo\'s Halal Grill', url='jojos-halal-grill-el-paso',
+        price=1, rating=0, capacity=10, address_line_1='4444 Westheimer Road', address_line_2='Suite D118',
+        zip_code=85032, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656553162/43577940_vb05ks.jpg',
+        cuisine_id=28, opening_time_id=45, closing_time_id=89, location_id=28)
     brea = Restaurant(
-        type='Breakfast')
+        name='The Breakfast Club', url='the-breakfast-club-nashville',
+        price=1, rating=0, capacity=15, address_line_1='1555 Camino Del Mar', address_line_2='Suite 102',
+        zip_code=92014, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656474328/24939767_pav17i.jpg',
+        cuisine_id=29, opening_time_id=29, closing_time_id=57, location_id=29)
     unsp = Restaurant(
-        type='Unspecified')
+        name='Cafe Miami', url='cafe-miami',
+        price=4, rating=0, capacity=10, address_line_1='8411 Preston Road', address_line_2='Suite 132',
+        zip_code=75225, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656383419/cld-sample-4.jpg',
+        cuisine_id=30, opening_time_id=45, closing_time_id=89, location_id=30)
 
     db.session.add_all([amer, ital, stea, seaf, fren, indi, mexi, japa, brit, chin])
     db.session.add_all([span, pizz, fusi, barb, gree, tapa, gril, comf, burg, iris])
