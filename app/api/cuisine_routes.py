@@ -10,6 +10,7 @@ def get_cuisines():
     """
     Get a list of all the cuisines and their ids
     """
-    cuisines = CuisineType.query.all()
-    cuisines = [cuisine.to_dict() for cuisine in cuisines]
+    results = CuisineType.query.all()
+    cuisines = [cuisine.to_dict() for cuisine in results]
+
     return jsonify({ "cuisines": cuisines }), 200
