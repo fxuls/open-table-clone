@@ -8,7 +8,7 @@ def seed_restaurants():
         zip_code=92881, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656473190/25319500_th8py8.jpg',
         cuisine_id=1, opening_time_id=45, closing_time_id=96, location_id=27)
     ital = Restaurant(
-        name='Marino Ristorante', url='marino-ristorante-la',
+        name='Marino Ristorante', url='marino-ristorante-los-angeles',
         price=3, rating=0, capacity=10, address_line_1='6001 Melrose Avenue',
         zip_code=90038, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656473865/47431254_vlscdv.jpg',
         cuisine_id=2, opening_time_id=47, closing_time_id=89, location_id=2)
@@ -152,10 +152,21 @@ def seed_restaurants():
         price=4, rating=0, capacity=10, address_line_1='8411 Preston Road', address_line_2='Suite 132',
         zip_code=75225, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656383419/cld-sample-4.jpg',
         cuisine_id=30, opening_time_id=45, closing_time_id=89, location_id=30)
+    a = Restaurant(
+        name='BJ\'s Restaurant & Brewhouse', url='bjs-restaurant-and-brewhouse-los-angeles',
+        price=2, rating=0, capacity=10, address_line_1='2520 Tuscany Street',
+        zip_code=92881, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656473190/25319500_th8py8.jpg',
+        cuisine_id=1, opening_time_id=45, closing_time_id=96, location_id=2)
+    b = Restaurant(
+        name='The Breakfast Club', url='the-breakfast-club-corona',
+        price=1, rating=0, capacity=15, address_line_1='1555 Camino Del Mar', address_line_2='Suite 102',
+        zip_code=92014, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656474328/24939767_pav17i.jpg',
+        cuisine_id=29, opening_time_id=29, closing_time_id=57, location_id=27)
 
     db.session.add_all([amer, ital, stea, seaf, fren, indi, mexi, japa, brit, chin])
     db.session.add_all([span, pizz, fusi, barb, gree, tapa, gril, comf, burg, iris])
     db.session.add_all([medi, thai, asia, texm, midd, rama, sush, hala, brea, unsp])
+    db.session.add_all([a, b])
     db.session.commit()
 
 
