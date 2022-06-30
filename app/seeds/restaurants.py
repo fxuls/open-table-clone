@@ -45,7 +45,7 @@ def seed_restaurants():
     brit = Restaurant(
         name='Del Mar Rendezvous', url='del-mar-rendezvous-san-diego',
         price=2, rating=0, capacity=5, address_line_1='1555 Camino Del Mar', address_line_2='Suite 102',
-        zip_code=92014, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656475699/23691513_rnfw8y.jpg',
+        zip_code=92014, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656554848/Iron_Gate_Restaurant_os1hqo.jpg',
         cuisine_id=9, opening_time_id=49, closing_time_id=81, location_id=8)
     chin = Restaurant(
         name='Jia Modern Chinese & Asian Lounge', url='jia-modern-chinese-and-asian-lounge-dallas',

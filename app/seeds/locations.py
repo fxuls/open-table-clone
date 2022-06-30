@@ -4,7 +4,7 @@ from app.models import db, Location
 # Adds 25 most populated cities with timezones, plus some extras
 def seed_locations():
     nyc = Location(
-        restaurant_id='New York City', url='New York')
+        city='New York City', state='New York', timezone='GMT-4')
     la = Location(
         city='Los Angeles', state='California', timezone='GMT-7')
     chi = Location(
