@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('address_line_2', sa.String(length=85), nullable=True),
     sa.Column('zip_code', sa.Integer(), nullable=False),
     sa.Column('reservation_notes', sa.String(length=255), nullable=True),
-    sa.Column('preview_image_url', sa.String(length=120), nullable=True),
+    sa.Column('preview_image_url', sa.String(length=200), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=True),
     sa.Column('cuisine_id', sa.Integer(), nullable=True),
     sa.Column('opening_time_id', sa.Integer(), nullable=False),
