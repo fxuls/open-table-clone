@@ -9,3 +9,4 @@ from .image import Image
 from .review import Review
 from .reservation import Reservation
 from .review_link import ReviewLink
+from .favorite import Favorite
