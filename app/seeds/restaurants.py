@@ -1,6 +1,6 @@
 from app.models import db, Restaurant
 
-# Adds 30 popular cuisine types to seed the database
+# Adds restaurants of each cuisine type and location to seed the database
 def seed_restaurants():
     amer = Restaurant(
         name='BJ\'s Restaurant & Brewhouse', url='bjs-restaurant-and-brewhouse-corona',
@@ -108,7 +108,7 @@ def seed_restaurants():
         zip_code=75225, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656477788/800px-Restaurante_Tlamanalli__24059690031_vmwgjf.jpg',
         cuisine_id=21, opening_time_id=45, closing_time_id=89, location_id=20)
     thai = Restaurant(
-         name='King\'s Thai', url='kings-thai-denver',
+        name='King\'s Thai', url='kings-thai-denver',
         price=2, rating=0, capacity=10, address_line_1='211 N. 11th Street',
         zip_code=19107, preview_image_url='https://res.cloudinary.com/djsh50cka/image/upload/v1656477917/Thai_food_in_Las_Vegas_dvxrcl.jpg',
         cuisine_id=22, opening_time_id=45, closing_time_id=89, location_id=21)
@@ -170,7 +170,7 @@ def seed_restaurants():
     db.session.commit()
 
 
-# Uses a raw SQL query to TRUNCATE the users table.
+# Uses a raw SQL query to TRUNCATE the restaurants table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any

@@ -1,6 +1,6 @@
 from app.models import db, Occasion
 
-# Adds 30 popular cuisine types to seed the database
+# Adds all occasion types to the database
 def seed_occasions():
     bday = Occasion(
         type='Birthday')
@@ -17,7 +17,7 @@ def seed_occasions():
     db.session.commit()
 
 
-# Uses a raw SQL query to TRUNCATE the users table.
+# Uses a raw SQL query to TRUNCATE the occasions table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any
