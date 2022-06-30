@@ -6,8 +6,7 @@ from curses import wrapper
 from flask import Blueprint, jsonify
 
 from app import models
-from ..models import db
-from ..models import User, Timeslot, Restaurant
+from ..models import db, User, Timeslot, Restaurant
 
 dev_routes = Blueprint('dev', __name__)
 
