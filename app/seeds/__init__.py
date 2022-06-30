@@ -9,6 +9,7 @@ from .images import seed_images, undo_images
 from .reviews import seed_reviews, undo_reviews
 from .reservations import seed_reservations, undo_reservations
 from .review_links import seed_review_links, undo_review_links
+from .favorites import seed_favorites, undo_favorites
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -28,12 +29,14 @@ def seed():
     seed_reviews()
     seed_reservations()
     seed_review_links()
+    seed_favorites()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_favorites()
     undo_review_links()
     undo_reservations()
     undo_reviews
