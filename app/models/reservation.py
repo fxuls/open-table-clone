@@ -21,14 +21,14 @@ class Reservation(db.Model):
     def to_dict(self):
         values = {
             'id': self.id,
-            'party_size': self.party_size,
+            'user_id': self.user_id,
+            'restaurant_id': self.restaurant_id,
             'day': self.day.strftime("%Y-%m-%d"),
-            'special_request': self.special_request,
-            'user': self.user.to_dict(),
-            'restaurant': self.restaurant.to_dict(),
             'timeslot': self.timeslot.strf(),
+            'party_size': self.party_size,
+            'special_request': self.special_request,
         }
 
-        if self.occasion is not None: values['occasion'] = self.occasion.to_dict()
+        if self.occasion is not None: values['occasion'] = self.occasion.type
 
         return values
