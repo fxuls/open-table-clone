@@ -8,7 +8,8 @@ class Timeslot(db.Model):
     timeslot = db.Column(db.Time, nullable=False, unique=True)
 
     def strf(self):
-        return self.timeslot.strftime("%H:%M")
+        return str(self.timeslot)
+        # return self.timeslot.strftime("%H:%M")
 
     def to_dict(self):
         return {
