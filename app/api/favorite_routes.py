@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
+from flask_login import current_user
 
 from app import models
-from ..models import Restaurant
+from ..models import Favorite
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
