@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"))
 
     location = db.relationship("Location")
+    reservations = db.relationship("Reservation")
 
     @property
     def password(self):
