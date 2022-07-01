@@ -44,8 +44,8 @@ class Restaurant(db.Model):
             'preview_image_url': self.preview_image_url,
             'owner_id': self.owner_id,
             'cuisine_type': self.cuisine_type.type,
-            'opening_time': self.opening_time.timeslot,
-            'closing_time': self.closing_time.timeslot,
+            'opening_time': self.opening_time.strf(),
+            'closing_time': self.closing_time.strf(),
             'location': self.location.to_dict(),
             'images': [image.url for image in self.images],
         }
