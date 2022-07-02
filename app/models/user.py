@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'email': self.email,
         }
+
         if self.location is not None: values['location'] = self.location.to_dict()
 
         return values
