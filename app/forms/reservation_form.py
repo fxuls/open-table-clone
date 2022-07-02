@@ -31,8 +31,8 @@ def validate_day_is_not_in_past(form, field):
 
 class ReservationForm(FlaskForm):
     restaurant_id = IntegerField('restaurant_id', validators=[DataRequired(), restaurant_exists])
-    party_size = IntegerField('party_size', validators=[DataRequired(), NumberRange(min=1, message="Party size must be 1 or greater")])
+    party_size = IntegerField('party_size', validators=[DataRequired(), NumberRange(min=1, message="party_size must be 1 or greater")])
     timeslot = TimeField('timeslot', format='%H:%M:%S', validators=[DataRequired(message="timeslot is required in format hh:mm:ss"), validate_timeslot])
-    day = DateField('day', format='%Y-%m-%d', validators=[DataRequired(message="Day is required in format yyyy-mm-dd"), validate_day_is_not_in_past])
+    day = DateField('day', format='%Y-%m-%d', validators=[DataRequired(message="day is required in format yyyy-mm-dd"), validate_day_is_not_in_past])
     special_request = StringField('special_request', validators=[Length(max=600, message="special_request must be 600 characters or fewer")])
     occasion_id = IntegerField('occasion_id')
