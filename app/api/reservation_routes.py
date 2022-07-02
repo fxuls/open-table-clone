@@ -8,7 +8,7 @@ from app.models import db, Reservation, Restaurant, Timeslot
 
 reservation_routes = Blueprint('reservations', __name__)
 
-@reservation_routes.route('/reservations/user', methods=['GET'])
+@reservation_routes.route('/user', methods=['GET'])
 @login_required
 def get_user_reservations():
     """
@@ -19,7 +19,7 @@ def get_user_reservations():
     return jsonify({ "reservations": reservations }), 200
 
 
-@reservation_routes.route('/reservations', methods=['POST'])
+@reservation_routes.route('/', methods=['POST'])
 def create_reservation():
     """
     Create a new reservation
@@ -73,4 +73,4 @@ def create_reservation():
         db.session.commit()
 
         return reservation.to_dict(), 201
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 40
