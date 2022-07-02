@@ -35,9 +35,12 @@ def add_favorite():
 
     faves = [fav.to_dict() for fav in query.all()]
 
-    for fave in faves:
-        if fave['restaurant']['id'] == body['restaurant_id']:
-            return "Already added", 200
+    if body['restaurant_id'] in [fave['restaurant']['id'] for fave in faves]:
+        return jsonify({
+            "message": "Already added",
+            "status_code": 200
+        }), 200
+
     try:
         add_fave = Favorite(user_id=current_user.id, restaurant_id=body['restaurant_id'])
         db.session.add(add_fave)
@@ -59,4 +62,3 @@ def delete_favorite(restaurant_id):
     db.session.delete(query)
     db.session.commit()
     return jsonify({ "message": "Successfully deleted", "status_code": 200 }), 200
-
