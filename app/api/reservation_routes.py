@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
+import shortuuid
 
 from app import models
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms import ReservationForm
-from app.models import db, Reservation, Restaurant, Timeslot
+from app.models import db, Reservation, Restaurant, Timeslot, ReviewLink
 
 reservation_routes = Blueprint('reservations', __name__)
 
@@ -33,6 +34,9 @@ def create_reservation():
     Optional fields passed in through body:
         special_request
         occasion_id: must point to valid occasion
+
+    Upon successful creation also generate a ReviewLink and include
+    the url in the response
     """
     form = ReservationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -63,11 +67,13 @@ def create_reservation():
             day = form.data['day'],
             special_request = form.data['special_request'],
             occasion_id = form.data['occasion_id'],
+            review_link = ReviewLink(url=shortuuid.uuid())
         )
 
         # if user is logged in add user_id
         if current_user is not None:
             reservation.user_id = current_user.id
+
 
         db.session.add(reservation)
         db.session.commit()

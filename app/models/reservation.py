@@ -17,7 +17,7 @@ class Reservation(db.Model):
     restaurant = db.relationship("Restaurant")
     timeslot = db.relationship("Timeslot")
     occasion = db.relationship("Occasion")
-    review_link = db.relationship("ReviewLink", back_populates="reservation", cascade="all, delete-orphan")
+    review_link = db.relationship("ReviewLink", cascade="all, delete-orphan", uselist=False)
 
     def to_dict(self):
         values = {
@@ -28,6 +28,7 @@ class Reservation(db.Model):
             'timeslot': self.timeslot.strf(),
             'party_size': self.party_size,
             'special_request': self.special_request,
+            'review_link': '/reviews/new/' + self.review_link.url
         }
 
         if self.user is not None: values['user'] = self.user.to_dict()
