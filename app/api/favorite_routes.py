@@ -1,7 +1,6 @@
 from audioop import add
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-import json
 
 from app import models
 from ..models import Favorite, db
