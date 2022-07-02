@@ -29,6 +29,8 @@ class Restaurant(db.Model):
 
     images = db.relationship("Image", cascade="all, delete-orphan")
     favorites = db.relationship("Favorite", cascade="all, delete-orphan")
+    reviews = db.relationship("Review", cascade="all, delete-orphan")
+    reservations = db.relationship("Reservation", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

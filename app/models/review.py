@@ -15,7 +15,7 @@ class Review(db.Model):
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"), nullable=False)
 
     user = db.relationship("User")
-    restaurant = db.relationship("Restaurant")
+    restaurant = db.relationship("Restaurant", back_populates="reviews")
 
     def to_dict(self):
         return {

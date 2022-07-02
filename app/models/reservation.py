@@ -17,6 +17,7 @@ class Reservation(db.Model):
     restaurant = db.relationship("Restaurant", cascade="all")
     timeslot = db.relationship("Timeslot")
     occasion = db.relationship("Occasion")
+    review_link = db.relationship("ReviewLink", back_populates="reservation", cascade="all, delete-orphan")
 
     def to_dict(self):
         values = {

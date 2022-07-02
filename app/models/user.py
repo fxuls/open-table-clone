@@ -18,7 +18,8 @@ class User(db.Model, UserMixin):
 
     favorites = db.relationship("Favorite", cascade="all, delete-orphan")
     restaurants = db.relationship("Restaurant", cascade="all")
-    
+    reviews = db.relationship("Review", cascade="all, delete-orphan")
+
     @property
     def password(self):
         return self.hashed_password
