@@ -5,7 +5,7 @@ from app.models import Restaurant
 
 def restaurant_exists(form, field):
     """
-    Validate that restaurant with reaturant_id exists in restaurants
+    Validate that restaurant with restaurant_id exists in restaurants
     """
     restaurant_id = field.data
     restaurant = Restaurant.query.get(restaurant_id)
