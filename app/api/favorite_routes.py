@@ -43,7 +43,7 @@ def add_favorite():
     # Checks if restaurant is already added to user's favorites to avoid duplicate data
     if body['restaurant_id'] in [fave['restaurant']['id'] for fave in faves]:
         return jsonify({
-            "message": "Already added",
+            "message": "Restaurant already favorited",
             "status_code": 200
         }), 200
 
