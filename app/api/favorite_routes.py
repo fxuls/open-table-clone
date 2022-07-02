@@ -51,7 +51,14 @@ def add_favorite():
 
 
 
-@favorite_routes.route('/:restaurant_id', methods=['DELETE'])
+@favorite_routes.route('/<int:restaurant_id>', methods=['DELETE'])
 @login_required
 def delete_favorite(restaurant_id):
-    pass
+    query = Favorite.query.filter(Favorite.user_id == current_user.id).filter(Favorite.restaurant_id == restaurant_id).first()
+
+    if query is None:
+        return jsonify({ "message": "Restaurant couldn't be found in favorites", "status_code": 404 }), 404
+    db.session.delete(query)
+    db.session.commit()
+    return jsonify({ "message": "Successfully deleted", "status_code": 200 }), 200
+
