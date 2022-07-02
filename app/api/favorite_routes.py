@@ -3,10 +3,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 import json
 
-from psycopg2 import IntegrityError
-
 from app import models
-from ..models import Favorite, Restaurant, db
+from ..models import Favorite, db
 
 favorite_routes = Blueprint('favorites', __name__)
 
