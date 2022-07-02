@@ -4,7 +4,7 @@ from app.models import User
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/<int:user_id>')
+@user_routes.route('/<int:user_id>', methods=["GET"])
 def user(user_id):
     """
     Gets details of a user by user_id
