@@ -7,7 +7,7 @@ class ReviewLink(db.Model):
     url = db.Column(db.String(120), nullable=False, unique=True)
     reservation_id = db.Column(db.Integer, db.ForeignKey("reservations.id"))
 
-    reservation = db.relationship("Reservation")
+    reservation = db.relationship("Reservation", back_populates="review_link")
 
     def to_dict(self):
         return {
