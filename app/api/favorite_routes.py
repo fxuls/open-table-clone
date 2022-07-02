@@ -1,7 +1,6 @@
 from audioop import add
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-import json
 
 from app import models
 from ..models import Favorite, db
@@ -43,7 +42,7 @@ def add_favorite():
     # Checks if restaurant is already added to user's favorites to avoid duplicate data
     if body['restaurant_id'] in [fave['restaurant']['id'] for fave in faves]:
         return jsonify({
-            "message": "Already added",
+            "message": "Restaurant already favorited",
             "status_code": 200
         }), 200
 
