@@ -40,7 +40,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(restaurant_routes, url_prefix='/api/restaurants')
 app.register_blueprint(occasion_routes, url_prefix='/api/occasions')
 app.register_blueprint(cuisine_routes, url_prefix='/api/cuisines')
-app.register_blueprint(reservation_routes, url_prefix='/api')
+app.register_blueprint(reservation_routes, url_prefix='/api/reservations')
 app.register_blueprint(favorite_routes, url_prefix='/api/my/favorites')
 
 # only register dev routes if in dev env
