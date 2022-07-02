@@ -11,14 +11,3 @@ def user(user_id):
     """
     user = User.query.get(user_id)
     return user.to_dict()
-
-
-@user_routes.route('/<int:user_id>', methods=["DELETE"])
-def delete_user(user_id):
-    """
-    Gets details of a user by user_id
-    """
-    user = User.query.get(user_id)
-    db.session.delete(user)
-    db.session.commit()
-    return "Deleted user"
