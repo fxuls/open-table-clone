@@ -13,13 +13,14 @@ def get_retaurants():
     Results are filtered according to location_id and cuisine_id
     passed in through body
     """
-    body = request.get_json()
+    cuisine = request.args.get('cuisine_id')
+    location = request.args.get('location_id')
 
     query = Restaurant.query
-    if 'cuisine_id' in body:
-        query = query.filter(Restaurant.cuisine_id == body['cuisine_id'])
-    if 'location_id' in body:
-        query = query.filter(Restaurant.location_id == body['location_id'])
+    if cuisine:
+        query = query.filter(Restaurant.cuisine_id == cuisine)
+    if location:
+        query = query.filter(Restaurant.location_id == location)
 
     restaurants = [rest.to_dict() for rest in query.all()]
     return jsonify({ "restaurants": restaurants }), 200

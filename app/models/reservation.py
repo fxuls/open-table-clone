@@ -19,13 +19,16 @@ class Reservation(db.Model):
     occasion = db.relationship("Occasion")
 
     def to_dict(self):
-        return {
+        values = {
             'id': self.id,
+            'user_id': self.user_id,
+            'restaurant_id': self.restaurant_id,
+            'day': self.day.strftime("%Y-%m-%d"),
+            'timeslot': self.timeslot.strf(),
             'party_size': self.party_size,
-            'day': self.day,
             'special_request': self.special_request,
-            'user': self.user.to_dict(),
-            'restaurant': self.restaurant.to_dict(),
-            'timeslot': self.timeslot.timeslot,
-            'occasion': self.occasion.type,
         }
+
+        if self.occasion is not None: values['occasion'] = self.occasion.type
+
+        return values

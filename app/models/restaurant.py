@@ -10,10 +10,10 @@ class Restaurant(db.Model):
     rating = db.Column(db.Float(precision=2))
     capacity = db.Column(db.Integer)
     address_line_1 = db.Column(db.String(85), nullable=False)
-    address_line_2 = db.Column(db.String(85), nullable=False)
+    address_line_2 = db.Column(db.String(85))
     zip_code = db.Column(db.Integer, nullable=False)
     reservation_notes = db.Column(db.String(255))
-    preview_image_url = db.Column(db.String(120))
+    preview_image_url = db.Column(db.String(200))
 
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     cuisine_id = db.Column(db.Integer, db.ForeignKey("cuisine_types.id"))
@@ -44,8 +44,8 @@ class Restaurant(db.Model):
             'preview_image_url': self.preview_image_url,
             'owner_id': self.owner_id,
             'cuisine_type': self.cuisine_type.type,
-            'opening_time': self.opening_time.timeslot,
-            'closing_time': self.closing_time.timeslot,
+            'opening_time': self.opening_time.strf(),
+            'closing_time': self.closing_time.strf(),
             'location': self.location.to_dict(),
             'images': [image.url for image in self.images],
         }
