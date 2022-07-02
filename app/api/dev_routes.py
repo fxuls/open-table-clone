@@ -1,12 +1,9 @@
 # Routes for testing
 from datetime import datetime
-import os
-
-from curses import wrapper
-from flask import Blueprint, jsonify
+from flask import Blueprint
 
 from app import models
-from ..models import db, User, Timeslot, Restaurant
+from app.models import db, Timeslot, Restaurant
 
 dev_routes = Blueprint('dev', __name__)
 
