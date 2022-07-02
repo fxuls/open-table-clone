@@ -36,5 +36,5 @@ class User(db.Model, UserMixin):
         }
 
         if self.location is not None: values['location'] = self.location.to_dict()
-
+        
         return values

@@ -13,7 +13,7 @@ from .api.restaurant_routes import restaurant_routes
 from .api.occasion_routes import occasion_routes
 from .api.cuisine_routes import cuisine_routes
 from .api.reservation_routes import reservation_routes
-
+from .api.favorite_routes import favorite_routes
 
 from .seeds import seed_commands
 
@@ -41,7 +41,7 @@ app.register_blueprint(restaurant_routes, url_prefix='/api/restaurants')
 app.register_blueprint(occasion_routes, url_prefix='/api/occasions')
 app.register_blueprint(cuisine_routes, url_prefix='/api/cuisines')
 app.register_blueprint(reservation_routes, url_prefix='/api')
-
+app.register_blueprint(favorite_routes, url_prefix='/api/my/favorites')
 
 # only register dev routes if in dev env
 if (os.environ.get("FLASK_ENV") == 'development'):
