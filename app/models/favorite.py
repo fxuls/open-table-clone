@@ -11,7 +11,5 @@ class Favorite(db.Model):
     restaurant = db.relationship("Restaurant")
     def to_dict(self):
         return {
-            'id': self.id,
-            'user': self.user.to_dict(),
             'restaurant': self.restaurant.to_dict(),
         }
