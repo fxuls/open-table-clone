@@ -11,7 +11,7 @@ def restaurant_exists(form, field):
         raise ValidationError("Restaurant couldn't be found")
 
 class ReservationForm(FlaskForm):
-    restaurant_id = IntegerField('restaurant_id', validators=[DataRequired()])
+    restaurant_id = IntegerField('restaurant_id', validators=[DataRequired(), restaurant_exists])
     party_size = IntegerField('party_size', validators=[DataRequired(), NumberRange(min=1, message="Party size must be 1 or greater")])
     timeslot = TimeField('timeslot', validators=[DataRequired()])
     day = DateField('day', validators=[DataRequired()])
