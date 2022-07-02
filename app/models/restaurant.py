@@ -21,13 +21,14 @@ class Restaurant(db.Model):
     closing_time_id = db.Column(db.Integer, db.ForeignKey("timeslots.id"), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
 
-    owner = db.relationship("User")
+    owner = db.relationship("User", cascade="all")
     cuisine_type = db.relationship("CuisineType")
     opening_time = db.relationship("Timeslot", foreign_keys=[opening_time_id])
     closing_time = db.relationship("Timeslot", foreign_keys=[closing_time_id])
-    location = db.relationship("Location")
+    location = db.relationship("Location", cascade="all")
 
-    images = db.relationship("Image")
+    images = db.relationship("Image", cascade="all, delete-orphan")
+    favorites = db.relationship("Favorite", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
