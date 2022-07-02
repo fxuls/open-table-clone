@@ -21,7 +21,7 @@ class Restaurant(db.Model):
     closing_time_id = db.Column(db.Integer, db.ForeignKey("timeslots.id"), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
 
-    owner = db.relationship("User", back_populates="restaurants")
+    owner = db.relationship("User")
     cuisine_type = db.relationship("CuisineType")
     opening_time = db.relationship("Timeslot", foreign_keys=[opening_time_id])
     closing_time = db.relationship("Timeslot", foreign_keys=[closing_time_id])

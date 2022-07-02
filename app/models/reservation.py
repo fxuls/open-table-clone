@@ -13,8 +13,8 @@ class Reservation(db.Model):
     timeslot_id = db.Column(db.Integer, db.ForeignKey("timeslots.id"), nullable=False)
     occasion_id = db.Column(db.Integer, db.ForeignKey("occasions.id"))
 
-    user = db.relationship("User",cascade="all")
-    restaurant = db.relationship("Restaurant", back_populates="reservations")
+    user = db.relationship("User", back_populates="reservations")
+    restaurant = db.relationship("Restaurant")
     timeslot = db.relationship("Timeslot")
     occasion = db.relationship("Occasion")
     review_link = db.relationship("ReviewLink", back_populates="reservation", cascade="all, delete-orphan")
