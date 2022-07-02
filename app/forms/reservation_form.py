@@ -2,7 +2,7 @@ import datetime
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TimeField, DateField
-from wtforms.validators import DataRequired, ValidationError, NumberRange
+from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
 from app.models import Restaurant, Timeslot
 
 def restaurant_exists(form, field):
@@ -34,5 +34,5 @@ class ReservationForm(FlaskForm):
     party_size = IntegerField('party_size', validators=[DataRequired(), NumberRange(min=1, message="Party size must be 1 or greater")])
     timeslot = TimeField('timeslot', format='%H:%M:%S', validators=[DataRequired(message="timeslot is required in format hh:mm:ss"), validate_timeslot])
     day = DateField('day', format='%Y-%m-%d', validators=[DataRequired(message="Day is required in format yyyy-mm-dd"), validate_day_is_not_in_past])
-    special_request = StringField('special_request')
+    special_request = StringField('special_request', validators=[Length(max=600, message="special_request must be 600 characters or fewer")])
     occasion_id = IntegerField('occasion_id')
