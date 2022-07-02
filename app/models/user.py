@@ -14,7 +14,11 @@ class User(db.Model, UserMixin):
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"))
 
     location = db.relationship("Location")
-    reservations = db.relationship("Reservation")
+    reservations = db.relationship("Reservation", cascade="all, delete-orphan")
+
+    favorites = db.relationship("Favorite", cascade="all, delete-orphan")
+    restaurants = db.relationship("Restaurant", back_populates="owner")
+    reviews = db.relationship("Review", cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -36,5 +40,5 @@ class User(db.Model, UserMixin):
         }
 
         if self.location is not None: values['location'] = self.location.to_dict()
-        
+
         return values
