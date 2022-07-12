@@ -23,9 +23,8 @@ const SignUpForm = () => {
     }
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if user is already logged in redirect home
+  if (user) return <Redirect to='/' />;
 
   return (
     <form onSubmit={onSignUp}>
@@ -62,6 +61,7 @@ const SignUpForm = () => {
           name='email'
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          required={true}
         ></input>
       </div>
 
