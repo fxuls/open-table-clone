@@ -4,3 +4,7 @@
 :root {
     font-family: "Poppins Regular", Helvetica, sans-serif;
 }
+
+body {
+    margin: 0;
+}
