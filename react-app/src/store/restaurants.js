@@ -31,12 +31,23 @@ export function removeRestaurant(restaurantId) {
 }
 
 export default function restaurantsReducer(state = {}, action) {
-    const newState = { ...state }
+    const newState = { ...state };
 
     switch (action.type) {
         case SET_RESTAURANTS:
-            return { ...state, ...action.payload }
+            newState = action.restaurants.reduce((obj, restaurant) => {
+                obj[restaurant.id] = restaurant;
+                return obj;
+            }, {});
+
         case SET_RESTAURANT:
+            newState[action.restaurant.id] = action.restaurant;
+            break;
+
+        case REMOVE_RESTAURANT:
+            delete newState[action.restaurantId];
+            break;
     }
-    return newState
+
+    return newState;
 }
