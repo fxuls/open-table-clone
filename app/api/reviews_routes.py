@@ -13,4 +13,9 @@ reviews_routes = Blueprint('reviews', __name__)
 @reviews_routes.route('/user', methods=['GET'])
 @login_required
 def my_reviews():
-    pass
+    """
+    Gets a list of all the reviews belonging to the
+    currently authenticated user
+    """
+    reviews = [rev.to_dict() for rev in current_user.reviews]
+    return jsonify({ "reviews": reviews }), 200
