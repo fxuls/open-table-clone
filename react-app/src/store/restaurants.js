@@ -10,7 +10,7 @@ export const allRestaurantsSelector = (state) => state.restaurants;
 export function setResaurants(restaurants) {
     return {
         type: SET_RESTAURANTS,
-        restaurants,
+        payload: restaurants,
     };
 }
 
@@ -18,7 +18,7 @@ export function setResaurants(restaurants) {
 export function setRestaurant(restaurant) {
     return {
         type: SET_RESTAURANT,
-        restaurant,
+        payload: restaurant,
     }
 }
 
@@ -26,6 +26,17 @@ export function setRestaurant(restaurant) {
 export function removeRestaurant(restaurantId) {
     return {
         type: REMOVE_RESTAURANT,
-        restaurantId,
+        payload: restaurantId,
     }
+}
+
+export default function restaurantsReducer(state = {}, action) {
+    const newState = { ...state }
+
+    switch (action.type) {
+        case SET_RESTAURANTS:
+            return { ...state, ...action.payload }
+        case SET_RESTAURANT:
+    }
+    return newState
 }
