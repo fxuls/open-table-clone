@@ -26,7 +26,16 @@ class Review(db.Model):
             'ambience_rating': self.ambience_rating,
             'value_rating': self.value_rating,
             'review_text': self.review_text,
-            'user_id': self.user_id,
+            'user': {
+                'id': self.user.id,
+                'first_name': self.user.first_name,
+                'last_name': self.user.last_name,
+                'location': {
+                    'city': self.user.location.city,
+                    'state': self.user.location.state,
+                    'timezone': self.user.location.timezone
+                }
+            },
             'restaurant': {
                 'id': self.restaurant.id,
                 'name': self.restaurant.name,
