@@ -39,6 +39,15 @@ export const fetchRestaurants = () => async (dispatch) => {
     return res;
 }
 
+// fetch a restaurant by its url thunk
+export const fetchRestaurant = (url) => async (dispatch) => {
+    const res = await fetch(`/api/restaurants/${url}`);
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setRestaurant(data));
+    }
+}
+
 export default function restaurantsReducer(state = {}, action) {
     const newState = { ...state };
 
