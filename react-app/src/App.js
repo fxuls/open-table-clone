@@ -18,6 +18,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(fetchRestaurants());
+
       setLoaded(true);
     })();
   }, [dispatch]);
