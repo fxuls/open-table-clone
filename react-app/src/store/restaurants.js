@@ -22,4 +22,10 @@ export function setRestaurant(restaurant) {
     }
 }
 
-
+// REMOVE_RESTAURANT action creator
+export function removeRestaurant(restaurantId) {
+    return {
+        type: REMOVE_RESTAURANT,
+        restaurantId,
+    }
+}
