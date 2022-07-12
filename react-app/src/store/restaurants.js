@@ -65,6 +65,9 @@ export default function restaurantsReducer(state = {}, action) {
         case REMOVE_RESTAURANT:
             delete newState[action.restaurantId];
             break;
+
+        default:
+            break;
     }
 
     return newState;
