@@ -51,3 +51,80 @@ def get_review_form():
     user = reservation.user.to_dict()
     restaurant = reservation.restaurant.to_dict()
     return { "user": user, "restaurant": restaurant}, 200
+
+
+@reviews_routes.route('/', methods=['POST'])
+@login_required
+def create_review():
+    """
+    Create a new review
+    Can be created with or without authentication
+    Required fields passed through body:
+        restaurant_id: must point to valid restaurant
+        overall_rating
+        food_rating
+        service_rating
+        ambience_rating
+        value_rating
+    Optional fields passed in through body:
+        user_id
+        review_text
+    Upon successful submission, delete the review_link in the database
+    """
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        # create review
+        review = Review(
+            restaurant_id = form.data['restaurant_id'],
+            overall_rating = form.data['overall_rating'],
+            food_rating = form.data['food_rating'],
+            service_rating = form.data['service_rating'],
+            ambience_rating = form.data['ambience_rating'],
+            value_rating = form.data['value_rating'],
+            review_text = form.data['review_text'],
+        )
+
+        # add user_id from the logged in user
+        if current_user is not None:
+            review.user_id = current_user.id
+
+        db.session.add(review)
+        db.session.commit()
+
+        return review.to_dict(), 201
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 40
+
+
+@reviews_routes.route('/<int:review_id>', methods=['DELETE'])
+@login_required
+def delete_reservation(review_id):
+    """
+    Delete a review by review_id
+    The review must belong to the currently logged in user
+    """
+    review = Review.query.get(review_id)
+
+    # check if review exists
+    if review is None:
+        return jsonify({
+            "message": "Review does not exist",
+            "status_code": 404,
+        }), 404
+
+    # check review belongs to user
+    if review.user_id != current_user.id:
+        return jsonify({
+            "message": "No permission to delete this review",
+            "status_code": 401,
+        }), 401
+
+    # delete review
+    db.session.delete(review)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Successfully deleted reservation",
+        "status_code": 200,
+    }), 200
