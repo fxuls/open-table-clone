@@ -8,3 +8,13 @@
 body {
     margin: 0;
 }
+
+.flex-row {
+    display: flex;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
