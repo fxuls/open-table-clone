@@ -1,1 +1,6 @@
-/* TODO Add site wide styles */
+/* Poppins 400 regular, 400 regular italic, 700 bold, and 700 bold italic */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    font-family: "Poppins Regular", Helvetica, sans-serif;
+}
