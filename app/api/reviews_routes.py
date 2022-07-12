@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from app import models
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms import ReviewForm
-from app.models import db, Reservation, ReviewLink, Review
+from app.models import db, Reservation, ReviewLink, Review, Restaurant
 
 reviews_routes = Blueprint('reviews', __name__)
 
@@ -92,6 +92,14 @@ def create_review():
         db.session.add(review)
         db.session.commit()
 
+        # update restaurant's overall rating to account for new review
+        restaurant_reviews = Review.query.filter(Review.restaurant_id == form.data['restaurant_id']).all()
+        ratings = [rev.overall_rating for rev in restaurant_reviews]
+        restaurant = Restaurant.query.filter(Restaurant.id == form.data['restaurant_id']).first()
+        restaurant.rating = sum(ratings)/len(ratings)
+
+        db.session.commit()
+
         return review.to_dict(), 201
     return {"errors": validation_errors_to_error_messages(form.errors)}, 40
 
@@ -163,6 +171,14 @@ def update_review(review_id):
         review.ambience_rating = form.data['ambience_rating'],
         review.value_rating = form.data['value_rating'],
         review.review_text = form.data['review_text'],
+
+        # update restaurant's overall rating to account for new rating of this review
+        restaurant_reviews = Review.query.filter(Review.restaurant_id == form.data['restaurant_id']).all()
+        ratings = [rev.overall_rating for rev in restaurant_reviews]
+        restaurant = Restaurant.query.filter(Restaurant.id == form.data['restaurant_id']).first()
+        restaurant.rating = sum(ratings)/len(ratings)
+
+        db.session.commit()
 
         db.session.commit()
 
