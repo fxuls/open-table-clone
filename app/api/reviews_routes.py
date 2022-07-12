@@ -1,11 +1,10 @@
-from crypt import methods
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 
 from app import models
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms import ReviewForm
-from app.models import db, Reservation, ReviewLink, Review, User
+from app.models import db, Reservation, ReviewLink, Review
 
 reviews_routes = Blueprint('reviews', __name__)
 
@@ -36,7 +35,7 @@ def get_review_details(reviewId):
 
 
 @reviews_routes.route('/new', methods=['POST'])
-def get_review_form():
+def get_reservation_data():
     """
     Checks the database for the review link, and returns the review form if valid
     """
@@ -99,7 +98,7 @@ def create_review():
 
 @reviews_routes.route('/<int:review_id>', methods=['DELETE'])
 @login_required
-def delete_reservation(review_id):
+def delete_review(review_id):
     """
     Delete a review by review_id
     The review must belong to the currently logged in user
@@ -128,3 +127,44 @@ def delete_reservation(review_id):
         "message": "Successfully deleted reservation",
         "status_code": 200,
     }), 200
+
+
+@reviews_routes.route('/<int:review_id>', methods=['PUT'])
+@login_required
+def update_review(review_id):
+    """
+    Update a review by review_id
+    The review must belong to the currently logged in user
+    """
+    review = Review.query.get(review_id)
+
+    # check if review exists
+    if review is None:
+        return jsonify({
+            "message": "Review does not exist",
+            "status_code": 404,
+        }), 404
+
+    # check review belongs to user
+    if review.user_id != current_user.id:
+        return jsonify({
+            "message": "No permission to delete this review",
+            "status_code": 401,
+        }), 401
+
+    # update review
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        review.overall_rating = form.data['overall_rating'],
+        review.food_rating = form.data['food_rating'],
+        review.service_rating = form.data['service_rating'],
+        review.ambience_rating = form.data['ambience_rating'],
+        review.value_rating = form.data['value_rating'],
+        review.review_text = form.data['review_text'],
+
+        db.session.commit()
+
+        return review.to_dict(), 201
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 40
