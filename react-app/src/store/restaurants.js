@@ -44,7 +44,7 @@ export default function restaurantsReducer(state = {}, action) {
 
     switch (action.type) {
         case SET_RESTAURANTS:
-            newState = action.restaurants.reduce((obj, restaurant) => {
+            return action.restaurants.reduce((obj, restaurant) => {
                 obj[restaurant.id] = restaurant;
                 return obj;
             }, {});
