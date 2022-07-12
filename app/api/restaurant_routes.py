@@ -37,3 +37,17 @@ def get_restaurant_details(restaurant_url):
         return jsonify({ "message": "Restaurant couldn't be found", "status_code": 404}), 404
 
     return restaurant.to_dict(), 200
+
+
+@restaurant_routes.route('/<path:restaurant_url>/reviews')
+def get_restaurant_reviews(restaurant_url):
+    """
+    Get details of a restaurant by its url
+    """
+    restaurant = Restaurant.query.filter(Restaurant.url == restaurant_url).first()
+
+    if restaurant is None:
+        return jsonify({ "message": "Restaurant couldn't be found", "status_code": 404}), 404
+
+    reviews = [rev.to_dict() for rev in restaurant.reviews]
+    return jsonify({ "reviews": reviews }), 200
