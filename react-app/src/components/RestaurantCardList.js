@@ -17,10 +17,14 @@ function RestaurantCardsList() {
 
   const restaurants = useSelector(restaurantActions.allRestaurantsSelector)
   let restaurantComponents = [];
-  for (const restaurant in  restaurants) {
-    restaurantComponents.push(<li key={restaurants[restaurant].id}>
-    <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>{restaurants[restaurant].name}</NavLink>
-  </li>)
+  for (const restaurant in restaurants) {
+    restaurantComponents.push(
+      <li key={restaurants[restaurant].id} className="restCard">
+      <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
+        <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" />
+        {restaurants[restaurant].name}
+        </NavLink>
+      </li>)
   };
 
     return (
