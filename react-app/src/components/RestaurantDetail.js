@@ -56,7 +56,18 @@ function RestaurantDetail() {
                 <p className="rest-detail-info">{`${restaurant.location?.city}, ${restaurant.location?.state}`}</p>
             </div>
             : null }
-            <div className="restGallery"></div>
+            <div className="restGallery">
+                <h4>Photo Gallery</h4>
+                <ul>
+                    {restaurant?.images.map(img => {
+                        return (
+                            <li key={img}>
+                                <img src={img} alt="restaurant gallery" className='rest-image-gallery'/>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         </div>
       </div>
     );
