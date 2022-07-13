@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
+import { userSelector } from "../../store/session";
 
 const NavBar = () => {
+
+  const sessionUser = useSelector(userSelector);
+  
   return (
     <nav className="nav-header">
       <div className="flex-row">
