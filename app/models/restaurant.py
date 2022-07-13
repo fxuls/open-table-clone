@@ -21,16 +21,16 @@ class Restaurant(db.Model):
     closing_time_id = db.Column(db.Integer, db.ForeignKey("timeslots.id"), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
 
-    owner = db.relationship("User")
-    cuisine_type = db.relationship("CuisineType")
-    opening_time = db.relationship("Timeslot", foreign_keys=[opening_time_id])
-    closing_time = db.relationship("Timeslot", foreign_keys=[closing_time_id])
-    location = db.relationship("Location")
+    owner = db.relationship("User", lazy="joined")
+    cuisine_type = db.relationship("CuisineType", lazy="joined")
+    opening_time = db.relationship("Timeslot", foreign_keys=[opening_time_id], lazy="joined")
+    closing_time = db.relationship("Timeslot", foreign_keys=[closing_time_id], lazy="joined")
+    location = db.relationship("Location", lazy="joined")
 
-    images = db.relationship("Image", cascade="all, delete-orphan")
-    favorites = db.relationship("Favorite", back_populates="restaurant", cascade="all, delete-orphan")
-    reviews = db.relationship("Review", cascade="all, delete-orphan")
-    reservations = db.relationship("Reservation", back_populates="restaurant", cascade="all, delete-orphan")
+    images = db.relationship("Image", cascade="all, delete-orphan", lazy="joined")
+    favorites = db.relationship("Favorite", back_populates="restaurant", cascade="all, delete-orphan", lazy="joined")
+    reviews = db.relationship("Review", cascade="all, delete-orphan", lazy="joined")
+    reservations = db.relationship("Reservation", back_populates="restaurant", cascade="all, delete-orphan", lazy="joined")
 
     def to_dict(self):
         return {
