@@ -5,6 +5,7 @@
     font-family: "Poppins Regular", Helvetica, sans-serif;
     --main-color: #0cabed;
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
+    --icon-grey: #2D333F;
     background-color: white;
 }
 
@@ -14,4 +15,8 @@ body {
 
 .flex-row {
     display: flex;
+}
+
+.icon {
+    color: var(--icon-grey);
 }
