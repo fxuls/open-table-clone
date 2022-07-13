@@ -29,3 +29,15 @@
     height: 1.45rem;
     width: auto;
 }
+
+.nav-links {
+    gap: 1rem;
+    align-self: stretch;
+}
+
+.nav-links > a {
+    border: 0.08rem solid #d8d9db;
+    border-radius: 0.2rem;
+    padding: 0 1rem;
+    text-align: center;
+}
