@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 
@@ -20,7 +21,11 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="flex-row">Right</div>
+      <div className="flex-row nav-links">
+        <Link to="/login">Log in</Link>
+
+        <Link to="/sign-up">Sign up</Link>
+      </div>
     </nav>
   );
 };
