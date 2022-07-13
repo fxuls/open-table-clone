@@ -12,3 +12,15 @@
     height: 2.5rem;
     width: auto;
 }
+
+.nav-location {
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.nav-location nav {
+    padding: 0 0.9rem;
+    margin-left: 0.5rem;
+    border-left: 0.08rem solid #0000000f;
+}
