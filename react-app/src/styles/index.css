@@ -26,3 +26,19 @@ a {
 .icon {
     color: var(--main-grey);
 }
+
+button {
+    cursor: pointer;
+    background-color: white;
+    border: 0.08rem solid #d8d9db;
+    border-radius: 0.2rem;
+}
+
+button.hover-effect {
+    transition: all 0.2s ease;
+}
+
+button.hover-effect:hover {
+    background-color: var(--main-color);
+    color: white;
+}
