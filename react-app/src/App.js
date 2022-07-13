@@ -7,8 +7,10 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import RestaurantCardsList from './components/RestaurantCardList';
 import { authenticate } from './store/session';
 import { fetchRestaurants } from './store/restaurants';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +36,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+          <RestaurantCardsList />
         </Route>
 
         <Route path='/login' exact={true}>
