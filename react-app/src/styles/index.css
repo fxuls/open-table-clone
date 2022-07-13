@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    font-family: "Poppins Regular", Helvetica, sans-serif;
     --main-color: #0cabed;
+    --main-grey: #2D333F;
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
-    --icon-grey: #2D333F;
+
+    font-family: "Poppins Regular", Helvetica, sans-serif;
     background-color: white;
 }
 
