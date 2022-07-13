@@ -3,7 +3,9 @@
 
 :root {
     font-family: "Poppins Regular", Helvetica, sans-serif;
-    background-color: aqua;
+    --main-color: #0cabed;
+    --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
+    background-color: white;
 }
 
 body {
