@@ -30,3 +30,9 @@
     width: 90%;
     margin: 0 auto;
 }
+
+.restCard:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0 5px 5px var(--main-grey);
+}
