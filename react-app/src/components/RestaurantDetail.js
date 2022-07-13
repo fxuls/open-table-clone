@@ -21,10 +21,17 @@ function RestaurantDetail() {
     return (
       <div className="restDetail">
         <img src={`${restaurant?.preview_image_url}`} alt="Restaurant Header" className="restHeaderImg"/>
-        <h1 className="restName">{restaurant?.name}</h1>
-        <div className="restOverview"></div>
-        <div className="restDetails"></div>
-        <div className="restGallery"></div>
+        <div className="restProfile">
+            <h1 className="restName">{restaurant?.name}</h1>
+            <div className="restOverview">
+                { restaurant?.rating ?
+                <p className="restRating">Rating: {restaurant?.rating.toFixed(2)}/5</p>
+                : null}
+            <p className="restInfo">{restaurant?.cuisine_type} • {"$".repeat(restaurant?.price)} • {restaurant?.location.city}</p>
+            </div>
+            <div className="restDetails"></div>
+            <div className="restGallery"></div>
+        </div>
       </div>
     );
   }
