@@ -17,7 +17,19 @@ function RestaurantDetail() {
   }, [dispatch, updated, url]);
 
   const restaurant = useSelector(restaurantActions.restaurantSelector)
-
+  const fixTimes = (timeString) => {
+    const stringArr = timeString?.split(":");
+    const intArr = [];
+    stringArr?.forEach(element => {
+        intArr.push(parseInt(element))
+    });
+    let amPm = "AM";
+    if (intArr[0] > 12) {
+        intArr[0] -= 12;
+        amPm = "PM"
+    }
+  return `${intArr[0]}:${stringArr[1]} ${amPm}`
+  }
     return (
       <div className="restDetail">
         <img src={`${restaurant?.preview_image_url}`} alt="Restaurant Header" className="restHeaderImg"/>
@@ -29,7 +41,13 @@ function RestaurantDetail() {
                 : null}
             <p className="restInfo">{restaurant?.cuisine_type} • {"$".repeat(restaurant?.price)} • {restaurant?.location.city}</p>
             </div>
-            <div className="restDetails"></div>
+            <div className="restDetails">
+                <h4>Additional Info</h4>
+                <h6 className="rest-detail-title">Opening Time</h6>
+                <p className="rest-detail-info">{fixTimes(restaurant?.opening_time)}</p>
+                <h6 className="rest-detail-title">Closing Time</h6>
+                <p className="rest-detail-info">{fixTimes(restaurant?.closing_time)}</p>
+            </div>
             <div className="restGallery"></div>
         </div>
       </div>
