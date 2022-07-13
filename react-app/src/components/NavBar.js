@@ -22,9 +22,17 @@ const NavBar = () => {
       </div>
 
       <div className="flex-row nav-links">
-        <Link to="/login">Log in</Link>
+        <Link to="/login">
+          <button className="nav-button hover-effect login-button">
+            Log in
+          </button>
+        </Link>
 
-        <Link to="/sign-up">Sign up</Link>
+        <Link to="/sign-up">
+          <button className="nav-button hover-effect sign-up-button">
+            Sign up
+          </button>
+        </Link>
       </div>
     </nav>
   );
