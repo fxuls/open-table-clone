@@ -24,7 +24,7 @@ function RestaurantCardsList() {
       <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
         <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" />
         <div className="restCardLower">
-          <p className="restName">{restaurants[restaurant].name}</p>
+          <h4 className="restName">{restaurants[restaurant].name}</h4>
           { restaurants[restaurant].rating ?
           <p className="restRating">Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
           : null}

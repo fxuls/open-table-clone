@@ -36,3 +36,12 @@
     top: -5px;
     box-shadow: 0 5px 5px var(--main-grey);
 }
+
+.restCardLower {
+    padding: 8px;
+    overflow: hidden;
+}
+
+.restName {
+    margin: 4px 0;
+}
