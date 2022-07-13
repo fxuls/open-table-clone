@@ -22,6 +22,9 @@ function RestaurantCardsList() {
       <li key={restaurants[restaurant].id} className="restCard">
       <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
         <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" />
+        { restaurants[restaurant].rating ?
+        <p>Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
+        : null}
         {restaurants[restaurant].name}
         </NavLink>
       </li>)
