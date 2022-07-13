@@ -24,3 +24,8 @@
     margin-left: 0.5rem;
     border-left: 0.08rem solid #0000000f;
 }
+
+.nav-header .icon {
+    height: 1.45rem;
+    width: auto;
+}
