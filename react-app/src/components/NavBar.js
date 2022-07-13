@@ -11,6 +11,7 @@ const NavBar = () => {
           <img
             className="masthead"
             src="//cdn.otstatic.com/cfe/9/images/opentable-logo-153e80.svg"
+            alt="website logo"
           />
         </a>
 
