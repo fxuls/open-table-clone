@@ -24,10 +24,6 @@ a {
     display: flex;
 }
 
-.icon {
-    color: var(--main-grey);
-}
-
 button {
     cursor: pointer;
     background-color: white;
