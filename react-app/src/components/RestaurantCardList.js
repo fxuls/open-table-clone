@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
+import "../styles/restaurantCard.css"
 
 
 function RestaurantCardsList() {
@@ -22,11 +23,11 @@ function RestaurantCardsList() {
       <li key={restaurants[restaurant].id} className="restCard">
       <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
         <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" />
-        {restaurants[restaurant].name}
+        <p className="restName">{restaurants[restaurant].name}</p>
         { restaurants[restaurant].rating ?
-        <p>Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
+        <p className="restRating">Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
         : null}
-        <p>{restaurants[restaurant].cuisine_type} • {"$".repeat(restaurants[restaurant].price)} • {restaurants[restaurant].location.city}</p>
+        <p className="restInfo">{restaurants[restaurant].cuisine_type} • {"$".repeat(restaurants[restaurant].price)} • {restaurants[restaurant].location.city}</p>
         </NavLink>
       </li>)
   };

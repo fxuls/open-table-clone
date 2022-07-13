@@ -1,0 +1,12 @@
+.restCard {
+    width: 236px;
+    height: 306px;
+    border-radius: 5px;
+    border: 1px solid var(--main-grey);
+    overflow: hidden;
+}
+
+.restThumb {
+    width: 236px;
+    height: 132px;
+}
