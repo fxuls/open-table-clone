@@ -1,0 +1,43 @@
+/* nav specific css styling */
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.56rem;
+    box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
+}
+
+.masthead {
+    height: 2.5rem;
+    width: auto;
+}
+
+.nav-location {
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.nav-location nav {
+    padding: 0 0.9rem;
+    margin-left: 0.5rem;
+    border-left: 0.08rem solid #0000000f;
+}
+
+.nav-header .icon {
+    height: 1.45rem;
+    width: auto;
+}
+
+.nav-links {
+    gap: 1rem;
+    align-self: stretch;
+}
+
+.nav-links > a {
+    border: 0.08rem solid #d8d9db;
+    border-radius: 0.2rem;
+    padding: 0 1rem;
+    text-align: center;
+}

@@ -1,0 +1,28 @@
+/* Poppins 400 regular, 400 regular italic, 700 bold, and 700 bold italic */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --main-color: #0cabed;
+    --main-grey: #2D333F;
+    --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
+
+    font-family: "Poppins Regular", Helvetica, sans-serif;
+    background-color: white;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.icon {
+    color: var(--main-grey);
+}

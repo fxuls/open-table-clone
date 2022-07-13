@@ -1,38 +1,33 @@
-
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass } from "@fortawesome/free-regular-svg-icons";
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
+    <nav className="nav-header">
+      <div className="flex-row">
+        <a href="/" className="homepage-link">
+          <img
+            className="masthead"
+            src="//cdn.otstatic.com/cfe/9/images/opentable-logo-153e80.svg"
+          />
+        </a>
+
+        <div className="nav-location">
+          <nav>
+            <FontAwesomeIcon icon={faCompass} size="lg" className="icon"/>
+          </nav>
+        </div>
+      </div>
+
+      <div className="flex-row nav-links">
+        <Link to="/login">Log in</Link>
+
+        <Link to="/sign-up">Sign up</Link>
+      </div>
     </nav>
   );
-}
+};
 
 export default NavBar;
