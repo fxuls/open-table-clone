@@ -1,0 +1,10 @@
+.restHeaderImg {
+    height: 460px;
+    width: 100%
+}
+
+@media (max-width:1055px) {
+    .restHeaderImg {
+        height: 296px;
+    }
+}

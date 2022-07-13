@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
-import "../styles/restaurantCard.css"
+import "../styles/restaurantDetail.css"
 
 
 function RestaurantDetail() {
@@ -21,7 +21,10 @@ function RestaurantDetail() {
     return (
       <div className="restDetail">
         <img src={`${restaurant?.preview_image_url}`} alt="Restaurant Header" className="restHeaderImg"/>
-        <h1>{restaurant?.name}</h1>
+        <h1 className="restName">{restaurant?.name}</h1>
+        <div className="restOverview"></div>
+        <div className="restDetails"></div>
+        <div className="restGallery"></div>
       </div>
     );
   }
