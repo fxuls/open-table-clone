@@ -33,9 +33,11 @@
 .nav-links {
     gap: 1rem;
     align-self: stretch;
+    align-items: center;
 }
 
-.nav-links > a {
+.nav-button {
+    height: 2.3rem;
     border: 0.08rem solid #d8d9db;
     border-radius: 0.2rem;
     padding: 0 1rem;
