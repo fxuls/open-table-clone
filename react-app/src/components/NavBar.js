@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import LogoutButton from "./auth/LogoutButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass } from "@fortawesome/free-regular-svg-icons";
 
 const NavBar = () => {
   return (
@@ -12,6 +12,12 @@ const NavBar = () => {
             src="//cdn.otstatic.com/cfe/9/images/opentable-logo-153e80.svg"
           />
         </a>
+
+        <div className="nav-location">
+          <nav>
+            <FontAwesomeIcon icon={faCompass} size="lg" className="icon"/>
+          </nav>
+        </div>
       </div>
 
       <div className="flex-row">Right</div>
