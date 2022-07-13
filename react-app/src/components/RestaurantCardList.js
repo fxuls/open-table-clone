@@ -23,19 +23,22 @@ function RestaurantCardsList() {
       <li key={restaurants[restaurant].id} className="restCard">
       <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
         <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" />
-        <p className="restName">{restaurants[restaurant].name}</p>
-        { restaurants[restaurant].rating ?
-        <p className="restRating">Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
-        : null}
-        <p className="restInfo">{restaurants[restaurant].cuisine_type} • {"$".repeat(restaurants[restaurant].price)} • {restaurants[restaurant].location.city}</p>
+        <div className="restCardLower">
+          <p className="restName">{restaurants[restaurant].name}</p>
+          { restaurants[restaurant].rating ?
+          <p className="restRating">Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
+          : null}
+          <p className="restInfo">{restaurants[restaurant].cuisine_type} • {"$".repeat(restaurants[restaurant].price)} • {restaurants[restaurant].location.city}</p>
+        </div>
         </NavLink>
       </li>)
   };
 
     return (
-      <>
-        <ul>{restaurantComponents}</ul>
-      </>
+      <div className="restCardDiv">
+        <h3>Discover restaurants</h3>
+        <ul className="restCardUL">{restaurantComponents}</ul>
+      </div>
     );
   }
 
