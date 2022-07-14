@@ -7,6 +7,8 @@ import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import RestaurantCardsList from './components/RestaurantCardList';
+import RestaurantDetail from './components/RestaurantDetail';
 import { authenticate } from "./store/session";
 import { modalSelector, showModal } from "./store/ui";
 import { fetchRestaurants } from "./store/restaurants";
@@ -44,6 +46,7 @@ function App() {
           <Route path="/" exact={true}>
             <h1>My Home Page</h1>
             <button onClick={(e) => dispatch(showModal("login"))}>Show modal</button>
+            <RestaurantCardsList />
           </Route>
 
           <Route path="/login" exact={true}>
@@ -53,7 +56,7 @@ function App() {
           <Route path="/sign-up" exact={true}>
             <SignUpForm />
           </Route>
-          
+
           <Route path='/restaurants/:url' exact={true}>
             <RestaurantDetail />
           </Route>
