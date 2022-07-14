@@ -30,9 +30,6 @@ function App() {
       } finally {
         setLoaded(true);
       }
-
-
-
     })();
   }, [dispatch, modal]);
 

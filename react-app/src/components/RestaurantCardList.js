@@ -22,7 +22,7 @@ function RestaurantCardsList() {
     restaurantComponents.push(
       <li key={restaurants[restaurant].id} className="restCard">
       <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
-        <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" />
+        <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" crossOrigin="" />
         <div className="restCardLower">
           <h4 className="restName">{restaurants[restaurant].name}</h4>
           { restaurants[restaurant].rating ?

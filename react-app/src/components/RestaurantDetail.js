@@ -34,7 +34,7 @@ function RestaurantDetail() {
 
   return (
       <div className="restDetail">
-        <img src={`${restaurant?.preview_image_url}`} alt="Restaurant Header" className="restHeaderImg"/>
+        <img src={`${restaurant?.preview_image_url}`} alt="Restaurant Header" className="restHeaderImg" crossOrigin=""/>
         <div className="restProfile">
             <h1 className="restName">{restaurant?.name}</h1>
             <div className="restOverview">
@@ -62,7 +62,7 @@ function RestaurantDetail() {
                     {restaurant?.images.map(img => {
                         return (
                             <li key={img}>
-                                <img src={img} alt="restaurant gallery" className='rest-image-gallery'/>
+                                <img src={img} alt="restaurant gallery" className="rest-image-gallery" crossOrigin=""/>
                             </li>
                         )
                     })}
