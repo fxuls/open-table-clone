@@ -2,13 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    --main-color: #DA3743;
-    --main-grey: #333333;
+    --main-color: rgb(218, 55, 67);
+    --main-grey-values: 45, 51, 63;
+    --main-grey: rgb(var(--main-grey-values));
+    --light-grey: rgb(192,192,192);
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
 
     font-family: "Poppins Regular", Helvetica, sans-serif;
     background-color: white;
-    color: #2d333f
+    color: var(--main-grey);
 }
 
 body {
