@@ -38,7 +38,8 @@ const LoginModal = () => {
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
+
+        <div className="form-row">
           <label htmlFor="email">Email</label>
           <input
             name="email"
@@ -48,7 +49,8 @@ const LoginModal = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+
+        <div className="form-row">
           <label htmlFor="password">Password</label>
           <input
             name="password"
@@ -57,8 +59,9 @@ const LoginModal = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Login</button>
         </div>
+
+        <button type="submit" className="form-submit-button">Login</button>
       </form>
     </div>
   );
