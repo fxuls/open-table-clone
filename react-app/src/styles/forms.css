@@ -28,6 +28,10 @@ h1.form-header {
     opacity: 0.5;
 }
 
+.form-row input:focus::placeholder {
+    opacity: 0;
+}
+
 .form-row input:hover {
     border: 0.07rem solid var(--main-grey);
 }
@@ -38,8 +42,8 @@ h1.form-header {
     padding: 0.75rem 10px;
     border: none;
     transition: background-color 0.2s ease;
-    font-weight: 800;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 1rem;
     margin-top: 0.9rem;
 }
 
