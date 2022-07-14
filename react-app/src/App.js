@@ -45,7 +45,7 @@ function App() {
         <Switch>
           <Route path="/" exact={true}>
             <h1>My Home Page</h1>
-            <button onClick={(e) => dispatch(showModal("login"))}>Show modal</button>
+            <button onClick={(e) => dispatch(showModal("ui/modals/LOGIN"))}>Show modal</button>
             <RestaurantCardsList />
           </Route>
 
