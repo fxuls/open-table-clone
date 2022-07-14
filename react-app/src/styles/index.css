@@ -3,6 +3,7 @@
 
 :root {
     --main-color: rgb(218, 55, 67);
+    --darker-main-color: rgb(218, 55, 67);
     --main-grey-values: 45, 51, 63;
     --main-grey: rgb(var(--main-grey-values));
     --light-grey-values: 192, 192, 192;
