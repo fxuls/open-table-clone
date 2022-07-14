@@ -3,7 +3,9 @@
 
 :root {
     --main-color: rgb(218, 55, 67);
-    --main-grey: rgb(45, 51, 63);
+    --main-grey-values: 45, 51, 63;
+    --main-grey: rgb(var(--main-grey-values));
+    --light-grey: rgb(192,192,192);
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
 
     font-family: "Poppins Regular", Helvetica, sans-serif;
