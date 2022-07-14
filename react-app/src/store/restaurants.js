@@ -32,7 +32,7 @@ export function removeRestaurant(restaurantId) {
 
 // fetch all restaurants thunk
 export const fetchRestaurants = () => async (dispatch) => {
-    const res = await fetch("/api/restaurants");
+    const res = await fetch("/api/restaurants/");
     const data = await res.json();
 
     dispatch(setResaurants(data.restaurants));
