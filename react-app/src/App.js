@@ -23,14 +23,16 @@ function App() {
   const modal = useSelector(modalSelector);
 
   useEffect(() => {
-    (async () => {
-      await dispatch(fetchRestaurants());
-      try {
-        await dispatch(authenticate());
-      } finally {
-        setLoaded(true);
-      }
-    })();
+    if (!loaded) {
+      (async () => {
+        await dispatch(fetchRestaurants());
+        try {
+          await dispatch(authenticate());
+        } finally {
+          setLoaded(true);
+        }
+      })();
+    }
   }, [dispatch, modal]);
 
   if (!loaded) {

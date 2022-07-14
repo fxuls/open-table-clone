@@ -17,9 +17,12 @@ console.log("URL:", url)
 
 
   useEffect(() => {
-    console.log("fetching with URL:", url)
-    dispatch(restaurantActions.fetchRestaurant(url));
-    setUpdated(true)
+    if (!updated && (url !== undefined)) {
+        console.log("fetching with URL:", url)
+        dispatch(restaurantActions.fetchRestaurant(url));
+        setUpdated(true)
+    }
+
   }, [dispatch, updated, url]);
 
   const restaurant = useSelector(restaurantActions.restaurantSelector)

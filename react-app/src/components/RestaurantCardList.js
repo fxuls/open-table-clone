@@ -12,8 +12,11 @@ function RestaurantCardsList() {
 
 
   useEffect(() => {
-    dispatch(restaurantActions.fetchRestaurants());
-    setUpdated(true)
+    if (!updated) {
+      dispatch(restaurantActions.fetchRestaurants());
+      setUpdated(true)
+    }
+
   }, [dispatch, updated]);
 
   const restaurants = useSelector(restaurantActions.allRestaurantsSelector)
