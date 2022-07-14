@@ -1,9 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 
+import { userSelector } from "../../store/session";
+import UnauthenticatedNav from "./UnauthenticatedNav";
+import AuthenticatedNav from "./AuthenticatedNav";
+
 const NavBar = () => {
+
+  const sessionUser = useSelector(userSelector);
+
+
   return (
     <nav className="nav-header">
       <div className="flex-row">
@@ -12,6 +21,7 @@ const NavBar = () => {
             className="masthead"
             src="//cdn.otstatic.com/cfe/9/images/opentable-logo-153e80.svg"
             alt="website logo"
+
           />
         </a>
 
@@ -22,11 +32,9 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="flex-row nav-links">
-        <Link to="/login">Log in</Link>
 
-        <Link to="/sign-up">Sign up</Link>
-      </div>
+      {sessionUser ? <AuthenticatedNav /> : <UnauthenticatedNav />}
+
     </nav>
   );
 };
