@@ -61,7 +61,7 @@ const LoginModal = () => {
           />
         </div>
 
-        <button type="submit" className="form-submit-button">Login</button>
+        <button type="submit" className="form-submit-button">Submit</button>
       </form>
     </div>
   );
