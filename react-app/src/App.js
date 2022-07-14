@@ -24,10 +24,15 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
-      await dispatch(fetchRestaurants());
+      dispatch(fetchRestaurants());
+      try {
+        dispatch(authenticate());
+      } finally {
+        setLoaded(true);
+      }
 
-      setLoaded(true);
+
+
     })();
   }, [dispatch, modal]);
 
