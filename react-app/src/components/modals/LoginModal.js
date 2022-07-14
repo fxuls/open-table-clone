@@ -30,7 +30,7 @@ const LoginModal = () => {
 
   return (
     <div className="login-modal">
-      <h1>Log in</h1>
+      <h1 className="form-header">Log in</h1>
 
       <form onSubmit={onLogin}>
         <div>
