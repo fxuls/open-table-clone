@@ -9,7 +9,7 @@
     --light-grey: rgb(var(--light-grey-values));
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
 
-    font-family: "Poppins Regular", Helvetica, sans-serif;
+    font-family: "Poppins", Helvetica, sans-serif;
     background-color: white;
     color: var(--main-grey);
 }
