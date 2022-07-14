@@ -21,8 +21,27 @@ h1.form-header {
     padding: 0.75rem 10px;
     border: 0.07rem solid #d8d9db;
     border-radius: 0.2rem;
+    font-size: 16px;
 }
 
 .form-row input::placeholder {
     opacity: 0.5;
+}
+
+.form-row input:hover {
+    border: 0.07rem solid var(--main-grey);
+}
+
+.form-submit-button {
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.75rem 10px;
+    border: none;
+    transition: background-color 0.2s ease;
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+
+.form-submit-button:hover {
+    background-color: var(--darker-main-color);
 }
