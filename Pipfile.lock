@@ -293,6 +293,14 @@
             "index": "pypi",
             "version": "==1.0.4"
         },
+        "setuptools": {
+            "hashes": [
+                "sha256:16923d366ced322712c71ccb97164d07472abeecd13f3a6c283f6d5d26722793",
+                "sha256:db3b8e2f922b2a910a29804776c643ea609badb6a32c4bcc226fd4fd902cce65"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==63.1.0"
+        },
         "shortuuid": {
             "hashes": [
                 "sha256:459f12fa1acc34ff213b1371467c0325169645a31ed989e268872339af7563d5",

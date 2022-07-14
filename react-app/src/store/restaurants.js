@@ -3,7 +3,7 @@ export const SET_RESTAURANTS = 'restaurants/SET_RESTAURANTS';
 export const REMOVE_RESTAURANT = 'restaurants/REMOVE_RESTAURANT';
 
 // selectors
-export const restaurantSelector = (restaurantId) => (state) => state.restaurants[restaurantId];
+export const restaurantSelector = (state) => state.restaurants.detail;
 export const allRestaurantsSelector = (state) => state.restaurants;
 
 // SET_RESTAURANTS action creator
@@ -59,7 +59,8 @@ export default function restaurantsReducer(state = {}, action) {
             }, {});
 
         case SET_RESTAURANT:
-            newState[action.restaurant.id] = action.restaurant;
+            console.log(newState)
+            newState["detail"] = action.restaurant;
             break;
 
         case REMOVE_RESTAURANT:

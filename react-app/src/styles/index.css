@@ -39,3 +39,7 @@ button.hover-effect:hover {
     background-color: var(--main-color);
     color: white;
 }
+
+ul {
+    list-style: none;
+}
