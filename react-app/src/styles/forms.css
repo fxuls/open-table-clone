@@ -50,3 +50,16 @@ h1.form-header {
 .form-submit-button:hover {
     background-color: var(--darker-main-color);
 }
+
+.field-error {
+    color: var(--main-color);
+    font-size: smaller;
+}
+
+.field-error:empty {
+    visibility: hidden;
+}
+
+.field-error:empty::after {
+    content: "Field error text";
+}
