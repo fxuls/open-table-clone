@@ -24,9 +24,9 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      dispatch(fetchRestaurants());
+      await dispatch(fetchRestaurants());
       try {
-        dispatch(authenticate());
+        await dispatch(authenticate());
       } finally {
         setLoaded(true);
       }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
 import "../styles/restaurantDetail.css"
@@ -8,10 +8,16 @@ import "../styles/restaurantDetail.css"
 function RestaurantDetail() {
   const dispatch = useDispatch();
   const [updated, setUpdated] = useState(false);
-  const { url } = useParams();
+  const match = useRouteMatch({
+    path: "/restaurants/:url",
+    exact: true
+  })
+const url = match.params.url
+console.log("URL:", url)
 
 
   useEffect(() => {
+    console.log("fetching with URL:", url)
     dispatch(restaurantActions.fetchRestaurant(url));
     setUpdated(true)
   }, [dispatch, updated, url]);
