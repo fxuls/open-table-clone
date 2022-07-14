@@ -8,7 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
-import { modalSelector } from "./store/ui";
+import { modalSelector, showModal } from "./store/ui";
 import { fetchRestaurants } from "./store/restaurants";
 import Modal from "./components/modals/Modal";
 
@@ -40,6 +40,7 @@ function App() {
         <Switch>
           <Route path="/" exact={true}>
             <h1>My Home Page</h1>
+            <button onClick={(e) => dispatch(showModal("login"))}>Show modal</button>
           </Route>
 
           <Route path="/login" exact={true}>
