@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(45, 51, 63, 0.5);
+    background-color: rgba(var(--main-grey-values), 0.5);
     position: absolute;
     z-index: 9;
     top: 0;
@@ -13,6 +13,24 @@
 
 .modal {
     background-color: white;
-    padding: 4rem;
+    padding: 3rem 2rem 2rem;
     border-radius: 0.2rem;
+    position: relative;
+    min-width: 15rem;
+    min-height: 8rem;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0.9rem;
+    top: 0.9rem;
+    cursor: pointer;
+    padding: 0.2rem 0.3rem;
+    color: var(--main-grey);
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.modal-close:hover {
+    opacity: 1;
 }
