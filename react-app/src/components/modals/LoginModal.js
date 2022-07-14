@@ -44,7 +44,7 @@ const LoginModal = () => {
           <input
             name="email"
             type="text"
-            placeholder="email"
+            placeholder="john.smith@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
