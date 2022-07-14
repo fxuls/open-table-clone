@@ -12,6 +12,8 @@ import { modalSelector, showModal } from "./store/ui";
 import { fetchRestaurants } from "./store/restaurants";
 import Modal from "./components/modals/Modal";
 
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ function App() {
   }
 
   return (
+
     <div>
       {modal && <Modal />}
       <BrowserRouter>
@@ -50,6 +53,10 @@ function App() {
           <Route path="/sign-up" exact={true}>
             <SignUpForm />
           </Route>
+          
+          <Route path='/restaurants/:url' exact={true}>
+            <RestaurantDetail />
+          </Route>
 
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />
@@ -61,6 +68,8 @@ function App() {
         </Switch>
       </BrowserRouter>
     </div>
+
+
   );
 }
 

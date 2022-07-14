@@ -13,13 +13,13 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey("locations.id"))
 
-    location = db.relationship("Location")
+    location = db.relationship("Location", lazy="joined")
 
-    reservations = db.relationship("Reservation", back_populates="user", cascade="all, delete-orphan")
+    reservations = db.relationship("Reservation", back_populates="user", cascade="all, delete-orphan", lazy="joined")
 
-    favorites = db.relationship("Favorite", cascade="all, delete-orphan")
-    restaurants = db.relationship("Restaurant", back_populates="owner")
-    reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
+    favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete-orphan", lazy="joined")
+    restaurants = db.relationship("Restaurant", back_populates="owner", lazy="joined")
+    reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan", lazy="joined")
 
     @property
     def password(self):
