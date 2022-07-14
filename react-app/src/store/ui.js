@@ -6,6 +6,9 @@ export const modalSelector = (state) => state.ui.modal;
 
 // SHOW_MODAL action creator
 export function showModal(modal) {
+    // disable background scrolling while modal is open
+    document.querySelector("body").style.overflow = "hidden";
+
     return {
         type: SHOW_MODAL,
         modal,
@@ -14,6 +17,9 @@ export function showModal(modal) {
 
 // HIDE_MODAL action creator
 export function hideModal() {
+    // reenable background page scrolling when modal is closed
+    document.querySelector("body").style.overflow = "auto";
+
     return {
         type: HIDE_MODAL
     }
