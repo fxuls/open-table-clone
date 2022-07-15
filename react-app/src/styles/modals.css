@@ -36,3 +36,13 @@
 .modal-close:hover {
     opacity: 1;
 }
+
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: 0.4rem;
+}
+.modal-footer p {
+    margin: 0;
+}
