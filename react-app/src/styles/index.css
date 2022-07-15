@@ -28,6 +28,15 @@ a {
     text-decoration: none;
 }
 
+a.text-link {
+    color: var(--main-color);
+}
+
+a.text-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .flex-row {
     display: flex;
 }
