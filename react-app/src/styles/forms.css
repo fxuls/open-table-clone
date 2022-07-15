@@ -1,5 +1,65 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
 h1.form-header {
     color: var(--main-color);
     font-weight: 800;
-    font-size: x-large;
+    font-size: 3rem;
+    margin-bottom: 0.6rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-row input {
+    padding: 0.75rem 10px;
+    border: 0.07rem solid #d8d9db;
+    border-radius: 0.2rem;
+    font-size: 16px;
+}
+
+.form-row input::placeholder {
+    opacity: 0.5;
+}
+
+.form-row input:focus::placeholder {
+    opacity: 0;
+}
+
+.form-row input:hover {
+    border: 0.07rem solid var(--main-grey);
+}
+
+.form-submit-button {
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.75rem 10px;
+    border: none;
+    transition: background-color 0.2s ease;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 0.9rem;
+}
+
+.form-submit-button:hover {
+    background-color: var(--darker-main-color);
+}
+
+.field-error {
+    color: var(--main-color);
+    font-size: smaller;
+}
+
+.field-error:empty {
+    visibility: hidden;
+}
+
+.field-error:empty::after {
+    content: "Field error text";
 }

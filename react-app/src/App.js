@@ -10,7 +10,7 @@ import User from "./components/User";
 import RestaurantCardsList from './components/RestaurantCardList';
 import RestaurantDetail from './components/RestaurantDetail';
 import { authenticate } from "./store/session";
-import { modalSelector, showModal } from "./store/ui";
+import { modalSelector } from "./store/ui";
 import { fetchRestaurants } from "./store/restaurants";
 import Modal from "./components/modals/Modal";
 
