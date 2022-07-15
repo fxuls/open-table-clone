@@ -26,8 +26,8 @@ const Modal = () => {
   }
 
   return (
-    <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal" onClick={onModalClick}>
+    <div className="modal-overlay" onMouseDown={closeModal}>
+      <div className="modal" onMouseDown={onModalClick}>
         <div className="modal-close" onClick={closeModal}>
             <FontAwesomeIcon icon={faXmark} size="xl" className="icon" />
         </div>

@@ -3,12 +3,14 @@
 
 :root {
     --main-color: rgb(218, 55, 67);
+    --darker-main-color: rgb(184, 34, 45);
     --main-grey-values: 45, 51, 63;
     --main-grey: rgb(var(--main-grey-values));
-    --light-grey: rgb(192,192,192);
+    --light-grey-values: 192, 192, 192;
+    --light-grey: rgb(var(--light-grey-values));
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
 
-    font-family: "Poppins Regular", Helvetica, sans-serif;
+    font-family: "Poppins", Helvetica, sans-serif;
     background-color: white;
     color: var(--main-grey);
 }
@@ -24,6 +26,15 @@ h1 {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+a.text-link {
+    color: var(--main-color);
+}
+
+a.text-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .flex-row {
