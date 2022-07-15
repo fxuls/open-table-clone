@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector, login } from "../../store/session";
 import { hideModal } from "../../store/ui";
@@ -9,9 +9,46 @@ const LoginModal = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
+
+  const getEmailError = () => {
+    if (!email) return "Email is required";
+    if (!/\S+@\S+\.\S+/.test(email)) return "Please enter a valid email";
+    return "";
+  };
+
+  const getPasswordError = () => (password ? "" : "Password is required");
+
+  useEffect(() => {
+    if (hasSubmitted) {
+      setEmailError(getEmailError());
+      setPasswordError(getPasswordError());
+
+      // parse errors obj
+      const errObj = errors.reduce((obj, error) => {
+        error = error.split(" : ");
+        obj[error[0]] = error[1];
+        return obj;
+      }, {});
+
+      if (errObj.email) setEmailError(errObj.email);
+      else if (errObj.password) setPasswordError(errObj.password);
+
+    }
+  }, [email, password, hasSubmitted, errors]);
+
+  useEffect(() => {
+    // parse errors
+    errors.forEach((error) => {
+      error = error.split(" : ");
+      console.log(error);
+    });
+  }, [errors]);
 
   // if user is logged in hide the modal
   if (user) {
@@ -19,12 +56,22 @@ const LoginModal = () => {
     return null;
   }
 
-
-  const onLogin = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
+    setHasSubmitted(true);
+
+    // front end validations
+    const emailValidationError = getEmailError();
+    const passwordValidationError = getPasswordError();
+
+    setEmailError(emailValidationError);
+    setPasswordError(passwordValidationError);
+
+    // if there are errors dont make request
+    if (!emailValidationError && !passwordValidationError) {
+      // perform login
+      const data = await dispatch(login(email, password));
+      if (data) setErrors(data);
     }
   };
 
@@ -32,22 +79,19 @@ const LoginModal = () => {
     <div className="login-modal">
       <h1 className="form-header">Log in</h1>
 
-      <form onSubmit={onLogin}>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-
+      <form onSubmit={onSubmit}>
         <div className="form-row">
           <label htmlFor="email">Email</label>
           <input
             name="email"
             type="text"
-            placeholder="john.smith@example.com"
+            placeholder="jason.smith@example.co"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <label htmlFor="email" className="field-error">
+            {emailError}
+          </label>
         </div>
 
         <div className="form-row">
@@ -59,9 +103,14 @@ const LoginModal = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <label htmlFor="password" className="field-error">
+            {passwordError}
+          </label>
         </div>
 
-        <button type="submit" className="form-submit-button">Submit</button>
+        <button type="submit" className="form-submit-button">
+          Submit
+        </button>
       </form>
     </div>
   );
