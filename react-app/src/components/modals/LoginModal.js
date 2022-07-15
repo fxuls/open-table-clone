@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector, login } from "../../store/session";
-import { hideModal } from "../../store/ui";
+import { showModal, hideModal } from "../../store/ui";
+import { SIGNUP_MODAL } from "./SignupModal";
 
 export const LOGIN_MODAL = "ui/modals/LOGIN";
 
@@ -75,6 +76,11 @@ const LoginModal = () => {
     }
   };
 
+  const populateDemoUserFields = () => {
+    setEmail("demo@aa.io");
+    setPassword("password");
+  }
+
   return (
     <div className="login-modal">
       <h1 className="form-header">Log in</h1>
@@ -112,6 +118,12 @@ const LoginModal = () => {
           Submit
         </button>
       </form>
+
+    <div className="modal-footer">
+
+      <p>Don't have an account yet? <a className="text-link" onClick={() => dispatch(showModal(SIGNUP_MODAL))}>Sign up.</a></p>
+      <p>Just looking around? <a className="text-link" onClick={populateDemoUserFields}>Log in as a demo user.</a></p>
+      </div>
     </div>
   );
 };
