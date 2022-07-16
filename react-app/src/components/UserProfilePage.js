@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import { userSelector } from "../store/session";
 import { fetchFavorites } from "../store/favorites";
 
@@ -24,10 +24,10 @@ const UserProfilePage = (props) => {
       </div>
       <ul className="profile-navigation">
         <li>
-          <Link to="/profile/favorites">Favorites</Link>
+          <NavLink to="/profile/favorites">Favorites</NavLink>
         </li>
         <li>
-          <Link to="/profile/reservations">Reservations</Link>
+          <NavLink to="/profile/reservations">Reservations</NavLink>
         </li>
       </ul>
       <div className="profile-content">
