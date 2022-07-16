@@ -10,7 +10,7 @@ const UserProfilePage = (props) => {
 
   // fetch favorites once on first render
   useEffect(() => {
-    dispatch(fetchFavorites())
+    dispatch(fetchFavorites());
   }, []);
 
   // if not logged in redirect to login
