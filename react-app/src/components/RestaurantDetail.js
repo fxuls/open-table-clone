@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import * as restaurantActions from "../store/restaurants"
-import "../styles/restaurantDetail.css"
+import * as restaurantActions from "../store/restaurants";
+import "../styles/restaurantDetail.css";
 
 
 function RestaurantDetail() {
@@ -25,7 +25,7 @@ console.log("URL:", url)
 
   }, [dispatch, updated, url]);
 
-  const restaurant = useSelector(restaurantActions.restaurantSelector)
+  const restaurant = useSelector(restaurantActions.restaurantUrlSelector(url));
 
   const fixTimes = (timeString) => {
     const stringArr = timeString?.split(":");
