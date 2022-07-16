@@ -17,13 +17,19 @@ def get_user_favorites():
 
     # Executes query and removes extra data
     faves = [fav.to_dict() for fav in query.all()]
-    filtered_faves = []
-    extra_keys = ['opening_time', 'closing_time', 'images', 'address_line_1', 'address_line_2', 'capacity', 'owner_id', 'reservation_notes', 'zip_code']
-    for fave in faves:
-        for unwanted_key in extra_keys:
-            del fave['restaurant'][unwanted_key]
-        filtered_faves.append(fave['restaurant'])
-    return jsonify({ "restaurants": filtered_faves }), 200
+
+    # filtered_faves = []
+    # extra_keys = ['opening_time', 'closing_time', 'images', 'address_line_1', 'address_line_2', 'capacity', 'owner_id', 'reservation_notes', 'zip_code']
+    # for fave in faves:
+    #     for unwanted_key in extra_keys:
+    #         del fave['restaurant'][unwanted_key]
+    #     filtered_faves.append(fave['restaurant'])
+    # return jsonify({ "restaurants": filtered_faves }), 200
+
+    return jsonify({
+        "user_id": current_user.id,
+        "restaurant_ids": [fav["restaurant_id"] for fav in faves],
+    }), 200
 
 
 @favorite_routes.route('', methods=['POST'])
@@ -65,7 +71,7 @@ def delete_favorite(restaurant_id):
     """
     Removes a restaurant from user's favorited restaurants
     """
-    
+
     # Queries the database to see if specific restaurant has been favorited by the current user
     query = Favorite.query.filter(Favorite.user_id == current_user.id).filter(Favorite.restaurant_id == restaurant_id).first()
 
