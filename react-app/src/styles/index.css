@@ -11,7 +11,7 @@
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
 
     font-family: "Poppins", Helvetica, sans-serif;
-    background-color: white;
+    background-color: #f7f7f7;
     color: var(--main-grey);
 }
 
