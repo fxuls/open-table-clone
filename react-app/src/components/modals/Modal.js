@@ -25,7 +25,11 @@ const Modal = () => {
         modalToRender = <SignupModal />;
         break;
       case RESERVATION_MODAL:
-        modalToRender = < ReservationModal />
+        modalToRender = < ReservationModal />;
+        break;
+    default:
+        closeModal();
+        return null;
   }
 
   return (

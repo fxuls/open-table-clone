@@ -27,7 +27,7 @@ console.log("URL:", url)
 
   }, [dispatch, updated, url]);
 
-  const restaurant = useSelector(restaurantActions.restaurantSelector)
+  const restaurant = useSelector(restaurantActions.restaurantUrlSelector(url));
 
   const fixTimes = (timeString) => {
     const stringArr = timeString?.split(":");

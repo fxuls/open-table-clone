@@ -39,17 +39,8 @@ const LoginModal = () => {
 
       if (errObj.email) setEmailError(errObj.email);
       else if (errObj.password) setPasswordError(errObj.password);
-
     }
   }, [email, password, hasSubmitted, errors]);
-
-  useEffect(() => {
-    // parse errors
-    errors.forEach((error) => {
-      error = error.split(" : ");
-      console.log(error);
-    });
-  }, [errors]);
 
   // if user is logged in hide the modal
   if (user) {
@@ -79,7 +70,7 @@ const LoginModal = () => {
   const populateDemoUserFields = () => {
     setEmail("demo@aa.io");
     setPassword("password");
-  }
+  };
 
   return (
     <div className="login-modal">
@@ -119,10 +110,22 @@ const LoginModal = () => {
         </button>
       </form>
 
-    <div className="modal-footer">
-
-      <p>Don't have an account yet? <a className="text-link" onClick={() => dispatch(showModal(SIGNUP_MODAL))}>Sign up.</a></p>
-      <p>Just looking around? <a className="text-link" onClick={populateDemoUserFields}>Log in as a demo user.</a></p>
+      <div className="modal-footer">
+        <p>
+          Don't have an account yet?{" "}
+          <a
+            className="text-link"
+            onClick={() => dispatch(showModal(SIGNUP_MODAL))}
+          >
+            Sign up.
+          </a>
+        </p>
+        <p>
+          Just looking around?{" "}
+          <a className="text-link" onClick={populateDemoUserFields}>
+            Log in as a demo user.
+          </a>
+        </p>
       </div>
     </div>
   );

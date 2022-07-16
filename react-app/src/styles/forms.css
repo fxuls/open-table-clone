@@ -56,10 +56,14 @@ h1.form-header {
     font-size: smaller;
 }
 
+/* If this is uncommented the form will load with the error labels
+hidden. i.e. the form will not resize when error labels are rendered
+but it will cause increased white space
+
 .field-error:empty {
     visibility: hidden;
 }
 
 .field-error:empty::after {
     content: "Field error text";
-}
+} */
