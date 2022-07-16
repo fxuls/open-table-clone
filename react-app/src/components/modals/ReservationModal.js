@@ -4,10 +4,11 @@ import { userSelector} from "../../store/session";
 import { createAReservation } from "../../store/reservations";
 import { showModal, hideModal } from "../../store/ui";
 import { SIGNUP_MODAL } from "./SignupModal";
+import * as reservationActions from "../../store/reservations"
 
 export const RESERVATION_MODAL = "ui/modals/reservation";
 
-const ReservationModal = (restaurantId) => {
+const ReservationModal = () => {
   const [errors, setErrors] = useState([]);
   const [party_size, setPartySize] = useState(0);
   const [timeslot, setTimeslot] = useState("");
@@ -17,7 +18,7 @@ const ReservationModal = (restaurantId) => {
   const [partySizeError, setPartySizeError] = useState("");
   const [timeError, setTimeError] = useState("");
   const [hasSubmitted, setHasSubmitted] = useState(false);
-
+  const restaurantId = "1";
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
 
@@ -55,7 +56,12 @@ const ReservationModal = (restaurantId) => {
     // if there are errors dont make request
     if (!timeValidationError && !partySizeValidationError) {
       // try to create the reservation
-      const data = await dispatch(createAReservation({restaurantId, party_size, timeslot, day, special_request, occasion_id }));
+      occasion_id ?
+      dispatch(createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request, occasion_id: parseInt(occasion_id)})) :
+      dispatch(createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request}))
+
+      console.log({restaurantId, party_size, timeslot, day, special_request, occasion_id })
+      // return data
       }
   };
 
@@ -71,8 +77,10 @@ const ReservationModal = (restaurantId) => {
             }
             let amPm = "AM";
             let adjustedHour = h
-            if (h > 12) {
-                adjustedHour = h - 12;
+            if (h >= 12) {
+                if (h > 12) {
+                  adjustedHour = h - 12
+                };
                 amPm = "PM";
             }
             if (h === 0) {
@@ -87,7 +95,14 @@ const ReservationModal = (restaurantId) => {
     return res
   };
 
-  const times = timeslotOptions()
+  const times = timeslotOptions();
+  const occasions = [
+    {text: "Birthday", value: 1},
+    {text: "Anniversary", value: 2},
+    {text: "Date Night", value: 3},
+    {text: "Business Meal", value: 4},
+    {text: "Celebration", value: 5},
+  ];
 
   return (
     <div className="reservation-modal">
@@ -99,6 +114,7 @@ const ReservationModal = (restaurantId) => {
           <input
             name="party_size"
             type="number"
+            required
             min="1"
             max="100"
             value={party_size}
@@ -110,9 +126,22 @@ const ReservationModal = (restaurantId) => {
         </div>
 
         <div className="form-row">
+          <label htmlFor="day">Day</label>
+          <input
+            name="day"
+            type="date"
+            min="2022-01-01"
+            required
+            value={day}
+            onChange={(e) => setDay(e.target.value)}
+          />
+         </div>
+
+        <div className="form-row">
           <label htmlFor="timeslot">Time</label>
           <select
             name="timeslot"
+            required
             value={timeslot}
             onChange={(e) => setTimeslot(e.target.value)}
           >
@@ -120,7 +149,38 @@ const ReservationModal = (restaurantId) => {
                 return <option key={time.text} value={time.value}>{time.text}</option>
             })}
           </select>
-          </div>
+          <label htmlFor="timeslot" className="field-error">
+            {timeError}
+          </label>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="special_request">Special Requests?</label>
+          <input
+            name="special_request"
+            type="text"
+            maxLength="600"
+            value={special_request}
+            onChange={(e) => setSpecialRequest(e.target.value)}
+          />
+         </div>
+
+         <div className="form-row">
+          <label htmlFor="occasion_id">Occasion</label>
+          <select
+            name="occasion_id"
+            value={occasion_id}
+            onChange={(e) => setOccasionId(e.target.value)}
+          >
+            <option value={null}> -- select an option -- </option>
+            {occasions.map(occ => {
+                return <option key={occ.text} value={occ.value}>{occ.text}</option>
+            })}
+          </select>
+          <label htmlFor="timeslot" className="field-error">
+            {timeError}
+          </label>
+        </div>
 
         <button type="submit" className="form-submit-button">
           Submit

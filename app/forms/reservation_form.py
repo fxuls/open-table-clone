@@ -34,7 +34,7 @@ def validate_occasion(form, field):
     Validate that occasion_id points to a valid occasions entry
     """
     occasion = Occasion.query.get(field.data)
-    if occasion is None:
+    if occasion is not None:
         raise ValidationError("occasion_id must point to a valid occasion")
 
 class ReservationForm(FlaskForm):

@@ -34,7 +34,7 @@ export function createReservation(reservation) {
 export const fetchReservations = () => async (dispatch) => {
     const res = await fetch("/api/reservations/user");
     const data = await res.json();
-
+    console.log("DATA: ", data)
     dispatch(getReservations(data.reservations));
     return res;
 }
@@ -51,6 +51,7 @@ export const deleteMyReservation = (reservationId) => async (dispatch) => {
 
 // create a reservation thunk
 export const createAReservation = (reservation) => async (dispatch) => {
+   console.log('reservation thunk: ', reservation)
    const { restaurant_id, party_size, timeslot, day, special_request, occasion_id } = reservation;
    const response = await fetch('/api/reservations', {
     method: 'POST',
@@ -71,25 +72,23 @@ export const createAReservation = (reservation) => async (dispatch) => {
   return response
 }
 
-export default function reservationsReducer (state = [], action) {
-    let newState = [ ...state ];
+export default function reservationsReducer (state = {}, action) {
+    const newState = { ...state };
 
     switch (action.type) {
         case GET_RESERVATIONS:
-            newState = action.reservations
+            action.reservations.forEach(res => {
+                newState[res.id] = res
+            })
 
-            break
+            break;
 
         case DELETE_RESERVATION:
-            newState?.forEach((res, index) => {
-                if (res.id === action.reservationId) {
-                    newState.splice(index, 1)
-                }
-            })
+            delete newState[action.reservationId]
             break;
 
         case CREATE_RESERVATION:
-            newState.push(action.reservation)
+            newState[action.reservation.id] = action.reservation
             break;
 
         default:
