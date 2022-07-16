@@ -6,7 +6,7 @@ from ..models import Favorite, db
 
 favorite_routes = Blueprint('favorites', __name__)
 
-@favorite_routes.route('/', methods=['GET'])
+@favorite_routes.route('', methods=['GET'])
 @login_required
 def get_user_favorites():
     """
@@ -26,12 +26,13 @@ def get_user_favorites():
     return jsonify({ "restaurants": filtered_faves }), 200
 
 
-@favorite_routes.route('/', methods=['POST'])
+@favorite_routes.route('', methods=['POST'])
 @login_required
 def add_favorite():
     """
     Adds a restaurant to user's favorited restaurants
     """
+
     body = request.get_json()
     # Gets current user's favorites
     query = Favorite.query.filter(Favorite.user_id == current_user.id)
@@ -64,6 +65,7 @@ def delete_favorite(restaurant_id):
     """
     Removes a restaurant from user's favorited restaurants
     """
+    
     # Queries the database to see if specific restaurant has been favorited by the current user
     query = Favorite.query.filter(Favorite.user_id == current_user.id).filter(Favorite.restaurant_id == restaurant_id).first()
 
