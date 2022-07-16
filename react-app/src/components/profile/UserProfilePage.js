@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import { userSelector } from "../../store/session";
 import { fetchFavorites } from "../../store/favorites";
+import ProfileFavorites from "./ProfileFavorites";
+import ProfileReservations from "./ProfileReservations";
 
 const UserProfilePage = (props) => {
   const dispatch = useDispatch();
@@ -32,9 +34,13 @@ const UserProfilePage = (props) => {
       </ul>
       <div className="profile-content">
         <Switch>
-          <Route path="/profile/favorites">Favorites</Route>
+          <Route path="/profile/favorites">
+            <ProfileFavorites />
+          </Route>
 
-          <Route path="/profile/reservations">Reservations</Route>
+          <Route path="/profile/reservations">
+            <ProfileReservations />
+          </Route>
         </Switch>
       </div>
     </div>
