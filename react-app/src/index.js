@@ -5,6 +5,7 @@ import './styles/index.css';
 import './styles/nav.css';
 import './styles/modals.css';
 import './styles/forms.css';
+import './styles/profilePage.css';
 import App from './App';
 import configureStore from './store';
 
