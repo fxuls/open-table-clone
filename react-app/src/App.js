@@ -63,7 +63,7 @@ function App() {
             <RestaurantDetail />
           </Route>
 
-          <ProtectedRoute path="/profile" exact={true}>
+          <ProtectedRoute path="/profile">
             <UserProfilePage />
           </ProtectedRoute>
         </Switch>
