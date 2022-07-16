@@ -5,7 +5,7 @@ import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import LoginPage from "./components/auth/LoginPage";
 import SignupPage from "./components/auth/SignupPage";
-import User from "./components/User";
+import UserProfilePage from "./components/UserProfilePage";
 import RestaurantCardsList from './components/RestaurantCardList';
 import RestaurantDetail from './components/RestaurantDetail';
 import { authenticate } from "./store/session";
@@ -63,8 +63,8 @@ function App() {
             <RestaurantDetail />
           </Route>
 
-          <ProtectedRoute path="/users/:userId" exact={true}>
-            <User />
+          <ProtectedRoute path="/profile" exact={true}>
+            <UserProfilePage />
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>
