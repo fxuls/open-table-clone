@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { logout } from "../../store/session";
 
@@ -19,6 +20,15 @@ const AuthenticatedNav = () => {
         <span>Log out</span>
         <FontAwesomeIcon icon={faArrowRightToBracket} className="icon" />
       </button>
+
+      <Link to="/profile">
+        <button
+        className="nav-button hover-effect"
+        >
+          <span>Profile</span>
+          <FontAwesomeIcon icon={faUser} className="icon" />
+        </button>
+      </Link>
     </div>
   );
 };
