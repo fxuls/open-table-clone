@@ -1,52 +1,83 @@
-export const SET_REVIEW = 'restaurants/SET_RESTAURANT';
-export const SET_REVIEWS = 'restaurants/SET_RESTAURANTS';
-export const REMOVE_RESTAURANT = 'restaurants/REMOVE_RESTAURANT';
+export const SET_REVIEW = 'reviews/SET_REVIEW';
+export const SET_USER_REVIEWS = 'reviews/SET_USER_REVIEWS';
+export const SET_RESTAURANT_REVIEWS = 'reviews/SET_RESTAURANT_REVIEWS';
+export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
+export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
+
 
 // selectors
-export const restaurantSelector = (state) => state.restaurants.detail;
-export const allRestaurantsSelector = (state) => state.restaurants;
+export const restaurantReviewsSelector = (state) => state.reviews.restaurant
+export const userReviewsSelector = (state) => state.reviews.user;
+export const reviewSelector = (state) => state.reviews.detail
 
-// SET_RESTAURANTS action creator
-export function setResaurants(restaurants) {
+// SET_REVIEW action creator
+export function setReviewAction(review) {
     return {
-        type: SET_RESTAURANTS,
-        restaurants,
+        type: SET_REVIEW,
+        review,
     };
 }
 
-// SET_RESTAURANT action creator
-export function setRestaurant(restaurant) {
+// SET_USER_REVIEWS action creator
+export function setUserReviewsAction(reviews) {
     return {
-        type: SET_RESTAURANT,
-        restaurant,
+        type: SET_USER_REVIEWS,
+        reviews,
     }
 }
 
-// REMOVE_RESTAURANT action creator
-export function removeRestaurant(restaurantId) {
+// SET_RESTAURANT_REVIEWS action creator
+export function setRestaurantReviewsAction(reviews) {
+    return {
+        type: SET_RESTAURANT_REVIEWS,
+        reviews,
+    }
+}
+
+// EDIT_REVIEW action creator
+export function editReviewAction(review) {
+    return {
+        type: EDIT_REVIEW,
+        review,
+    }
+}
+
+// DELETE_REVIEW action creator
+export function deleteReviewAction(restaurantId) {
     return {
         type: REMOVE_RESTAURANT,
         restaurantId,
     }
 }
 
-// fetch all restaurants thunk
-export const fetchRestaurants = () => async (dispatch) => {
-    const res = await fetch("/api/restaurants/");
+// fetch all user reviews thunk
+export const fetchUserReviews = () => async (dispatch) => {
+    const res = await fetch("/api/reviews/user");
     const data = await res.json();
 
-    dispatch(setResaurants(data.restaurants));
+    dispatch(setUserReviewsAction(data.reviews));
     return res;
 }
 
-// fetch a restaurant by its url thunk
-export const fetchRestaurant = (url) => async (dispatch) => {
-    const res = await fetch(`/api/restaurants/${url}`);
+// fetch all restaurant reviews thunk
+export const fetchRestaurantReviews = (restaurantUrl) => async (dispatch) => {
+    const res = await fetch(`restaurants/${restaurantUrl}/reviews`);
+    const data = await res.json();
+
+    dispatch(setRestaurantReviewsAction(data.reviews));
+    return res;
+}
+
+// fetch a review by its id thunk
+export const fetchRestaurant = (reviewId) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}`);
     if (res.ok) {
         const data = await res.json();
-        dispatch(setRestaurant(data));
+        dispatch(setReviewAction(data));
     }
 }
+
+// edit a review
 
 export default function restaurantsReducer(state = {}, action) {
     const newState = { ...state };
