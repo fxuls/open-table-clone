@@ -23,6 +23,9 @@ const Modal = () => {
     case SIGNUP_MODAL:
         modalToRender = <SignupModal />;
         break;
+    default:
+        closeModal();
+        return null;
   }
 
   return (
