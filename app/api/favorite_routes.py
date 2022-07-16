@@ -2,7 +2,6 @@ from audioop import add
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 
-from app import models
 from ..models import Favorite, db
 
 favorite_routes = Blueprint('favorites', __name__)
