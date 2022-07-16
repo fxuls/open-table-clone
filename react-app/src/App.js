@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
+import LoginPage from "./components/auth/LoginPage";
+import SignupPage from "./components/auth/SignupPage";
 import User from "./components/User";
 import RestaurantCardsList from './components/RestaurantCardList';
 import RestaurantDetail from './components/RestaurantDetail';
@@ -53,20 +52,16 @@ function App() {
           </Route>
 
           <Route path="/login" exact={true}>
-            <LoginForm />
+            <LoginPage />
           </Route>
 
           <Route path="/sign-up" exact={true}>
-            <SignUpForm />
+            <SignupPage />
           </Route>
 
           <Route path='/restaurants/:url' exact={true}>
             <RestaurantDetail />
           </Route>
-
-          <ProtectedRoute path="/users" exact={true}>
-            <UsersList />
-          </ProtectedRoute>
 
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
