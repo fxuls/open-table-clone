@@ -1,10 +1,8 @@
-export const GET_RESERVATION = 'restaurants/GET_RESERVATION';
-export const GET_RESERVATIONS = 'restaurants/GET_RESERVATIONS';
-export const EDIT_RESERVATION = 'restaurants/EDIT_RESERVATION';
-export const DELETE_RESERVATION = 'restaurants/REMOVE_RESERVATION';
+export const GET_RESERVATIONS = 'reservations/GET_RESERVATIONS';
+export const DELETE_RESERVATION = 'reservations/REMOVE_RESERVATION';
+export const CREATE_RESERVATION = 'reservations/CREATE_RESERVATION';
 
 // selectors
-export const reservationSelector = (state) => state.reservations.detail;
 export const allReservationsSelector = (state) => state.reservations;
 
 // GET_RESERVATIONS action creator
@@ -15,14 +13,6 @@ export function getReservations(reservations) {
     };
 }
 
-// GET_RESERVATION action creator
-export function getReservation(reservation) {
-    return {
-        type: GET_RESERVATION,
-        reservation,
-    }
-}
-
 // DELETE_RESERVATION action creator
 export function deleteReservation() {
     return {
@@ -30,11 +20,31 @@ export function deleteReservation() {
     }
 }
 
-// EDIT_RESERVATION action creator
-export function editReservation(reservation) {
+// CREATE_RESERVATION action creator
+export function createReservation(reservation) {
     return {
-        type: EDIT_RESERVATION,
+        type: REMOVE_RESTAURANT,
         reservation
     }
+}
+
+
+// fetch all of the current user's reservations thunk
+export const fetchReservations = () => async (dispatch) => {
+    const res = await fetch("/api/reservations/user");
+    const data = await res.json();
+
+    dispatch(getReservations(data.reservations));
+    return res;
+}
+
+// delete a reservation thunk
+export const deleteMyReservation = (reservationId) => async (dispatch) => {
+    const res = await fetch(`/api/reservations/${reservationId}`, {
+        method: "DELETE",
+    });
+    await res.json();
+    dispatch(deleteReservation());
+    return res;
 }
 
