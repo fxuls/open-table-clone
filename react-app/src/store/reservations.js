@@ -72,7 +72,7 @@ export const createAReservation = (reservation) => async (dispatch) => {
 }
 
 export default function reservationsReducer (state = [], action) {
-    const newState = [ ...state ];
+    let newState = [ ...state ];
 
     switch (action.type) {
         case GET_RESERVATIONS:
@@ -81,7 +81,7 @@ export default function reservationsReducer (state = [], action) {
             break
 
         case DELETE_RESERVATION:
-            newState?.forEach(res, index => {
+            newState?.forEach((res, index) => {
                 if (res.id === action.reservationId) {
                     newState.splice(index, 1)
                 }
