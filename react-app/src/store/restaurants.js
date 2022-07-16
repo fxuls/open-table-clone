@@ -3,8 +3,9 @@ export const SET_RESTAURANTS = 'restaurants/SET_RESTAURANTS';
 export const REMOVE_RESTAURANT = 'restaurants/REMOVE_RESTAURANT';
 
 // selectors
-export const restaurantSelector = (state) => state.restaurants.detail;
-export const allRestaurantsSelector = (state) => state.restaurants;
+export const allRestaurantsSelector = (state) => state.restaurants.restaurants;
+export const restaurantIdSelector = (restaurantId) => (state) => state.restaurants.restaurants[restaurantId];
+export const restaurantUrlSelector = (restaurantUrl) => (state) => state.restaurants.restaurants[state.restaurants.urls[restaurantUrl]];
 
 // SET_RESTAURANTS action creator
 export function setResaurants(restaurants) {
@@ -48,23 +49,28 @@ export const fetchRestaurant = (url) => async (dispatch) => {
     }
 }
 
-export default function restaurantsReducer(state = {}, action) {
+export default function restaurantsReducer(state = { restaurants: {}, urls: {} }, action) {
     const newState = { ...state };
 
     switch (action.type) {
         case SET_RESTAURANTS:
-            return action.restaurants.reduce((obj, restaurant) => {
-                obj[restaurant.id] = restaurant;
-                return obj;
-            }, {});
+            action.restaurants.forEach((restaurant) => {
+                newState.restaurants[restaurant.id] = restaurant;
+                newState.urls[restaurant.url] = restaurant.id;
+            });
+            break;
 
         case SET_RESTAURANT:
-            console.log(newState)
-            newState["detail"] = action.restaurant;
+            newState.restaurants[action.restaurant.id] = action.restaurant;
+            newState.urls[action.restaurant.url] = action.restaurant.id;
             break;
 
         case REMOVE_RESTAURANT:
-            delete newState[action.restaurantId];
+            delete newState.restaurants[action.restaurantId];
+            // remove index from urls
+            for (let url in newState.urls)
+                if (newState.urls[url] === action.restaurantId)
+                    delete newState.urls[url];
             break;
 
         default:
