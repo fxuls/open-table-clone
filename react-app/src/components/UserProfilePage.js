@@ -9,8 +9,10 @@ const UserProfilePage = (props) => {
   // this should not happen since it is a protected route
   if (!user) return <Redirect to="/login" />;
 
-  return <div>
-    <h1>{user.first_name + " " + user.last_name}</h1>
+  return (<div className="profile-page">
+    <div className="header">
+      <h1>{user.first_name + " " + user.last_name}</h1>
+    </div>
     <ul>
         <li><Link to="/profile/favorites">Favorites</Link></li>
         <li><Link to="/profile/reservations">Reservations</Link></li>
@@ -24,7 +26,7 @@ const UserProfilePage = (props) => {
             Reservations
         </Route>
     </Switch>
-  </div>;
+  </div>);
 };
 
 export default UserProfilePage;
