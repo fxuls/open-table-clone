@@ -59,19 +59,35 @@ const ReservationModal = (restaurantId) => {
       }
   };
 
-  const fixTimes = (timeString) => {
-    const stringArr = timeString?.split(":");
-    const intArr = [];
-    stringArr?.forEach(element => {
-        intArr.push(parseInt(element))
-    });
-    let amPm = "AM";
-    if (intArr[0] > 12) {
-        intArr[0] -= 12;
-        amPm = "PM";
+  const timeslotOptions = () => {
+    let res = [];
+    for (let h = 0; h < 24; h++) {
+        for (let min = 0; min < 46; min += 15) {
+            let minStr;
+            if (min === 0) {
+                minStr = "00"
+            } else {
+                minStr = `${min}`
+            }
+            let amPm = "AM";
+            let adjustedHour = h
+            if (h > 12) {
+                adjustedHour = h - 12;
+                amPm = "PM";
+            }
+            if (h === 0) {
+                adjustedHour = 12;
+            }
+            res.push({
+                text: `${adjustedHour}:${minStr} ${amPm}`,
+                value: `${h}:${minStr}:00`
+            })
+        }
     }
-  return `${intArr[0]}:${stringArr[1]} ${amPm}`
+    return res
   };
+
+  const times = timeslotOptions()
 
   return (
     <div className="reservation-modal">
@@ -93,19 +109,18 @@ const ReservationModal = (restaurantId) => {
           </label>
         </div>
 
-        {/* <div className="form-row">
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label htmlFor="password" className="field-error">
-            {passwordError}
-          </label>
-        </div> */}
+        <div className="form-row">
+          <label htmlFor="timeslot">Time</label>
+          <select
+            name="timeslot"
+            value={timeslot}
+            onChange={(e) => setTimeslot(e.target.value)}
+          >
+            {times.map(time => {
+                return <option key={time.text} value={time.value}>{time.text}</option>
+            })}
+          </select>
+          </div>
 
         <button type="submit" className="form-submit-button">
           Submit
