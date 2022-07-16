@@ -105,6 +105,10 @@ const SignupModal = () => {
             {confirmPasswordError}
           </label>
         </div>
+
+        <button type="submit" className="form-submit-button">
+          Submit
+        </button>
       </form>
 
       <div className="modal-footer">
