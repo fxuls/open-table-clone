@@ -42,14 +42,6 @@ const LoginModal = () => {
     }
   }, [email, password, hasSubmitted, errors]);
 
-  useEffect(() => {
-    // parse errors
-    errors.forEach((error) => {
-      error = error.split(" : ");
-      console.log(error);
-    });
-  }, [errors]);
-
   // if user is logged in hide the modal
   if (user) {
     dispatch(hideModal());
