@@ -46,7 +46,7 @@ def add_favorite():
     faves = [fav.to_dict() for fav in query.all()]
 
     # Checks if restaurant is already added to user's favorites to avoid duplicate data
-    if body['restaurant_id'] in [fave['restaurant']['id'] for fave in faves]:
+    if body['restaurant_id'] in [fave['restaurant_id'] for fave in faves]:
         return jsonify({
             "message": "Restaurant already favorited",
             "status_code": 200
