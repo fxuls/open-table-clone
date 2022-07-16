@@ -5,7 +5,7 @@ import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import LoginPage from "./components/auth/LoginPage";
 import SignupPage from "./components/auth/SignupPage";
-import UserProfilePage from "./components/UserProfilePage";
+import UserProfilePage from "./components/profile/UserProfilePage";
 import RestaurantCardsList from './components/RestaurantCardList';
 import RestaurantDetail from './components/RestaurantDetail';
 import { authenticate } from "./store/session";

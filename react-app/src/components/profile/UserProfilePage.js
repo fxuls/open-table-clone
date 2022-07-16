@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import { userSelector } from "../store/session";
-import { fetchFavorites } from "../store/favorites";
+import { userSelector } from "../../store/session";
+import { fetchFavorites } from "../../store/favorites";
 
 const UserProfilePage = (props) => {
   const dispatch = useDispatch();
