@@ -1,9 +1,17 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 import { userSelector } from "../store/session";
+import { fetchFavorites, addFavorite, removeFavorite } from "../store/favorites";
 
 const UserProfilePage = (props) => {
+  const dispatch = useDispatch();
   const user = useSelector(userSelector);
+
+  // fetch favorites once on first render
+  useEffect(() => {
+    dispatch(fetchFavorites())
+  }, []);
 
   // if not logged in redirect to login
   // this should not happen since it is a protected route
