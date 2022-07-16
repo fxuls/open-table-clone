@@ -16,14 +16,14 @@ export function getReservations(reservations) {
 // DELETE_RESERVATION action creator
 export function deleteReservation() {
     return {
-        type: REMOVE_RESTAURANT,
+        type: DELETE_RESERVATION,
     }
 }
 
 // CREATE_RESERVATION action creator
 export function createReservation(reservation) {
     return {
-        type: REMOVE_RESTAURANT,
+        type: CREATE_RESERVATION,
         reservation
     }
 }
@@ -48,3 +48,24 @@ export const deleteMyReservation = (reservationId) => async (dispatch) => {
     return res;
 }
 
+// create a reservation thunk
+export const createAReservation = (reservation) => async (dispatch) => {
+   const { restaurant_id, party_size, timeslot, day, special_request, occasion_id } = reservation;
+   const response = await fetch('/api/reservations', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      restaurant_id,
+      party_size,
+      timeslot,
+      day,
+      special_request,
+      occasion_id
+    })
+  });
+  const data = await response.json();
+  dispatch(createReservation(data));
+  return response
+}
