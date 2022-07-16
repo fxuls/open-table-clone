@@ -14,9 +14,10 @@ export function getReservations(reservations) {
 }
 
 // DELETE_RESERVATION action creator
-export function deleteReservation() {
+export function deleteReservation(reservationId) {
     return {
         type: DELETE_RESERVATION,
+        reservationId
     }
 }
 
@@ -44,7 +45,7 @@ export const deleteMyReservation = (reservationId) => async (dispatch) => {
         method: "DELETE",
     });
     await res.json();
-    dispatch(deleteReservation());
+    dispatch(deleteReservation(reservationId));
     return res;
 }
 
@@ -68,4 +69,32 @@ export const createAReservation = (reservation) => async (dispatch) => {
   const data = await response.json();
   dispatch(createReservation(data));
   return response
+}
+
+export default function reservationsReducer (state = [], action) {
+    const newState = [ ...state ];
+
+    switch (action.type) {
+        case GET_RESERVATIONS:
+            newState = action.reservations
+
+            break
+
+        case DELETE_RESERVATION:
+            newState?.forEach(res, index => {
+                if (res.id === action.reservationId) {
+                    newState.splice(index, 1)
+                }
+            })
+            break;
+
+        case CREATE_RESERVATION:
+            newState.push(action.reservation)
+            break;
+
+        default:
+            break;
+    }
+
+    return newState;
 }
