@@ -58,6 +58,25 @@ const SignupModal = () => {
     return errorMessage === "";
   }
 
+  useEffect(() => {
+    if (hasSubmitted) {
+      validateFirstName();
+      validateLastName();
+      validateEmail();
+      validatePassword();
+      validateConfirmPassword();
+
+      // parse backend errors obj
+      const errObj = errors.reduce((obj, error) => {
+        error = error.split(" : ");
+        obj[error[0]] = error[1];
+        return obj;
+      }, {});
+
+      if (errObj.email) setEmailError(errObj.email);
+    }
+  }, [firstName, lastName, email, password, confirmPassword, hasSubmitted, errors]);
+
   // if user is logged in hide modal
   if (user) {
     dispatch(hideModal());
