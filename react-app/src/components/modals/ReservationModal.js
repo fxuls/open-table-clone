@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector} from "../../store/session";
-import { createAReservation } from "../../store/reservations";
 import { showModal, hideModal } from "../../store/ui";
 import { SIGNUP_MODAL } from "./SignupModal";
 import * as reservationActions from "../../store/reservations"
+import { useRouteMatch } from "react-router-dom";
+import { restaurantUrlSelector } from "../../store/restaurants";
 
 export const RESERVATION_MODAL = "ui/modals/reservation";
 
@@ -18,9 +19,19 @@ const ReservationModal = () => {
   const [partySizeError, setPartySizeError] = useState("");
   const [timeError, setTimeError] = useState("");
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const restaurantId = "1";
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
+
+  // GET the restuarant ID for use in the reservation form
+
+  const url = window.location.href;
+  const urlArr = url.split("/");
+  const restUrl = urlArr[urlArr.length - 1]
+  const restaurant = useSelector(restaurantUrlSelector(restUrl));
+  const restaurantId = restaurant.id;
+
+
+
 
   const getPartySizeError = () => {
     if (party_size < 1) return "Party Size must be greater than 0";
@@ -57,8 +68,8 @@ const ReservationModal = () => {
     if (!timeValidationError && !partySizeValidationError) {
       // try to create the reservation
       occasion_id ?
-      dispatch(createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request, occasion_id: parseInt(occasion_id)})) :
-      dispatch(createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request}))
+      dispatch(reservationActions.createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request, occasion_id: parseInt(occasion_id)})) :
+      dispatch(reservationActions.createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request}))
 
       console.log({restaurantId, party_size, timeslot, day, special_request, occasion_id })
       // return data

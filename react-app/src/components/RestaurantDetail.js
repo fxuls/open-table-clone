@@ -15,8 +15,6 @@ function RestaurantDetail() {
     exact: true
   })
 const url = match.params.url
-console.log("URL:", url)
-
 
   useEffect(() => {
     if (!updated && (url !== undefined)) {
