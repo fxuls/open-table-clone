@@ -48,7 +48,7 @@ export function editReviewAction(review) {
 // DELETE_REVIEW action creator
 export function deleteReviewAction(reviewId) {
     return {
-        type: REMOVE_RESTAURANT,
+        type: DELETE_REVIEW,
         reviewId,
     }
 }
