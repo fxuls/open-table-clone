@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userSelector} from "../../store/session";
+import { userSelector } from "../../store/session";
 import { showModal, hideModal } from "../../store/ui";
 import { SIGNUP_MODAL } from "./SignupModal";
-import * as reservationActions from "../../store/reservations"
+import * as reservationActions from "../../store/reservations";
 import { useRouteMatch } from "react-router-dom";
 import { restaurantUrlSelector } from "../../store/restaurants";
 
@@ -26,12 +26,9 @@ const ReservationModal = () => {
 
   const url = window.location.href;
   const urlArr = url.split("/");
-  const restUrl = urlArr[urlArr.length - 1]
+  const restUrl = urlArr[urlArr.length - 1];
   const restaurant = useSelector(restaurantUrlSelector(restUrl));
   const restaurantId = restaurant.id;
-
-
-
 
   const getPartySizeError = () => {
     if (party_size < 1) return "Party Size must be greater than 0";
@@ -40,11 +37,11 @@ const ReservationModal = () => {
 
   const getTimeError = () => {
     let now = Date.now();
-    const dateTimeString = `${day} ${timeslot}`
-    let resTime = Date.parse(dateTimeString)
+    const dateTimeString = `${day} ${timeslot}`;
+    let resTime = Date.parse(dateTimeString);
     if (now > resTime) return "Reservation must be a future date";
     return "";
-};
+  };
 
   useEffect(() => {
     if (hasSubmitted) {
@@ -67,52 +64,85 @@ const ReservationModal = () => {
     // if there are errors dont make request
     if (!timeValidationError && !partySizeValidationError) {
       // try to create the reservation
-      occasion_id ?
-      dispatch(reservationActions.createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request, occasion_id: parseInt(occasion_id)})) :
-      dispatch(reservationActions.createAReservation({restaurant_id: parseInt(restaurantId), party_size: parseInt(party_size), timeslot, day, special_request}))
+      occasion_id
+        ? dispatch(
+            reservationActions.createAReservation({
+              restaurant_id: parseInt(restaurantId),
+              party_size: parseInt(party_size),
+              timeslot,
+              day,
+              special_request,
+              occasion_id: parseInt(occasion_id),
+            })
+          )
+        : dispatch(
+            reservationActions.createAReservation({
+              restaurant_id: parseInt(restaurantId),
+              party_size: parseInt(party_size),
+              timeslot,
+              day,
+              special_request,
+            })
+          );
 
-      console.log({restaurantId, party_size, timeslot, day, special_request, occasion_id })
+      console.log({
+        restaurantId,
+        party_size,
+        timeslot,
+        day,
+        special_request,
+        occasion_id,
+      });
       // return data
-      }
+    }
   };
 
   const timeslotOptions = () => {
     let res = [];
+    const openingTime = restaurant.opening_time;
+    const closingTime = restaurant.closing_time;
     for (let h = 0; h < 24; h++) {
-        for (let min = 0; min < 46; min += 15) {
-            let minStr;
-            if (min === 0) {
-                minStr = "00"
-            } else {
-                minStr = `${min}`
-            }
-            let amPm = "AM";
-            let adjustedHour = h
-            if (h >= 12) {
-                if (h > 12) {
-                  adjustedHour = h - 12
-                };
-                amPm = "PM";
-            }
-            if (h === 0) {
-                adjustedHour = 12;
-            }
-            res.push({
-                text: `${adjustedHour}:${minStr} ${amPm}`,
-                value: `${h}:${minStr}:00`
-            })
+      for (let min = 0; min < 46; min += 15) {
+        let minStr;
+        if (min === 0) {
+          minStr = "00";
+        } else {
+          minStr = `${min}`;
         }
+        let amPm = "AM";
+        let adjustedHour = h;
+        if (h >= 12) {
+          if (h > 12) {
+            adjustedHour = h - 12;
+          }
+          amPm = "PM";
+        }
+        if (h === 0) {
+          adjustedHour = 12;
+        }
+        if (h < 10) {
+          h = `0${h}`
+        }
+        const timeString = `${h}:${minStr}:00`;
+        // only push times that the restaurant is open
+        if (timeString >= openingTime && timeString < closingTime) {
+          res.push({
+            text: `${adjustedHour}:${minStr} ${amPm}`,
+            value: timeString,
+          });
+        }
+      }
     }
-    return res
+    return res;
   };
 
   const times = timeslotOptions();
   const occasions = [
-    {text: "Birthday", value: 1},
-    {text: "Anniversary", value: 2},
-    {text: "Date Night", value: 3},
-    {text: "Business Meal", value: 4},
-    {text: "Celebration", value: 5},
+    { text: "Birthday", value: 1 },
+    { text: "Anniversary", value: 2 },
+    { text: "Date Night", value: 3 },
+    { text: "Business Meal", value: 4 },
+    { text: "Celebration", value: 5 },
   ];
 
   return (
@@ -146,7 +176,7 @@ const ReservationModal = () => {
             value={day}
             onChange={(e) => setDay(e.target.value)}
           />
-         </div>
+        </div>
 
         <div className="form-row">
           <label htmlFor="timeslot">Time</label>
@@ -156,8 +186,12 @@ const ReservationModal = () => {
             value={timeslot}
             onChange={(e) => setTimeslot(e.target.value)}
           >
-            {times.map(time => {
-                return <option key={time.text} value={time.value}>{time.text}</option>
+            {times.map((time) => {
+              return (
+                <option key={time.text} value={time.value}>
+                  {time.text}
+                </option>
+              );
             })}
           </select>
           <label htmlFor="timeslot" className="field-error">
@@ -174,9 +208,9 @@ const ReservationModal = () => {
             value={special_request}
             onChange={(e) => setSpecialRequest(e.target.value)}
           />
-         </div>
+        </div>
 
-         <div className="form-row">
+        <div className="form-row">
           <label htmlFor="occasion_id">Occasion</label>
           <select
             name="occasion_id"
@@ -184,8 +218,12 @@ const ReservationModal = () => {
             onChange={(e) => setOccasionId(e.target.value)}
           >
             <option value={null}> -- select an option -- </option>
-            {occasions.map(occ => {
-                return <option key={occ.text} value={occ.value}>{occ.text}</option>
+            {occasions.map((occ) => {
+              return (
+                <option key={occ.text} value={occ.value}>
+                  {occ.text}
+                </option>
+              );
             })}
           </select>
           <label htmlFor="timeslot" className="field-error">
@@ -198,10 +236,17 @@ const ReservationModal = () => {
         </button>
       </form>
 
-    <div className="modal-footer">
-
-      <p>Don't have an account yet? <a className="text-link" onClick={() => dispatch(showModal(SIGNUP_MODAL))}>Sign up.</a></p>
-      {/* <p>Just looking around? <a className="text-link" onClick={populateDemoUserFields}>Log in as a demo user.</a></p> */}
+      <div className="modal-footer">
+        <p>
+          Don't have an account yet?{" "}
+          <a
+            className="text-link"
+            onClick={() => dispatch(showModal(SIGNUP_MODAL))}
+          >
+            Sign up.
+          </a>
+        </p>
+        {/* <p>Just looking around? <a className="text-link" onClick={populateDemoUserFields}>Log in as a demo user.</a></p> */}
       </div>
     </div>
   );
