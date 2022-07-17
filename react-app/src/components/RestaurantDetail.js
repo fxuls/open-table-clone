@@ -55,7 +55,7 @@ const url = match.params.url
             <p className="restInfo">{restaurant?.cuisine_type} • {"$".repeat(restaurant?.price)} • {restaurant?.location.city}</p>
             </div>
             { restaurant ?
-            <button className="nav-button hover-effect sign-up-button" onClick={openReservationModal}>
+            <button className="nav-button hover-effect sign-up-button reservation-button" onClick={openReservationModal}>
             <span>Make A Reservation</span>
             </button>  : null}
             {restaurant ?

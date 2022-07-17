@@ -21,6 +21,10 @@
     border-bottom: 1px solid var(--main-grey);
 }
 
+.reservation-button {
+    margin: 10px 0;
+}
+
 @media (max-width:1055px) {
     .restHeaderImg {
         height: 296px;
