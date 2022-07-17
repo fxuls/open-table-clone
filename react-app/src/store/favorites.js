@@ -7,7 +7,7 @@ export const favoritesSelector = (state) => {
   // if not authenticated
   if (!state.session.user) return null;
 
-  return state.favorites.userId;
+  return state.favorites[state.session.user.id];
 };
 
 // SET_FAVORITES action creator
