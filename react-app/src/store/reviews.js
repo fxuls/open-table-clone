@@ -2,7 +2,7 @@ export const SET_USER_REVIEWS = 'reviews/SET_USER_REVIEWS';
 export const SET_RESTAURANT_REVIEWS = 'reviews/SET_RESTAURANT_REVIEWS';
 export const SET_REVIEW = 'reviews/SET_REVIEW';
 export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
-export const NEW_REVIEW = 'reviews/NEW_REVIEW'
+export const NEW_REVIEW = 'reviews/NEW_REVIEW';
 
 
 // selectors
@@ -48,7 +48,7 @@ export function deleteReviewAction(reviewId) {
 export function newReviewAction(reviewData) {
     return {
         type: NEW_REVIEW,
-        reviewData
+        reviewData,
     }
 }
 
@@ -81,11 +81,11 @@ export const fetchReview = (reviewId) => async (dispatch) => {
 
 // create a review
 export const createReview = (review) => async (dispatch) => {
-    const {restaurant_id, overall_rating, food_rating, service_rating, ambience_rating, value_rating, review_text } = review
-    const res = await fetch(`/api/reviews/`, {
+    const {restaurant_id, overall_rating, food_rating, service_rating, ambience_rating, value_rating, review_text } = review;
+    const res = await fetch(`/api/reviews`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       restaurant_id,
@@ -100,12 +100,11 @@ export const createReview = (review) => async (dispatch) => {
 const data = await res.json();
 dispatch(setUserReview(data));
 return res;
-
 }
 
 // edit a review
 export const editReview = (review) => async (dispatch) => {
-    const {reviewId, restaurant_id, overall_rating, food_rating, service_rating, ambience_rating, value_rating, review_text } = review
+    const {reviewId, restaurant_id, overall_rating, food_rating, service_rating, ambience_rating, value_rating, review_text } = review;
     const res = await fetch(`/api/reviews/${reviewId}`, {
     method: 'PUT',
     headers: {
@@ -142,7 +141,7 @@ export const checkReviewLink = (reviewLink) => async (dispatch) => {
     const res = await fetch(`/api/reviews/new`, {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             url: reviewLink,
@@ -161,17 +160,17 @@ export default function reviewsReducer(state = {}, action) {
         case SET_USER_REVIEWS:
             const reviews = {};
             action.reviews.forEach(review => {
-                reviews[review.id] = reviews
+                reviews[review.id] = reviews;
             })
-            newState.user = reviews
+            newState.user = reviews;
             break;
 
         case SET_RESTAURANT_REVIEWS:
             const resReviews = {};
             action.reviews.forEach(review => {
-                reviews[review.id] = resReviews
+                reviews[review.id] = resReviews;
             })
-            newState.restaurant = reviews
+            newState.restaurant = reviews;
             break;
 
         case SET_REVIEW:
@@ -184,7 +183,7 @@ export default function reviewsReducer(state = {}, action) {
             break;
 
         case NEW_REVIEW:
-            newState.new = action.reviewData
+            newState.new = action.reviewData;
 
         default:
             break;
