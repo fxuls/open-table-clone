@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
-import {RESERVATION_MODAL} from './modals/ReservationModal';
+import { RESERVATION_MODAL } from './modals/ReservationModal';
 import { showModal } from '../store/ui';
 import "../styles/restaurantDetail.css"
 
