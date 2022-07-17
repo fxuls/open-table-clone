@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   restaurants,
   ui,
-  reservations
+  reservations,
 });
 
 
