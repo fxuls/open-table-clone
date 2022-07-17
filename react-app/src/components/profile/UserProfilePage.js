@@ -16,9 +16,9 @@ const UserProfilePage = (props) => {
     if (!loaded)
       (async () => {
         await dispatch(fetchFavorites());
-        setTimeout(() => setLoaded(true), 5000);
+        setLoaded(true);
       })();
-  }, [dispatch, loaded]);
+  }, [dispatch]);
 
   // if not logged in redirect to login
   // this should not happen since it is a protected route
