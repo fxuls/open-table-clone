@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { favoritesSelector } from "../../store/favorites";
+import Spinner from "../Spinner";
 
 const ProfileFavorites = ({ loaded }) => {
   const favorites = useSelector(favoritesSelector);
@@ -14,9 +13,7 @@ const ProfileFavorites = ({ loaded }) => {
         {loaded ? (
           <div className="restaurant-cards">Favorites will be here</div>
         ) : (
-          <div className="spinner">
-            <FontAwesomeIcon className="spinner" icon={faCircleNotch} />
-          </div>
+          <Spinner />
         )}
       </div>
     </div>
