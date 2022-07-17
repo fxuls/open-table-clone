@@ -1,4 +1,3 @@
-export const SET_REVIEW = 'reviews/SET_REVIEW';
 export const SET_USER_REVIEWS = 'reviews/SET_USER_REVIEWS';
 export const SET_RESTAURANT_REVIEWS = 'reviews/SET_RESTAURANT_REVIEWS';
 export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
@@ -9,17 +8,9 @@ export const NEW_REVIEW = 'reviews/NEW_REVIEW'
 // selectors
 export const restaurantReviewsSelector = (state) => state.reviews.restaurant
 export const userReviewsSelector = (state) => state.reviews.user;
-export const reviewSelector = (state) => state.reviews.detail
+export const userReviewIdSelector = (id) => (state) => state.reviews.user[id]
 export const newReviewSelector = (state) => state.reviews.new
 
-
-// SET_REVIEW action creator
-export function setReviewAction(review) {
-    return {
-        type: SET_REVIEW,
-        review,
-    };
-}
 
 // SET_USER_REVIEWS action creator
 export function setUserReviewsAction(reviews) {
@@ -166,9 +157,6 @@ export default function reviewsReducer(state = {}, action) {
     const newState = { ...state };
 
     switch (action.type) {
-        case SET_REVIEW:
-            newState.detail = action.review;
-            break
 
         case SET_USER_REVIEWS:
             const reviews = {};
@@ -187,12 +175,13 @@ export default function reviewsReducer(state = {}, action) {
             break;
 
         case EDIT_REVIEW:
-            newState.detail = action.review;
+            newState.user[action.review] = action.review;
+            newState.restaurant[action.review] = action.review;
             break;
 
         case DELETE_REVIEW:
             delete newState.user[action.reviewId];
-            delete newState.detail;
+            delete newState.restaurant[action.review];
             break;
 
         case NEW_REVIEW:
