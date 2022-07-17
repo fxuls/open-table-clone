@@ -51,7 +51,6 @@ export const deleteMyReservation = (reservationId) => async (dispatch) => {
 
 // create a reservation thunk
 export const createAReservation = (reservation) => async (dispatch) => {
-   console.log('reservation thunk: ', reservation)
    const { restaurant_id, party_size, timeslot, day, special_request, occasion_id } = reservation;
    const response = await fetch('/api/reservations', {
     method: 'POST',
