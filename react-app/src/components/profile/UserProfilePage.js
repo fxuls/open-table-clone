@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import { userSelector } from "../../store/session";
@@ -8,12 +8,17 @@ import ProfileReservations from "./ProfileReservations";
 
 const UserProfilePage = (props) => {
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
   const user = useSelector(userSelector);
 
   // fetch favorites once on first render
   useEffect(() => {
-    dispatch(fetchFavorites());
-  }, []);
+    if (!loaded)
+      (async () => {
+        await dispatch(fetchFavorites());
+        setTimeout(() => setLoaded(true), 5000);
+      })();
+  }, [dispatch, loaded]);
 
   // if not logged in redirect to login
   // this should not happen since it is a protected route
@@ -35,11 +40,11 @@ const UserProfilePage = (props) => {
       <div className="profile-content">
         <Switch>
           <Route path="/profile/favorites">
-            <ProfileFavorites />
+            <ProfileFavorites loaded={loaded}/>
           </Route>
 
           <Route path="/profile/reservations">
-            <ProfileReservations />
+            <ProfileReservations loaded={loaded}/>
           </Route>
         </Switch>
       </div>
