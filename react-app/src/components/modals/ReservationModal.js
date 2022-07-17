@@ -86,12 +86,12 @@ const ReservationModal = () => {
           );
 
       console.log({
-        restaurantId,
-        party_size,
+        restaurant_id: parseInt(restaurantId),
+        party_size: parseInt(party_size),
         timeslot,
         day,
         special_request,
-        occasion_id,
+        occasion_id: parseInt(occasion_id)
       });
       // return data
     }
@@ -217,7 +217,7 @@ const ReservationModal = () => {
             value={occasion_id}
             onChange={(e) => setOccasionId(e.target.value)}
           >
-            <option value={null}> -- select an option -- </option>
+            <option value={""}> -- select an option -- </option>
             {occasions.map((occ) => {
               return (
                 <option key={occ.text} value={occ.value}>
