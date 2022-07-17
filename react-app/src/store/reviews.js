@@ -1,6 +1,6 @@
 export const SET_USER_REVIEWS = 'reviews/SET_USER_REVIEWS';
 export const SET_RESTAURANT_REVIEWS = 'reviews/SET_RESTAURANT_REVIEWS';
-export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
+export const SET_REVIEW = 'reviews/SET_REVIEW';
 export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 export const NEW_REVIEW = 'reviews/NEW_REVIEW'
 
@@ -28,10 +28,10 @@ export function setRestaurantReviewsAction(reviews) {
     }
 }
 
-// EDIT_REVIEW action creator
-export function editReviewAction(review) {
+// SET_USER_REVIEW action creator
+export function setUserReview(review) {
     return {
-        type: EDIT_REVIEW,
+        type: SET_REVIEW,
         review,
     }
 }
@@ -70,12 +70,12 @@ export const fetchRestaurantReviews = (restaurantUrl) => async (dispatch) => {
     return res;
 }
 
-// fetch a review by its id thunk
+// fetch a user review by its id thunk
 export const fetchReview = (reviewId) => async (dispatch) => {
     const res = await fetch(`/api/reviews/${reviewId}`);
     if (res.ok) {
         const data = await res.json();
-        dispatch(setReviewAction(data));
+        dispatch(setUserReview(data));
     }
 }
 
@@ -98,7 +98,7 @@ export const createReview = (review) => async (dispatch) => {
     })
 })
 const data = await res.json();
-dispatch(setReviewAction(data));
+dispatch(setUserReview(data));
 return res;
 
 }
@@ -122,7 +122,7 @@ export const editReview = (review) => async (dispatch) => {
     })
 })
 const data = await res.json();
-dispatch(editReviewAction(data));
+dispatch(setUserReview(data));
 return res;
 
 }
@@ -174,9 +174,8 @@ export default function reviewsReducer(state = {}, action) {
             newState.restaurant = reviews
             break;
 
-        case EDIT_REVIEW:
+        case SET_REVIEW:
             newState.user[action.review] = action.review;
-            newState.restaurant[action.review] = action.review;
             break;
 
         case DELETE_REVIEW:
