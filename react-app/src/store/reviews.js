@@ -6,10 +6,10 @@ export const NEW_REVIEW = 'reviews/NEW_REVIEW'
 
 
 // selectors
-export const restaurantReviewsSelector = (state) => state.reviews.restaurant
+export const restaurantReviewsSelector = (state) => state.reviews.restaurant;
 export const userReviewsSelector = (state) => state.reviews.user;
-export const userReviewIdSelector = (id) => (state) => state.reviews.user[id]
-export const newReviewSelector = (state) => state.reviews.new
+export const userReviewIdSelector = (id) => (state) => state.reviews.user[id];
+export const newReviewSelector = (state) => state.reviews.new;
 
 
 // SET_USER_REVIEWS action creator
