@@ -21,18 +21,12 @@ const ProfileReservations = ({ loaded }) => {
       if (today > resDay) pastReservations.push(reservation);
       else upcomingReservations.push(reservation);
     });
-    
-    // sort reservations by date
-    pastReservations.sort((a, b) => {
-        if (a.day > b.day) {
-            return -1
-        }
-    })
-    upcomingReservations.sort((a, b) => {
-        if (a.day < b.day) {
-            return -1
-        }
-    })
+
+    // sort reservations happening soonest first
+    upcomingReservations.sort((a, b) => a.day < b.day ? -1 : 1);
+
+    // sort most recent reservations first
+    pastReservations.sort((a, b) => a.day > b.day ? -1 : 1);
   }
 
   return (
