@@ -1,20 +1,3 @@
-.restCard {
-    width: 236px;
-    height: 306px;
-    border-radius: 5px;
-    border: 1px solid var(--main-grey);
-    overflow: hidden;
-    flex: 0 1 236px;
-    margin: 8px 7px;
-
-
-}
-
-.restThumb {
-    width: 236px;
-    height: 132px;
-}
-
 .restCardUL {
     display: flex;
     flex-direction: row;
@@ -23,30 +6,13 @@
     margin: auto;
     width: 100%;
     padding: 20px 0;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 1rem;
 }
 
 .restCardDiv {
     width: 90%;
     margin: 0 auto;
-}
-
-.restCard:hover {
-    position: relative;
-    top: -5px;
-    box-shadow: 0 5px 5px var(--main-grey);
-}
-
-.restCardLower {
-    padding: 8px;
-    overflow: hidden;
-}
-
-.restName {
-    margin: 4px 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 .restaurant-cards-container {
