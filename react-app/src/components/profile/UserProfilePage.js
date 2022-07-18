@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, Route, Switch, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import { userSelector } from "../../store/session";
 import { fetchFavorites } from "../../store/favorites";
 import { fetchReservations } from "../../store/reservations";
@@ -34,11 +40,18 @@ const UserProfilePage = (props) => {
       </div>
       <ul className="profile-navigation">
         <li key="favorites">
-          <NavLink to="/profile/favorites"
-          isActive={() => ['/profile', '/profile/favorites'].includes(pathname)}>Favorites</NavLink>
+          <NavLink
+            to="/profile/favorites"
+            className="main-color-hover"
+            isActive={() =>
+              ["/profile", "/profile/favorites"].includes(pathname)
+            }
+          >
+            Favorites
+          </NavLink>
         </li>
         <li key="reservations">
-          <NavLink to="/profile/reservations">Reservations</NavLink>
+          <NavLink to="/profile/reservations" className="main-color-hover">Reservations</NavLink>
         </li>
       </ul>
       <Switch>
