@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
+import { fetchRestaurantReviews } from '../store/reviews';
 import { RESERVATION_MODAL } from './modals/ReservationModal';
 import { showModal } from '../store/ui';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +22,8 @@ const url = match.params.url
   useEffect(() => {
     if (!updated && (url !== undefined)) {
         dispatch(restaurantActions.fetchRestaurant(url));
-        setUpdated(true)
+        dispatch(fetchRestaurantReviews(url));
+        setUpdated(true);
     }
 
   }, [dispatch, updated, url]);
