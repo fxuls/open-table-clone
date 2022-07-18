@@ -11,6 +11,7 @@ import RestaurantDetail from './components/RestaurantDetail';
 import { authenticate } from "./store/session";
 import { modalSelector } from "./store/ui";
 import { fetchRestaurants } from "./store/restaurants";
+import { fetchFavorites } from "./store/favorites";
 import Modal from "./components/modals/Modal";
 
 
@@ -25,6 +26,7 @@ function App() {
     if (!loaded) {
       (async () => {
         await dispatch(fetchRestaurants());
+        await dispatch(fetchFavorites());
         try {
           await dispatch(authenticate());
         } finally {
