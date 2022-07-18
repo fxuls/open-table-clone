@@ -41,7 +41,7 @@
     color: var(--main-grey);
 }
 
-.profile-navigation a:hover {
+.profile-navigation a.active:hover {
     color: var(--main-color);
 }
 
@@ -91,4 +91,12 @@
 
 .reservation-card a {
  font-weight: 500;
+}
+
+.main-color-hover {
+    transition: color 0.25s ease;
+}
+
+.main-color-hover:hover {
+    color: var(--main-color);
 }
