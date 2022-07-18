@@ -3,7 +3,7 @@
     grid-template-areas: "head head"
                          "nav  main"
                          "nav  main";
-    grid-template-columns: 20% auto;
+    grid-template-columns: 20% 80%;
     grid-template-rows: auto auto;
     max-width: 60rem;
     margin: auto;
