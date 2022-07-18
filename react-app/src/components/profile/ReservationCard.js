@@ -30,9 +30,9 @@ const ReservationCard = ({ reservation, upcoming }) => {
 
   const handleCancelClick = (e) => {
     e.stopPropagation();
-    
-    dispatch(deleteMyReservation(id))
-    window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`)
+
+    dispatch(deleteMyReservation(id));
+    window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`);
   }
 
   return (
