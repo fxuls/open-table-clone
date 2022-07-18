@@ -42,8 +42,11 @@ export const addFavorite = (restaurantId) => async (dispatch, getState) => {
   // if restaurantId already in favorites return
   const state = getState();
 
-  // if unauthenticated or restaurant already favorited return
-  if (!state.session.user || state.favorites[state.session.user.id].includes(restaurantId)) return;
+  // not logged in
+  if (!state.session.user) return;
+
+  // already favorited
+  if (state.favorites[state.session.user.id].includes(restaurantId)) return;
 
   const res = await fetch("/api/my/favorites", {
     method: "POST",
