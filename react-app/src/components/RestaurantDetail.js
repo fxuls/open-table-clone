@@ -38,8 +38,10 @@ const url = match.params.url
         intArr.push(parseInt(element))
     });
     let amPm = "AM";
-    if (intArr[0] > 12) {
+    if (intArr[0] >= 12) {
+      if (intArr[0] > 12) {
         intArr[0] -= 12;
+      }
         amPm = "PM";
     }
   return `${intArr[0]}:${stringArr[1]} ${amPm}`
