@@ -100,19 +100,21 @@
 .profile-content .reservations-list {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .profile-content .reservation-card {
     padding: 1.4em;
     display: grid;
     grid-template-columns: 12em 5fr;
-    grid-template-rows: 8rem;
+    grid-template-rows: 10rem;
     justify-content: center;
     align-items:flex-start;
     gap: 0.8em;
     border-radius: 0.4rem;
-    background-color: var(--light-grey);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: box-shadow 0.25s ease;
+    position: relative;
 }
 
 .reservation-card a {
@@ -126,6 +128,7 @@
     align-items: center;
     overflow: hidden;
     border-radius: 0.8em;
+    height: 100%;
 }
 
 .reservation-card .card-thumbnail img {
@@ -135,13 +138,11 @@
 }
 
 .reservation-card:hover {
-    box-shadow: 0 2px 4px #2d333f33;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.reservation-card {
-    border-bottom: 1px solid var(--light-grey);
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.reservation-card-buttons {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
 }
