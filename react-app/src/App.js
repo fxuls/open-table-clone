@@ -44,7 +44,6 @@ function App() {
         {loaded ? (
           <Switch>
             <Route path="/" exact={true}>
-              <h1>Main header</h1>
               <RestaurantCardsList />
             </Route>
 
