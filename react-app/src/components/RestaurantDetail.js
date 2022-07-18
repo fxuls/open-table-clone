@@ -73,7 +73,7 @@ const url = match.params.url
                 <p className="rest-detail-info">{`${restaurant.location?.city}, ${restaurant.location?.state}`}</p>
             </div>
             : null }
-            <div className="restGallery">
+            <div className="restaurant-gallery">
                 <h4>Photo Gallery</h4>
                 <ul>
                     {restaurant?.images.map(img => {
@@ -84,6 +84,9 @@ const url = match.params.url
                         )
                     })}
                 </ul>
+            </div>
+            <div className="restaurant-reviews">
+              <h4>Reviews</h4>
             </div>
         </div>
       </div>

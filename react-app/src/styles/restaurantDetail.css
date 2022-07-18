@@ -30,6 +30,10 @@
     margin: 15px 0;
 }
 
+.restaurant-gallery {
+    border-bottom: 1px solid var(--main-grey);
+}
+
 @media (max-width:1055px) {
     .restHeaderImg {
         height: 296px;
