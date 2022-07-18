@@ -9,7 +9,9 @@ export const restaurantIdSelector = (restaurantId) => (state) =>
 export const restaurantUrlSelector = (restaurantUrl) => (state) =>
   state.restaurants.restaurants[state.restaurants.urls[restaurantUrl]];
 export const restaurantsByIdsSelector = (restaurantIds) => (state) =>
-  restaurantIds.map((id) => state.restaurants.restaurants[id]);
+  restaurantIds
+    ? restaurantIds.map((id) => state.restaurants.restaurants[id])
+    : [];
 
 // SET_RESTAURANTS action creator
 export function setResaurants(restaurants) {
