@@ -39,12 +39,12 @@ const UserProfilePage = (props) => {
       </ul>
       <div className="profile-content">
         <Switch>
-          <Route path="/profile/favorites">
-            <ProfileFavorites loaded={loaded}/>
+          <Route path="/profile/reservations">
+            <ProfileReservations loaded={loaded} />
           </Route>
 
-          <Route path="/profile/reservations">
-            <ProfileReservations loaded={loaded}/>
+          <Route path="/profile">
+            <ProfileFavorites loaded={loaded} />
           </Route>
         </Switch>
       </div>
