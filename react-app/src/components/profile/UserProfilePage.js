@@ -13,6 +13,7 @@ import { fetchReservations } from "../../store/reservations";
 import { fetchUserReviews } from "../../store/reviews";
 import ProfileFavorites from "./ProfileFavorites";
 import ProfileReservations from "./ProfileReservations";
+import ProfileReviews from "./ProfileReviews";
 
 const UserProfilePage = (props) => {
   const dispatch = useDispatch();
@@ -55,10 +56,17 @@ const UserProfilePage = (props) => {
         <li key="reservations">
           <NavLink to="/profile/reservations" className="main-color-hover">Reservations</NavLink>
         </li>
+        <li key="reviews">
+          <NavLink to="/profile/reviews" className="main-color-hover">Reviews</NavLink>
+        </li>
       </ul>
       <Switch>
         <Route path="/profile/reservations">
           <ProfileReservations loaded={loaded} />
+        </Route>
+
+        <Route path="/profile/reviews">
+          <ProfileReviews loaded={loaded} />
         </Route>
 
         <Route path="/profile">
