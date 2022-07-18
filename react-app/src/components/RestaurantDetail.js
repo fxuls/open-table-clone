@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
-import { fetchRestaurantReviews } from '../store/reviews';
+import { fetchRestaurantReviews, restaurantReviewsSelector } from '../store/reviews';
 import { RESERVATION_MODAL } from './modals/ReservationModal';
 import { showModal } from '../store/ui';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,6 +29,7 @@ const url = match.params.url
   }, [dispatch, updated, url]);
 
   const restaurant = useSelector(restaurantActions.restaurantUrlSelector(url));
+  const reviews = useSelector(restaurantReviewsSelector)
 
   const fixTimes = (timeString) => {
     const stringArr = timeString?.split(":");
@@ -89,6 +90,29 @@ const url = match.params.url
             </div>
             <div className="restaurant-reviews">
               <h4>Reviews</h4>
+              { reviews ?
+              (
+                Object.keys(reviews).map((reviewId) => {
+                  return (
+                    <div key={reviewId} className="review">
+                      <div className="review-ratings">
+                        <span className="rating-span"><b>Overall </b><span className='rating-score'>{reviews[reviewId].overall_rating}</span></span>  •
+                        <span className="rating-span"><b>Food </b><span className='rating-score'>{reviews[reviewId].food_rating}</span></span>  •
+                        <span className="rating-span"><b>Service </b><span className='rating-score'>{reviews[reviewId].service_rating}</span></span>  •
+                        <span className="rating-span"><b>Ambience </b><span className='rating-score'>{reviews[reviewId].ambience_rating}</span></span>  •
+                        <span className="rating-span"><b>Value </b><span className='rating-score'>{reviews[reviewId].value_rating}</span></span>
+                      </div>
+                      <p className="review-text">{reviews[reviewId].review_text}</p>
+                      {reviews[reviewId].user ? (
+                        <div className="review-user">{reviews[reviewId].user.first_name} from {reviews[reviewId].user.location.city}</div>
+                      ) : (
+                        <div className="review-user">Anonymous User</div>
+                      )}
+                    </div>
+                  )
+                })
+              ) : (<p>Be the first to leave a review</p>)
+            }
             </div>
         </div>
       </div>
