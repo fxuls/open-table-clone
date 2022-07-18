@@ -13,6 +13,7 @@
 .restThumb {
     width: 236px;
     height: 132px;
+    object-fit: cover;
 }
 
 .restCardUL {
