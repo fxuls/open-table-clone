@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants";
 import RestaurantCard from './RestaurantCard';
-import "../styles/restaurantCard.css"
+import "../styles/restaurantCard.css";
 
 
 function RestaurantCardsList() {
