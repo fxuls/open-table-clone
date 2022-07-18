@@ -16,7 +16,9 @@ const ProfileFavorites = ({ loaded }) => {
       <div className="favorites card-background">
         {loaded ? (
           <div className="restaurant-cards-container">{
-            restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)
+            restaurants.length ?
+            restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>) :
+            <div>Whoops! You haven't saved any restaurants yet.</div>
           }</div>
         ) : (
           <Spinner />
