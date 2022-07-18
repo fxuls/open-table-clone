@@ -85,15 +85,7 @@ const ReservationModal = () => {
             })
           );
 
-      console.log({
-        restaurant_id: parseInt(restaurantId),
-        party_size: parseInt(party_size),
-        timeslot,
-        day,
-        special_request,
-        occasion_id: parseInt(occasion_id)
-      });
-      // return data
+        // return data
     }
   };
 
