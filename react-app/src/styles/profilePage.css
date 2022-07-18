@@ -100,5 +100,7 @@
 .reservation-card {
     border-bottom: 1px solid var(--light-grey);
     margin-bottom: 10px;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

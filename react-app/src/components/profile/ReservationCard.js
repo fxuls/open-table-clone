@@ -36,6 +36,16 @@ const ReservationCard = ({ props }) => {
           Party of {reservation.party_size}, at {time} on {formattedDate}
         </div>
       </div>
+      <div className="reservation-card-right">
+        {upcoming ?
+        <button className="nav-button hover-effect sign-up-button reservation-button" >
+        <span>Cancel Reservation</span>
+        </button>
+        : <button className="nav-button hover-effect sign-up-button reservation-button" >
+        <span>Leave a Review</span>
+        </button>
+        }
+      </div>
     </div>
   );
 };
