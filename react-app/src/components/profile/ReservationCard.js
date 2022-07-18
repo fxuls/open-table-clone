@@ -6,8 +6,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
   const { restaurant } = reservation;
   const date = reservation.day;
-  const [year, month, day] = date.split("-");
-  const formattedDate = [month, day, year].join("/");
+  const formattedDate = date.replaceAll("-", "/");
 
   const fixTimes = (timeString) => {
     const stringArr = timeString?.split(":");
