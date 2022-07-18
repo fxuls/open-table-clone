@@ -20,7 +20,6 @@ const url = match.params.url
 
   useEffect(() => {
     if (!updated && (url !== undefined)) {
-        console.log("fetching with URL:", url)
         dispatch(restaurantActions.fetchRestaurant(url));
         setUpdated(true)
     }
