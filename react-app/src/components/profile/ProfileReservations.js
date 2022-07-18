@@ -42,7 +42,7 @@ const ProfileReservations = ({ loaded }) => {
                 <ReservationCard
                   key={reservation.id}
                   reservation={reservation}
-                  upcoming={false}
+                  upcoming={true}
                 />
               ))}
             </div>
