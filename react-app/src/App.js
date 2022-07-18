@@ -24,10 +24,10 @@ function App() {
   useEffect(() => {
     if (!loaded) {
       (async () => {
-        await dispatch(fetchRestaurants());
-        await dispatch(fetchFavorites());
         try {
           await dispatch(authenticate());
+          await dispatch(fetchRestaurants());
+          await dispatch(fetchFavorites());
         } finally {
           setLoaded(true);
         }

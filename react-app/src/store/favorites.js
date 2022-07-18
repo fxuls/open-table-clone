@@ -39,14 +39,13 @@ export function removeFavoriteAction(userId, restaurantId) {
 
 // add favorite thunk
 export const addFavorite = (restaurantId) => async (dispatch, getState) => {
-  // if restaurantId already in favorites return
   const state = getState();
 
   // not logged in
   if (!state.session.user) return;
 
   // already favorited
-  if (state.favorites[state.session.user.id].includes(restaurantId)) return;
+  if (state.favorites[state.session.user.id]?.includes(restaurantId)) return;
 
   const res = await fetch("/api/my/favorites", {
     method: "POST",
@@ -65,8 +64,12 @@ export const addFavorite = (restaurantId) => async (dispatch, getState) => {
 
 // remove favorite thunk
 export const removeFavorite = (restaurantId) => async (dispatch, getState) => {
-  // if restaurantId does not exist in favorites do not try to delete from server
   const state = getState();
+
+  // not logged in
+  if (!state.session.user) return;
+
+  // if restaurantId does not exist in favorites do not try to delete from server
   if (!state.favorites[state.session.user.id].includes(restaurantId)) return;
 
   const res = await fetch(`/api/my/favorites/${restaurantId}`, {
@@ -79,7 +82,13 @@ export const removeFavorite = (restaurantId) => async (dispatch, getState) => {
 };
 
 export const fetchFavorites = () => async (dispatch, getState) => {
+  const user = getState().session.user;
+
+  // if user is not logged in return
+  if (!user) return;
+
   const res = await fetch("/api/my/favorites");
+
   if (res.ok) {
     const data = await res.json();
     dispatch(setFavoritesAction(data.user_id, data.restaurant_ids));
@@ -96,12 +105,12 @@ export default function favoritesReducer(state = {}, action) {
       break;
 
     case ADD_FAVORITE:
-      if (!newState[userId].includes(restaurantId))
+      if (newState[userId] && !newState[userId].includes(restaurantId))
         newState[userId] = [ ...newState[userId], restaurantId];
       break;
 
     case REMOVE_FAVORITE:
-      if (newState[action.userId].includes(restaurantId))
+      if (newState[userId] && newState[action.userId].includes(restaurantId))
         newState[action.userId].splice(
           newState[action.userId].indexOf(restaurantId),
           1
