@@ -4,7 +4,7 @@ import { deleteMyReservation } from "../../store/reservations";
 
 const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
-  const { restaurant, day } = reservation;
+  const { restaurant, day, timeslot } = reservation;
   const formattedDate = day.replaceAll("-", "/");
 
   const fixTimes = (timeString) => {
@@ -26,7 +26,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
     return `${intArr[0]}:${stringArr[1]} ${amPm}`;
   };
 
-  const time = fixTimes(reservation.timeslot);
+  const time = fixTimes(timeslot);
 
   const handleCancelClick = (e) => {
     e.stopPropagation();
