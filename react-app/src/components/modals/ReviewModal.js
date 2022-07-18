@@ -18,7 +18,6 @@ const ReviewModal = () => {
   const dispatch = useDispatch();
 
   const reservationInfo = useSelector(newReviewSelector);
-  console.log("RESERVATION INFO: ", reservationInfo);
 
   // GET the restaurant ID for use in the review form
   const restaurantId = reservationInfo?.restaurant.id;
@@ -43,6 +42,7 @@ const ReviewModal = () => {
     return dispatch(createReview(review)).then((res) => {
       if (res.ok) {
         dispatch(hideModal());
+        window.alert("Your review has been posted!")
       }
     });
   };
