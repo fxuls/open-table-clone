@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import * as restaurantActions from "../store/restaurants"
 import { RESERVATION_MODAL } from './modals/ReservationModal';
 import { showModal } from '../store/ui';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import "../styles/restaurantDetail.css"
 
 
@@ -57,10 +59,11 @@ const url = match.params.url
             { restaurant ?
             <button className="nav-button hover-effect sign-up-button reservation-button" onClick={openReservationModal}>
             <span>Make A Reservation</span>
+            <FontAwesomeIcon icon={faClipboard} className="icon" />
             </button>  : null}
             {restaurant ?
             <div className="restDetails">
-                <h4>Additional Info</h4>
+                <h4 className='rest-detail-header'>Additional Info</h4>
                 <h6 className="rest-detail-title">Opening Time</h6>
                 <p className="rest-detail-info">{fixTimes(restaurant.opening_time)}</p>
                 <h6 className="rest-detail-title">Closing Time</h6>
