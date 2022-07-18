@@ -3,9 +3,9 @@
     grid-template-areas: "head head"
                          "nav  main"
                          "nav  main";
-    grid-template-columns: 20% auto;
+    grid-template-columns: 17% 80%;
     grid-template-rows: auto auto;
-    max-width: 60rem;
+    max-width: 65rem;
     margin: auto;
 }
 
@@ -65,12 +65,30 @@
 }
 
 .profile-content .favorites {
+    display: flex;
     min-height: 20rem;
+    justify-content: center;
 }
 
-.profile-content .spinner {
+.profile-content .favorites .spinner {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.profile-content .reservations h2 {
+    margin: 0 0 0.65rem;
+    font-weight: 400;
+}
+
+.profile-content .reservations .spinner {
+    min-height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reservation-card a {
+ font-weight: 500;
 }

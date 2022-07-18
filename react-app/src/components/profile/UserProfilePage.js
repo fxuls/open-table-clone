@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, Route, Switch } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { userSelector } from "../../store/session";
 import { fetchFavorites } from "../../store/favorites";
 import { fetchReservations } from "../../store/reservations";
@@ -9,6 +9,7 @@ import ProfileReservations from "./ProfileReservations";
 
 const UserProfilePage = (props) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const [loaded, setLoaded] = useState(false);
   const user = useSelector(userSelector);
 
@@ -17,10 +18,10 @@ const UserProfilePage = (props) => {
     if (!loaded)
       (async () => {
         await dispatch(fetchFavorites());
-        await dispatch(fetchReservations())
+        await dispatch(fetchReservations());
         setLoaded(true);
       })();
-  }, [dispatch]);
+  }, [dispatch, loaded]);
 
   // if not logged in redirect to login
   // this should not happen since it is a protected route
@@ -32,24 +33,23 @@ const UserProfilePage = (props) => {
         <h1>{user.first_name + " " + user.last_name}</h1>
       </div>
       <ul className="profile-navigation">
-        <li>
-          <NavLink to="/profile/favorites">Favorites</NavLink>
+        <li key="favorites">
+          <NavLink to="/profile/favorites"
+          isActive={() => ['/profile', '/profile/favorites'].includes(pathname)}>Favorites</NavLink>
         </li>
-        <li>
+        <li key="reservations">
           <NavLink to="/profile/reservations">Reservations</NavLink>
         </li>
       </ul>
-      <div className="profile-content">
-        <Switch>
-          <Route path="/profile/favorites">
-            <ProfileFavorites loaded={loaded}/>
-          </Route>
+      <Switch>
+        <Route path="/profile/reservations">
+          <ProfileReservations loaded={loaded} />
+        </Route>
 
-          <Route path="/profile/reservations">
-            <ProfileReservations loaded={loaded}/>
-          </Route>
-        </Switch>
-      </div>
+        <Route path="/profile">
+          <ProfileFavorites loaded={loaded} />
+        </Route>
+      </Switch>
     </div>
   );
 };
