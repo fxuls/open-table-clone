@@ -2,17 +2,21 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border-top: 1px solid var(--main-grey);
+    /* border-top: 1px solid var(--main-grey); */
     margin: auto;
     width: 100%;
     padding: 20px 0;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 1.1rem;
 }
 
 .restCardDiv {
     width: 90%;
-    margin: 0 auto;
+    margin: 1rem auto;
+}
+
+.restCardDiv h1 {
+    font-weight: 600;
 }
 
 .restaurant-cards-container {
