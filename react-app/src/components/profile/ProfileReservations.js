@@ -21,6 +21,7 @@ const ProfileReservations = ({ loaded }) => {
       if (today > resDay) pastReservations.push(reservation);
       else upcomingReservations.push(reservation);
     });
+    
     // sort reservations by date
     pastReservations.sort((a, b) => {
         if (a.day > b.day) {
