@@ -39,7 +39,6 @@ export function removeFavoriteAction(userId, restaurantId) {
 
 // add favorite thunk
 export const addFavorite = (restaurantId) => async (dispatch, getState) => {
-  // if restaurantId already in favorites return
   const state = getState();
 
   // not logged in
@@ -65,8 +64,12 @@ export const addFavorite = (restaurantId) => async (dispatch, getState) => {
 
 // remove favorite thunk
 export const removeFavorite = (restaurantId) => async (dispatch, getState) => {
-  // if restaurantId does not exist in favorites do not try to delete from server
   const state = getState();
+
+  // not logged in
+  if (!state.session.user) return;
+
+  // if restaurantId does not exist in favorites do not try to delete from server
   if (!state.favorites[state.session.user.id].includes(restaurantId)) return;
 
   const res = await fetch(`/api/my/favorites/${restaurantId}`, {
@@ -83,7 +86,7 @@ export const fetchFavorites = () => async (dispatch, getState) => {
 
   // if user is not logged in return
   if (!user) return;
-  
+
   const res = await fetch("/api/my/favorites");
   if (res.ok) {
     const data = await res.json();
