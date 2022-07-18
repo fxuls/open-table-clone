@@ -7,7 +7,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
   const { restaurant, day, timeslot, id } = reservation;
   const formattedDate = day.replaceAll("-", "/");
 
-  const fixTimes = (timeString) => {
+  const fixTime = (timeString) => {
     const stringArr = timeString?.split(":");
     const intArr = [];
     stringArr?.forEach((element) => {
@@ -26,7 +26,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
     return `${intArr[0]}:${stringArr[1]} ${amPm}`;
   };
 
-  const time = fixTimes(timeslot);
+  const time = fixTime(timeslot);
 
   const handleCancelClick = (e) => {
     e.stopPropagation();
