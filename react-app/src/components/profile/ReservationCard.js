@@ -32,26 +32,46 @@ const ReservationCard = ({ reservation, upcoming }) => {
     e.stopPropagation();
 
     dispatch(deleteMyReservation(id));
-    window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`);
-  }
+    window.alert(
+      `Your reservation to ${restaurant.name} has been successfully deleted`
+    );
+  };
 
   return (
     <div className="reservation-card">
-      <div className="reservation-card-left">
-        <Link to={`/restaurants/${restaurant.url}`}>{restaurant.name}</Link>
+      <div className="card-thumbnail">
+        <img
+          src={restaurant.preview_image_url}
+          alt={`Preview image for ${restaurant.name}`}
+        />
+      </div>
+
+      <div className="card-info">
+        <Link
+          to={`/restaurants/${restaurant.url}`}
+          className="main-color-hover"
+        >
+          {restaurant.name}
+        </Link>
+
         <div className="reservation-details">
           Party of {reservation.party_size}, at {time} on {formattedDate}
         </div>
       </div>
-      <div className="reservation-card-right">
-        {upcoming ?
-        <button className="nav-button hover-effect sign-up-button reservation-button" onClick={handleCancelClick}>
-        <span>Cancel Reservation</span>
-        </button>
-        : <button className="nav-button hover-effect sign-up-button reservation-button" >
-        <span>Leave a Review</span>
-        </button>
-        }
+      
+      <div className="reservation-card-buttons">
+        {upcoming ? (
+          <button
+            className="nav-button hover-effect sign-up-button reservation-button"
+            onClick={handleCancelClick}
+          >
+            <span>Cancel Reservation</span>
+          </button>
+        ) : (
+          <button className="nav-button hover-effect sign-up-button reservation-button">
+            <span>Leave a Review</span>
+          </button>
+        )}
       </div>
     </div>
   );
