@@ -129,12 +129,15 @@
     overflow: hidden;
     border-radius: 0.8em;
     height: 100%;
+    object-fit: cover;
 }
 
 .reservation-card .card-thumbnail img {
-    min-width: 100%;
-    min-height: 100%;
     object-fit: cover;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 11rem;
+    width: 100%;
 }
 
 .reservation-card:hover {
