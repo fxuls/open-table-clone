@@ -41,7 +41,8 @@ const ProfileReservations = ({ loaded }) => {
               {upcomingReservations.map((reservation) => (
                 <ReservationCard
                   key={reservation.id}
-                  props={{reservation, upcoming: true}}
+                  reservation={reservation}
+                  upcoming={false}
                 />
               ))}
             </div>
@@ -62,7 +63,8 @@ const ProfileReservations = ({ loaded }) => {
               {pastReservations.map((reservation) => (
                 <ReservationCard
                   key={reservation.id}
-                  props={{reservation, upcoming: false}}
+                  reservation={reservation}
+                  upcoming={false}
                 />
               ))}
             </div>
