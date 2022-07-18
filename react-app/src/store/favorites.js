@@ -41,7 +41,9 @@ export function removeFavoriteAction(userId, restaurantId) {
 export const addFavorite = (restaurantId) => async (dispatch, getState) => {
   // if restaurantId already in favorites return
   const state = getState();
-  if (state.favorites[state.session.user.id].includes(restaurantId)) return;
+
+  // if unauthenticated or restaurant already favorited return
+  if (!state.session.user || state.favorites[state.session.user.id].includes(restaurantId)) return;
 
   const res = await fetch("/api/my/favorites", {
     method: "POST",
