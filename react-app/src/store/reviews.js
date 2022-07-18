@@ -147,7 +147,7 @@ export const checkReviewLink = (reviewLink) => async (dispatch) => {
             url: reviewLink,
           })
     })
-    const data = res.json();
+    const data = await res.json();
     dispatch(newReviewAction(data));
     return res;
 }

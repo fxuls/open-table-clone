@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteMyReservation } from "../../store/reservations";
+import { checkReviewLink } from "../../store/reviews";
 
 const ReservationCard = ({ props }) => {
   const dispatch = useDispatch();
@@ -37,6 +38,11 @@ const ReservationCard = ({ props }) => {
     window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`)
   }
 
+  const handleReviewClick = e => {
+    e.stopPropagation();
+    dispatch(checkReviewLink(reservation.review_link.url))
+  }
+
   return (
     <div className="reservation-card">
       <div className="reservation-card-left">
@@ -50,7 +56,7 @@ const ReservationCard = ({ props }) => {
         <button className="nav-button hover-effect sign-up-button reservation-button" onClick={handleCancelClick}>
         <span>Cancel Reservation</span>
         </button>
-        : <button className="nav-button hover-effect sign-up-button reservation-button" >
+        : <button className="nav-button hover-effect sign-up-button reservation-button" onClick={handleReviewClick}>
         <span>Leave a Review</span>
         </button>
         }
