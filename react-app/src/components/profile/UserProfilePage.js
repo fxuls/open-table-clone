@@ -37,17 +37,15 @@ const UserProfilePage = (props) => {
           <NavLink to="/profile/reservations">Reservations</NavLink>
         </li>
       </ul>
-      <div className="profile-content">
-        <Switch>
-          <Route path="/profile/reservations">
-            <ProfileReservations loaded={loaded} />
-          </Route>
+      <Switch>
+        <Route path="/profile/reservations">
+          <ProfileReservations loaded={loaded} />
+        </Route>
 
-          <Route path="/profile">
-            <ProfileFavorites loaded={loaded} />
-          </Route>
-        </Switch>
-      </div>
+        <Route path="/profile">
+          <ProfileFavorites loaded={loaded} />
+        </Route>
+      </Switch>
     </div>
   );
 };
