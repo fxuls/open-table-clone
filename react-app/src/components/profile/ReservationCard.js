@@ -4,7 +4,7 @@ import { deleteMyReservation } from "../../store/reservations";
 
 const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
-  const { restaurant, day, timeslot } = reservation;
+  const { restaurant, day, timeslot, id } = reservation;
   const formattedDate = day.replaceAll("-", "/");
 
   const fixTimes = (timeString) => {
@@ -30,7 +30,8 @@ const ReservationCard = ({ reservation, upcoming }) => {
 
   const handleCancelClick = (e) => {
     e.stopPropagation();
-    dispatch(deleteMyReservation(reservation.id))
+    
+    dispatch(deleteMyReservation(id))
     window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`)
   }
 
