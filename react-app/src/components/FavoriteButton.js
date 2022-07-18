@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +14,10 @@ const FavoriteButton = ({ restaurantId }) => {
 
   // get favorites
   const favorites = useSelector(favoritesSelector);
-  const isFav = favorites && favorites.includes(restaurantId);
+  const [isFav, setIsFav] = useState(favorites && favorites.includes(restaurantId));
+
+  useEffect(() => {
+  }, [isFav]);
 
   const onFav = (e) => {
     e.stopPropagation();
@@ -23,6 +27,8 @@ const FavoriteButton = ({ restaurantId }) => {
 
     if (isFav) dispatch(removeFavorite(restaurantId));
     else dispatch(addFavorite(restaurantId));
+
+    setIsFav(!isFav);
   };
 
   return (
