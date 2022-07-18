@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHistory } from "react-router-dom";
 import { faUtensils, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import PriceRating from "./PriceRating";
 import StarRating from "./StarRating";
+import FavoriteButton from "./FavoriteButton";
 
 const RestaurantCard = ({ restaurant }) => {
+  const history = useHistory();
+  const redirectToRestaurant = (e) =>
+    history.push(`/restaurants/${restaurant.url}`);
+
   // if restaurantId does not exist in store
   if (!restaurant)
     return <div className="restaurant-card">Restaurant info not loaded</div>;
 
   return (
-    <Link to={`/restaurants/${restaurant.url}`}>
+    <div onClick={redirectToRestaurant}>
       <div className="restaurant-card">
         <div className="card-thumbnail">
           <img
@@ -24,18 +30,20 @@ const RestaurantCard = ({ restaurant }) => {
           <p className="name">{restaurant.name}</p>
           <StarRating rating={restaurant.rating} />
           <div>
-            <FontAwesomeIcon icon={faUtensils} className="icon"/>
+            <FontAwesomeIcon icon={faUtensils} className="icon" />
             {restaurant.cuisine_type + " • "}
             <PriceRating priceRating={restaurant.price} />
           </div>
 
-        <div>
+          <div>
             <FontAwesomeIcon icon={faLocationDot} className="icon" />
-        {restaurant.location.city + ", " + restaurant.location.state}
+            {restaurant.location.city + ", " + restaurant.location.state}
+          </div>
         </div>
-        </div>
+
+        <FavoriteButton restaurantId={restaurant.id} />
       </div>
-    </Link>
+    </div>
   );
 };
 
