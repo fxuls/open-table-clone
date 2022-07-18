@@ -1,6 +1,12 @@
+import { Link } from "react-router-dom";
+
 const ReservationCard = ({ reservation }) => {
+    const { restaurant } = reservation;
+
     return (<div className="reservation-card">
-        Reservation info here
+        <Link to={`/restaurants/${restaurant.url}`}>
+            {restaurant.name}
+        </Link>
     </div>);
 }
 
