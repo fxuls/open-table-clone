@@ -21,7 +21,7 @@ const UserProfilePage = (props) => {
         await dispatch(fetchReservations());
         setLoaded(true);
       })();
-  }, [dispatch]);
+  }, [dispatch, loaded]);
 
   // if not logged in redirect to login
   // this should not happen since it is a protected route
