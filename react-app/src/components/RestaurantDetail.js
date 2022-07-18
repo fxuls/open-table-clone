@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import * as restaurantActions from "../store/restaurants";
-import "../styles/restaurantDetail.css";
+import * as restaurantActions from "../store/restaurants"
+import { RESERVATION_MODAL } from './modals/ReservationModal';
+import { showModal } from '../store/ui';
+import "../styles/restaurantDetail.css"
 
 
 function RestaurantDetail() {
@@ -13,8 +15,6 @@ function RestaurantDetail() {
     exact: true
   })
 const url = match.params.url
-console.log("URL:", url)
-
 
   useEffect(() => {
     if (!updated && (url !== undefined)) {
@@ -41,6 +41,8 @@ console.log("URL:", url)
   return `${intArr[0]}:${stringArr[1]} ${amPm}`
   };
 
+  const openReservationModal = (e) => dispatch(showModal(RESERVATION_MODAL));
+
   return (
       <div className="restDetail">
         <img src={`${restaurant?.preview_image_url}`} alt="Restaurant Header" className="restHeaderImg" crossOrigin=""/>
@@ -52,6 +54,10 @@ console.log("URL:", url)
                 : null}
             <p className="restInfo">{restaurant?.cuisine_type} • {"$".repeat(restaurant?.price)} • {restaurant?.location.city}</p>
             </div>
+            { restaurant ?
+            <button className="nav-button hover-effect sign-up-button reservation-button" onClick={openReservationModal}>
+            <span>Make A Reservation</span>
+            </button>  : null}
             {restaurant ?
             <div className="restDetails">
                 <h4>Additional Info</h4>
