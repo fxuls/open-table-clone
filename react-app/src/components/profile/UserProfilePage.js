@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, Route, Switch } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { userSelector } from "../../store/session";
 import { fetchFavorites } from "../../store/favorites";
 import ProfileFavorites from "./ProfileFavorites";
@@ -8,6 +8,7 @@ import ProfileReservations from "./ProfileReservations";
 
 const UserProfilePage = (props) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const [loaded, setLoaded] = useState(false);
   const user = useSelector(userSelector);
 
@@ -31,7 +32,8 @@ const UserProfilePage = (props) => {
       </div>
       <ul className="profile-navigation">
         <li key="favorites">
-          <NavLink to="/profile/favorites">Favorites</NavLink>
+          <NavLink to="/profile/favorites"
+          isActive={() => ['/profile', '/profile/favorites'].includes(pathname)}>Favorites</NavLink>
         </li>
         <li key="reservations">
           <NavLink to="/profile/reservations">Reservations</NavLink>
