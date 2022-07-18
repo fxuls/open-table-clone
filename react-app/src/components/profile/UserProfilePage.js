@@ -10,6 +10,7 @@ import {
 import { userSelector } from "../../store/session";
 import { fetchFavorites } from "../../store/favorites";
 import { fetchReservations } from "../../store/reservations";
+import { fetchUserReviews } from "../../store/reviews";
 import ProfileFavorites from "./ProfileFavorites";
 import ProfileReservations from "./ProfileReservations";
 
@@ -25,6 +26,7 @@ const UserProfilePage = (props) => {
       (async () => {
         await dispatch(fetchFavorites());
         await dispatch(fetchReservations());
+        await dispatch(fetchUserReviews());
         setLoaded(true);
       })();
   }, [dispatch, loaded]);

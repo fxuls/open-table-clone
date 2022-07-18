@@ -160,7 +160,7 @@ export default function reviewsReducer(state = {}, action) {
         case SET_USER_REVIEWS:
             const reviews = {};
             action.reviews.forEach(review => {
-                reviews[review.id] = reviews;
+                reviews[review.id] = review;
             })
             newState.user = reviews;
             break;
