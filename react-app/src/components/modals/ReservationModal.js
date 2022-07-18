@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../store/session";
 import { showModal, hideModal } from "../../store/ui";
 import { SIGNUP_MODAL } from "./SignupModal";
+import { LOGIN_MODAL } from "./LoginModal";
 import * as reservationActions from "../../store/reservations";
 import { restaurantUrlSelector } from "../../store/restaurants";
 
@@ -238,7 +239,15 @@ const ReservationModal = () => {
             Sign up.
           </a>
         </p>
-        {/* <p>Just looking around? <a className="text-link" onClick={populateDemoUserFields}>Log in as a demo user.</a></p> */}
+        <p>
+          Already have an account?{" "}
+          <a
+            className="text-link"
+            onClick={() => dispatch(showModal(LOGIN_MODAL))}
+          >
+            Log in.
+          </a>
+        </p>
       </div>
     </div>
   );
