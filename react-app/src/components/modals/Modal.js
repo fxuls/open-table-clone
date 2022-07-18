@@ -5,6 +5,7 @@ import { modalSelector, hideModal } from "../../store/ui";
 import LoginModal, { LOGIN_MODAL } from "./LoginModal";
 import SignupModal, { SIGNUP_MODAL } from "./SignupModal";
 import ReservationModal, { RESERVATION_MODAL } from "./ReservationModal";
+import ReviewModal, { REVIEW_MODAL } from "./ReviewModal";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,11 @@ const Modal = () => {
     case SIGNUP_MODAL:
         modalToRender = <SignupModal />;
         break;
-      case RESERVATION_MODAL:
+    case RESERVATION_MODAL:
         modalToRender = < ReservationModal />;
+        break;
+    case REVIEW_MODAL:
+        modalToRender = < ReviewModal />;
         break;
     default:
         closeModal();

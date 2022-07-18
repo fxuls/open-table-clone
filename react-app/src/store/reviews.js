@@ -174,7 +174,10 @@ export default function reviewsReducer(state = {}, action) {
             break;
 
         case SET_REVIEW:
-            newState.user[action.review] = action.review;
+            if (!newState.user){
+                newState.user = {}
+            }
+            newState.user[action.review.id] = action.review;
             break;
 
         case DELETE_REVIEW:

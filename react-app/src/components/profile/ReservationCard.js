@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteMyReservation } from "../../store/reservations";
 import { checkReviewLink } from "../../store/reviews";
+import { showModal } from "../../store/ui";
+import { REVIEW_MODAL } from "../modals/ReviewModal";
 
 const ReservationCard = ({ props }) => {
   const dispatch = useDispatch();
@@ -40,7 +42,8 @@ const ReservationCard = ({ props }) => {
 
   const handleReviewClick = e => {
     e.stopPropagation();
-    dispatch(checkReviewLink(reservation.review_link.url))
+    dispatch(checkReviewLink(reservation.review_link.url));
+    dispatch(showModal(REVIEW_MODAL))
   }
 
   return (
