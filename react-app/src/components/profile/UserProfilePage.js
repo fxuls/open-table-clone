@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { userSelector } from "../../store/session";
 import { fetchFavorites } from "../../store/favorites";
+import { fetchReservations } from "../../store/reservations";
 import ProfileFavorites from "./ProfileFavorites";
 import ProfileReservations from "./ProfileReservations";
 
@@ -17,6 +18,7 @@ const UserProfilePage = (props) => {
     if (!loaded)
       (async () => {
         await dispatch(fetchFavorites());
+        await dispatch(fetchReservations());
         setLoaded(true);
       })();
   }, [dispatch]);
