@@ -6,14 +6,14 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import LoginPage from "./components/auth/LoginPage";
 import SignupPage from "./components/auth/SignupPage";
 import UserProfilePage from "./components/profile/UserProfilePage";
-import RestaurantCardsList from './components/RestaurantCardList';
-import RestaurantDetail from './components/RestaurantDetail';
+import RestaurantCardsList from "./components/RestaurantCardList";
+import RestaurantDetail from "./components/RestaurantDetail";
 import { authenticate } from "./store/session";
 import { modalSelector } from "./store/ui";
 import { fetchRestaurants } from "./store/restaurants";
+import { fetchFavorites } from "./store/favorites";
 import Modal from "./components/modals/Modal";
-
-
+import Spinner from "./components/Spinner";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,6 +25,7 @@ function App() {
     if (!loaded) {
       (async () => {
         await dispatch(fetchRestaurants());
+        await dispatch(fetchFavorites());
         try {
           await dispatch(authenticate());
         } finally {
@@ -34,43 +35,41 @@ function App() {
     }
   }, [dispatch, modal]);
 
-  if (!loaded) {
-    return null;
-  }
-
   return (
-
     <div>
       {modal && <Modal />}
       <BrowserRouter>
         <NavBar />
 
-        <Switch>
-          <Route path="/" exact={true}>
-            <h1>Main header</h1>
-            <RestaurantCardsList />
-          </Route>
+        {loaded ? (
+          <Switch>
+            <Route path="/" exact={true}>
+              <RestaurantCardsList />
+            </Route>
 
-          <Route path="/login" exact={true}>
-            <LoginPage />
-          </Route>
+            <Route path="/login" exact={true}>
+              <LoginPage />
+            </Route>
 
-          <Route path="/sign-up" exact={true}>
-            <SignupPage />
-          </Route>
+            <Route path="/sign-up" exact={true}>
+              <SignupPage />
+            </Route>
 
-          <Route path='/restaurants/:url' exact={true}>
-            <RestaurantDetail />
-          </Route>
+            <Route path="/restaurants/:url" exact={true}>
+              <RestaurantDetail />
+            </Route>
 
-          <ProtectedRoute path="/profile">
-            <UserProfilePage />
-          </ProtectedRoute>
-        </Switch>
+            <ProtectedRoute path="/profile">
+              <UserProfilePage />
+            </ProtectedRoute>
+          </Switch>
+        ) : (
+          <div className="fill-screen center-content">
+            <Spinner />
+          </div>
+        )}
       </BrowserRouter>
     </div>
-
-
   );
 }
 

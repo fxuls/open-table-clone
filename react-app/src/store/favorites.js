@@ -41,6 +41,11 @@ export function removeFavoriteAction(userId, restaurantId) {
 export const addFavorite = (restaurantId) => async (dispatch, getState) => {
   // if restaurantId already in favorites return
   const state = getState();
+
+  // not logged in
+  if (!state.session.user) return;
+
+  // already favorited
   if (state.favorites[state.session.user.id].includes(restaurantId)) return;
 
   const res = await fetch("/api/my/favorites", {
@@ -91,7 +96,6 @@ export default function favoritesReducer(state = {}, action) {
       break;
 
     case ADD_FAVORITE:
-      console.log(action);
       if (!newState[userId].includes(restaurantId))
         newState[userId] = [ ...newState[userId], restaurantId];
       break;
