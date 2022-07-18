@@ -149,3 +149,19 @@
     bottom: 0px;
     right: 20px;
 }
+
+.reservation-card .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.reservation-details p {
+    margin: 0 0 0.35rem;
+}
+
+.reservation-details .date-string {
+    font-size: 1.05rem;
+    color: var(--main-color);
+    font-weight: 600;
+}

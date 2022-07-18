@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteMyReservation } from "../../store/reservations";
@@ -7,29 +8,8 @@ import { REVIEW_MODAL } from "../modals/ReviewModal";
 
 const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
-  const { restaurant, day, timeslot, id } = reservation;
-  const formattedDate = day.replaceAll("-", "/");
-
-  const fixTime = (timeString) => {
-    const stringArr = timeString?.split(":");
-    const intArr = [];
-    stringArr?.forEach((element) => {
-      intArr.push(parseInt(element));
-    });
-    let amPm = "AM";
-    if (intArr[0] >= 12) {
-      if (intArr[0] > 12) {
-        intArr[0] -= 12;
-      }
-      amPm = "PM";
-    }
-    if (intArr[0] === 0) {
-      intArr[0] = 12;
-    }
-    return `${intArr[0]}:${stringArr[1]} ${amPm}`;
-  };
-
-  const time = fixTime(timeslot);
+  const { restaurant, day, timeslot, id, party_size, occasion } = reservation;
+  const date = moment(day + " " + timeslot);
 
   const handleCancelClick = (e) => {
     e.stopPropagation();
@@ -66,7 +46,13 @@ const ReservationCard = ({ reservation, upcoming }) => {
         </Link>
 
         <div className="reservation-details">
-          Party of {reservation.party_size}, at {time} on {formattedDate}
+          <p>
+            <span className="date-string">{date.format("dddd, MMMM D")}</span>
+            {" at "}
+            <span className="date-string">{date.format("h:mm a")}</span>
+          </p>
+
+          <p>{`Party of ${party_size}` + (occasion ? ` • ${occasion.type}` : "")}</p>
         </div>
       </div>
       
