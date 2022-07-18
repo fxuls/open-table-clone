@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteMyReservation } from "../../store/reservations";
 
 const ReservationCard = ({ props }) => {
+  const dispatch = useDispatch();
   const {reservation, upcoming} = props;
   const { restaurant } = reservation;
   const date = reservation.day;
@@ -28,6 +31,12 @@ const ReservationCard = ({ props }) => {
 
   const time = fixTimes(reservation.timeslot);
 
+  const handleCancelClick = (e) => {
+    e.stopPropagation();
+    dispatch(deleteMyReservation(reservation.id))
+    window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`)
+  }
+
   return (
     <div className="reservation-card">
       <div className="reservation-card-left">
@@ -38,7 +47,7 @@ const ReservationCard = ({ props }) => {
       </div>
       <div className="reservation-card-right">
         {upcoming ?
-        <button className="nav-button hover-effect sign-up-button reservation-button" >
+        <button className="nav-button hover-effect sign-up-button reservation-button" onClick={handleCancelClick}>
         <span>Cancel Reservation</span>
         </button>
         : <button className="nav-button hover-effect sign-up-button reservation-button" >
