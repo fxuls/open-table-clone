@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import * as restaurantActions from "../store/restaurants"
+import * as restaurantActions from "../store/restaurants";
+import RestaurantCard from './RestaurantCard';
 import "../styles/restaurantCard.css"
 
 
@@ -20,22 +21,7 @@ function RestaurantCardsList() {
   }, [dispatch, updated]);
 
   const restaurants = useSelector(restaurantActions.allRestaurantsSelector)
-  let restaurantComponents = [];
-  for (const restaurant in restaurants) {
-    restaurantComponents.push(
-      <li key={restaurants[restaurant].id} className="restCard">
-      <NavLink to={`/restaurants/${restaurants[restaurant].url}`}>
-        <img src={`${restaurants[restaurant].preview_image_url}`} alt="Restaurant Thumbnail" className="restThumb" crossOrigin="" />
-        <div className="restCardLower">
-          <h4 className="restName">{restaurants[restaurant].name}</h4>
-          { restaurants[restaurant].rating ?
-          <p className="restRating">Rating: {restaurants[restaurant].rating.toFixed(2)}/5</p>
-          : null}
-          <p className="restInfo">{restaurants[restaurant].cuisine_type} • {"$".repeat(restaurants[restaurant].price)} • {restaurants[restaurant].location.city}</p>
-        </div>
-        </NavLink>
-      </li>)
-  };
+  const restaurantComponents = Object.values(restaurants).map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>);
 
     return (
       <div className="restCardDiv">
