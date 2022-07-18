@@ -8,18 +8,23 @@ import {
 const maximumRating = 5;
 
 const StarRating = ({ rating }) => {
+  // key required by react for listed elements
+  let key = 0;
+
   const numStars = parseInt(rating);
-  const stars = new Array(numStars).fill(<FontAwesomeIcon icon={solidStar} />);
+  const stars = [];
+  for (let i = 0; i < parseInt(rating); i++)
+    stars.push(<FontAwesomeIcon key={key++} icon={solidStar} />);
 
   const numHalfStars = rating - numStars >= 0.5 ? 1 : 0;
-  const halfStars = new Array(numHalfStars).fill(
-    <FontAwesomeIcon icon={faStarHalfStroke} />
-  );
+  const halfStars = [];
+  for (let i = 0; i < numHalfStars; i++)
+    stars.push(<FontAwesomeIcon key={++key} icon={faStarHalfStroke} />);
 
   const numEmptyStars = maximumRating - numHalfStars - numStars;
-  const emptyStars = new Array(numEmptyStars).fill(
-    <FontAwesomeIcon icon={emptyStar} />
-  );
+  const emptyStars = [];
+  for (let i = 0; i < numEmptyStars; i++)
+    stars.push(<FontAwesomeIcon key={++key} icon={emptyStar} />);
 
   return (
     <span className="star-rating">
