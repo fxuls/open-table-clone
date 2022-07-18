@@ -30,10 +30,10 @@ const UserProfilePage = (props) => {
         <h1>{user.first_name + " " + user.last_name}</h1>
       </div>
       <ul className="profile-navigation">
-        <li>
+        <li key="favorites">
           <NavLink to="/profile/favorites">Favorites</NavLink>
         </li>
-        <li>
+        <li key="reservations">
           <NavLink to="/profile/reservations">Reservations</NavLink>
         </li>
       </ul>
