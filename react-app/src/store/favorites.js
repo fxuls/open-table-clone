@@ -91,7 +91,6 @@ export default function favoritesReducer(state = {}, action) {
       break;
 
     case ADD_FAVORITE:
-      console.log(action);
       if (!newState[userId].includes(restaurantId))
         newState[userId] = [ ...newState[userId], restaurantId];
       break;
