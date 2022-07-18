@@ -28,10 +28,10 @@ class Reservation(db.Model):
             'timeslot': self.timeslot.strf(),
             'party_size': self.party_size,
             'special_request': self.special_request,
-            'review_link': '/reviews/new/' + self.review_link.url
         }
 
         if self.user is not None: values['user'] = self.user.to_dict()
         if self.occasion is not None: values['occasion'] = self.occasion.to_dict()
+        if self.review_link is not None: values['review_link'] = self.review_link.to_dict()
 
         return values
