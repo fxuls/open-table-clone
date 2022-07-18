@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteMyReservation } from "../../store/reservations";
 
-const ReservationCard = ({ props }) => {
+const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
-  const {reservation, upcoming} = props;
   const { restaurant } = reservation;
   const date = reservation.day;
   const [year, month, day] = date.split("-");
