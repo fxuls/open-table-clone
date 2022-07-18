@@ -55,6 +55,10 @@
     flex-wrap: nowrap;
 }
 
+.review-user {
+    text-align: right;
+}
+
 @media (max-width:1055px) {
     .restHeaderImg {
         height: 296px;
