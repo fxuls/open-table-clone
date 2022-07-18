@@ -107,6 +107,7 @@
     padding: 1.4em;
     display: grid;
     grid-template-columns: 12em 5fr;
+    grid-template-rows: 8rem;
     justify-content: center;
     align-items:flex-start;
     gap: 0.8em;
@@ -115,7 +116,8 @@
 }
 
 .reservation-card a {
- font-weight: 500;
+ font-weight: 600;
+ font-size: 1.4rem;
 }
 
 .reservation-card .card-thumbnail {
