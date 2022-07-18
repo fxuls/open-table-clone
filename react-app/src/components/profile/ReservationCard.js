@@ -40,10 +40,12 @@ const ReservationCard = ({ reservation, upcoming }) => {
   return (
     <div className="reservation-card">
       <div className="card-thumbnail">
-        <img
-          src={restaurant.preview_image_url}
-          alt={`Preview image for ${restaurant.name}`}
-        />
+        <Link to={`/restaurants/${restaurant.url}`}>
+          <img
+            src={restaurant.preview_image_url}
+            alt={`Preview image for ${restaurant.name}`}
+          />
+        </Link>
       </div>
 
       <div className="card-info">
@@ -58,7 +60,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
           Party of {reservation.party_size}, at {time} on {formattedDate}
         </div>
       </div>
-      
+
       <div className="reservation-card-buttons">
         {upcoming ? (
           <button
