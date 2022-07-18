@@ -79,6 +79,11 @@ export const removeFavorite = (restaurantId) => async (dispatch, getState) => {
 };
 
 export const fetchFavorites = () => async (dispatch, getState) => {
+  const user = getState().session.user;
+
+  // if user is not logged in return
+  if (!user) return;
+  
   const res = await fetch("/api/my/favorites");
   if (res.ok) {
     const data = await res.json();
