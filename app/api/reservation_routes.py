@@ -71,7 +71,7 @@ def create_reservation():
         )
 
         # if user is logged in add user_id
-        if current_user is not None:
+        if current_user.is_authenticated:
             reservation.user_id = current_user.id
 
 

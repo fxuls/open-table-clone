@@ -185,7 +185,6 @@ export default function reviewsReducer(state = {}, action) {
         case NEW_REVIEW:
             newState.new = action.reviewData;
             break;
-
         default:
             break;
     }
