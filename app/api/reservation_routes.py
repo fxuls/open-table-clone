@@ -20,7 +20,7 @@ def get_user_reservations():
     return jsonify({ "reservations": reservations }), 200
 
 
-@reservation_routes.route('/', methods=['POST'])
+@reservation_routes.route('', methods=['POST'])
 def create_reservation():
     """
     Create a new reservation

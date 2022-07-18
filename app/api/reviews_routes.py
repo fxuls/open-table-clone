@@ -52,7 +52,7 @@ def get_reservation_data():
     return { "user": user, "restaurant": restaurant}, 200
 
 
-@reviews_routes.route('/', methods=['POST'])
+@reviews_routes.route('', methods=['POST'])
 @login_required
 def create_review():
     """
