@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { allReservationsSelector } from "../../store/reservations";
-import { allRestaurantsSelector } from "../../store/restaurants";
 import Spinner from "../Spinner";
 import ReservationCard from "./ReservationCard";
 
@@ -8,30 +7,25 @@ const ProfileReservations = ({ loaded }) => {
   // pull data from store
   const reservations = useSelector(allReservationsSelector);
 
-  // sort reservations
+  // sort reservations into past and upcoming
   const pastReservations = [];
   const upcomingReservations = [];
 
   if (loaded && reservations) {
     Object.values(reservations).forEach((reservation) => {
-      const resDates = reservation.day.split("-").map((res) => parseInt(res));
-      const resDay = new Date(resDates[0], resDates[1] - 1, resDates[2]);
+      const [year, month, day] = reservation.day.split("-").map((res) => parseInt(res));
+      const resDay = new Date(year, month - 1, day);
       const today = new Date();
 
       if (today > resDay) pastReservations.push(reservation);
       else upcomingReservations.push(reservation);
     });
-    // sort reservations by date
-    pastReservations.sort((a, b) => {
-        if (a.day > b.day) {
-            return -1
-        }
-    })
-    upcomingReservations.sort((a, b) => {
-        if (a.day < b.day) {
-            return -1
-        }
-    })
+
+    // sort reservations happening soonest first
+    upcomingReservations.sort((a, b) => a.day < b.day ? -1 : 1);
+
+    // sort most recent reservations first
+    pastReservations.sort((a, b) => a.day > b.day ? -1 : 1);
   }
 
   return (
@@ -47,7 +41,8 @@ const ProfileReservations = ({ loaded }) => {
               {upcomingReservations.map((reservation) => (
                 <ReservationCard
                   key={reservation.id}
-                  props={{reservation, upcoming: true}}
+                  reservation={reservation}
+                  upcoming={true}
                 />
               ))}
             </div>
@@ -68,7 +63,8 @@ const ProfileReservations = ({ loaded }) => {
               {pastReservations.map((reservation) => (
                 <ReservationCard
                   key={reservation.id}
-                  props={{reservation, upcoming: false}}
+                  reservation={reservation}
+                  upcoming={false}
                 />
               ))}
             </div>
