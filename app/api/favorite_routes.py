@@ -2,12 +2,11 @@ from audioop import add
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 
-from app import models
 from ..models import Favorite, db
 
 favorite_routes = Blueprint('favorites', __name__)
 
-@favorite_routes.route('/', methods=['GET'])
+@favorite_routes.route('', methods=['GET'])
 @login_required
 def get_user_favorites():
     """
@@ -18,21 +17,28 @@ def get_user_favorites():
 
     # Executes query and removes extra data
     faves = [fav.to_dict() for fav in query.all()]
-    filtered_faves = []
-    extra_keys = ['opening_time', 'closing_time', 'images', 'address_line_1', 'address_line_2', 'capacity', 'owner_id', 'reservation_notes', 'zip_code']
-    for fave in faves:
-        for unwanted_key in extra_keys:
-            del fave['restaurant'][unwanted_key]
-        filtered_faves.append(fave['restaurant'])
-    return jsonify({ "restaurants": filtered_faves }), 200
+
+    # filtered_faves = []
+    # extra_keys = ['opening_time', 'closing_time', 'images', 'address_line_1', 'address_line_2', 'capacity', 'owner_id', 'reservation_notes', 'zip_code']
+    # for fave in faves:
+    #     for unwanted_key in extra_keys:
+    #         del fave['restaurant'][unwanted_key]
+    #     filtered_faves.append(fave['restaurant'])
+    # return jsonify({ "restaurants": filtered_faves }), 200
+
+    return jsonify({
+        "user_id": current_user.id,
+        "restaurant_ids": [fav["restaurant_id"] for fav in faves],
+    }), 200
 
 
-@favorite_routes.route('/', methods=['POST'])
+@favorite_routes.route('', methods=['POST'])
 @login_required
 def add_favorite():
     """
     Adds a restaurant to user's favorited restaurants
     """
+
     body = request.get_json()
     # Gets current user's favorites
     query = Favorite.query.filter(Favorite.user_id == current_user.id)
@@ -40,7 +46,7 @@ def add_favorite():
     faves = [fav.to_dict() for fav in query.all()]
 
     # Checks if restaurant is already added to user's favorites to avoid duplicate data
-    if body['restaurant_id'] in [fave['restaurant']['id'] for fave in faves]:
+    if body['restaurant_id'] in [fave['restaurant_id'] for fave in faves]:
         return jsonify({
             "message": "Restaurant already favorited",
             "status_code": 200
@@ -65,6 +71,7 @@ def delete_favorite(restaurant_id):
     """
     Removes a restaurant from user's favorited restaurants
     """
+
     # Queries the database to see if specific restaurant has been favorited by the current user
     query = Favorite.query.filter(Favorite.user_id == current_user.id).filter(Favorite.restaurant_id == restaurant_id).first()
 

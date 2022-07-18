@@ -12,5 +12,7 @@ class Favorite(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'user_id': self.user_id,
+            'restaurant_id': self.restaurant_id,
             'restaurant': self.restaurant.to_dict(),
         }
