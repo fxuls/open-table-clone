@@ -101,7 +101,7 @@ def create_review():
         db.session.commit()
 
         return review.to_dict(), 201
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 40
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 @reviews_routes.route('/<int:review_id>', methods=['DELETE'])
