@@ -18,8 +18,11 @@ const ReservationModal = () => {
   const [occasion_id, setOccasionId] = useState("");
   const [partySizeError, setPartySizeError] = useState("");
   const [timeError, setTimeError] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const dispatch = useDispatch();
+
   const user = useSelector(userSelector);
 
   // GET the restuarant ID for use in the reservation form
@@ -43,12 +46,19 @@ const ReservationModal = () => {
     return "";
   };
 
+  const getEmailError = () => {
+    if (!email) return "Email is required";
+    if (!/\S+@\S+\.\S+/.test(email)) return "Please enter a valid email";
+    return "";
+  };
+
   useEffect(() => {
     if (hasSubmitted) {
       setPartySizeError(getPartySizeError());
       setTimeError(getTimeError());
+      setEmailError(getEmailError());
     }
-  }, [party_size, day, timeslot, errors]);
+  }, [party_size, day, timeslot, errors, email, hasSubmitted]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -75,15 +85,18 @@ const ReservationModal = () => {
         reservation.occasion_id = parseInt(occasion_id);
       }
       setErrors([]);
-      return dispatch(reservationActions.createAReservation(reservation))
-        .then((res) => {
+      return dispatch(reservationActions.createAReservation(reservation)).then(
+        (res) => {
           if (res.ok) {
             dispatch(hideModal());
-          } else if (res.status === 409){
-            setErrors([`Sorry, ${restaurant.name} cannot accommodate a party of that size at the time you requested`])
-            }
-          })
+          } else if (res.status === 409) {
+            setErrors([
+              `Sorry, ${restaurant.name} cannot accommodate a party of that size at the time you requested`,
+            ]);
+          }
         }
+      );
+    }
   };
 
   const timeslotOptions = () => {
@@ -220,9 +233,37 @@ const ReservationModal = () => {
           </label>
         </div>
 
-        {errors.map(error => {
-          return <p className="field-error">{error}</p>
+        {errors.map((error) => {
+          return <p className="field-error">{error}</p>;
         })}
+
+        {!user ? (
+          <>
+            <div className="form-row">
+              <label htmlFor="email">Contact Email</label>
+              <input
+                name="email"
+                type="text"
+                required
+                placeholder="jason.smith@example.co"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label htmlFor="email" className="field-error">
+                {emailError}
+              </label>
+            </div>
+            <div className="form-row">
+              <label htmlFor="contact_name">Contact Name</label>
+              <input
+                name="contact_name"
+                type="text"
+                maxLength="50"
+                required
+              />
+            </div>
+          </>
+        ) : null}
 
         <button type="submit" className="form-submit-button">
           Submit
@@ -230,24 +271,26 @@ const ReservationModal = () => {
       </form>
 
       <div className="modal-footer">
-        <p>
-          Don't have an account yet?{" "}
-          <a
-            className="text-link"
-            onClick={() => dispatch(showModal(SIGNUP_MODAL))}
-          >
-            Sign up.
-          </a>
-        </p>
-        <p>
-          Already have an account?{" "}
-          <a
-            className="text-link"
-            onClick={() => dispatch(showModal(LOGIN_MODAL))}
-          >
-            Log in.
-          </a>
-        </p>
+        {!user
+        ? <><p>
+        Don't have an account yet?{" "}
+        <a
+          className="text-link"
+          onClick={() => dispatch(showModal(SIGNUP_MODAL))}
+        >
+          Sign up.
+        </a>
+      </p>
+      <p>
+        Already have an account?{" "}
+        <a
+          className="text-link"
+          onClick={() => dispatch(showModal(LOGIN_MODAL))}
+        >
+          Log in.
+        </a>
+      </p></>
+        : null}
       </div>
     </div>
   );
