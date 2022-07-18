@@ -14,10 +14,12 @@ const FavoriteButton = ({ restaurantId }) => {
 
   // get favorites
   const favorites = useSelector(favoritesSelector);
-  const [isFav, setIsFav] = useState(favorites && favorites.includes(restaurantId));
+  const getIsFav = () => favorites && favorites.includes(restaurantId);
+  const [isFav, setIsFav] = useState(getIsFav());
 
   useEffect(() => {
-  }, [isFav]);
+    setIsFav(getIsFav());
+  }, [favorites]);
 
   const onFav = (e) => {
     e.stopPropagation();
