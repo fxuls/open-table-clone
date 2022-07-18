@@ -63,7 +63,7 @@ export const fetchUserReviews = () => async (dispatch) => {
 
 // fetch all restaurant reviews thunk
 export const fetchRestaurantReviews = (restaurantUrl) => async (dispatch) => {
-    const res = await fetch(`restaurants/${restaurantUrl}/reviews`);
+    const res = await fetch(`/api/restaurants/${restaurantUrl}/reviews`);
     const data = await res.json();
 
     dispatch(setRestaurantReviewsAction(data.reviews));
@@ -147,7 +147,7 @@ export const checkReviewLink = (reviewLink) => async (dispatch) => {
             url: reviewLink,
           })
     })
-    const data = res.json();
+    const data = await res.json();
     dispatch(newReviewAction(data));
     return res;
 }
@@ -160,7 +160,7 @@ export default function reviewsReducer(state = {}, action) {
         case SET_USER_REVIEWS:
             const reviews = {};
             action.reviews.forEach(review => {
-                reviews[review.id] = reviews;
+                reviews[review.id] = review;
             })
             newState.user = reviews;
             break;
@@ -168,13 +168,16 @@ export default function reviewsReducer(state = {}, action) {
         case SET_RESTAURANT_REVIEWS:
             const resReviews = {};
             action.reviews.forEach(review => {
-                reviews[review.id] = resReviews;
+                resReviews[review.id] = review;
             })
-            newState.restaurant = reviews;
+            newState.restaurant = resReviews;
             break;
 
         case SET_REVIEW:
-            newState.user[action.review] = action.review;
+            if (!newState.user){
+                newState.user = {}
+            }
+            newState.user[action.review.id] = action.review;
             break;
 
         case DELETE_REVIEW:

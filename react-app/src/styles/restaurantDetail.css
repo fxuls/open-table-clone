@@ -30,6 +30,40 @@
     margin: 15px 0;
 }
 
+.restaurant-gallery {
+    border-bottom: 1px solid var(--main-grey);
+}
+
+.review {
+    border-bottom: 1px solid var(--light-grey);
+    margin: 10px 0;
+    min-width: 450px;
+}
+
+.rating-span {
+    margin: 0 5px;
+    }
+
+.rating-score {
+    font-size: 1.05rem;
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.review-ratings {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.review-user {
+    text-align: right;
+}
+
+.rest-image-gallery {
+    max-height: 400px;
+    max-width: 400px;
+}
+
 @media (max-width:1055px) {
     .restHeaderImg {
         height: 296px;

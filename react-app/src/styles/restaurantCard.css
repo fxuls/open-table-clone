@@ -80,6 +80,7 @@
     min-width: 100%;
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
+    object-fit: cover;
 }
 
 .restaurant-card .card-info {

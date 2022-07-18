@@ -34,7 +34,6 @@ export function createReservation(reservation) {
 export const fetchReservations = () => async (dispatch) => {
     const res = await fetch("/api/reservations/user");
     const data = await res.json();
-    console.log("DATA: ", data)
     dispatch(getReservations(data.reservations));
     return res;
 }
