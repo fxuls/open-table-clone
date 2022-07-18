@@ -4,9 +4,8 @@ import { deleteMyReservation } from "../../store/reservations";
 
 const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
-  const { restaurant } = reservation;
-  const date = reservation.day;
-  const formattedDate = date.replaceAll("-", "/");
+  const { restaurant, day } = reservation;
+  const formattedDate = day.replaceAll("-", "/");
 
   const fixTimes = (timeString) => {
     const stringArr = timeString?.split(":");
