@@ -1,3 +1,21 @@
+.restCard {
+    width: 236px;
+    height: 306px;
+    border-radius: 5px;
+    border: 1px solid var(--main-grey);
+    overflow: hidden;
+    flex: 0 1 236px;
+    margin: 8px 7px;
+
+
+}
+
+.restThumb {
+    width: 236px;
+    height: 132px;
+    object-fit: cover;
+}
+
 .restCardUL {
     display: flex;
     flex-direction: row;

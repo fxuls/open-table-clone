@@ -21,6 +21,17 @@ const ProfileReservations = ({ loaded }) => {
       if (today > resDay) pastReservations.push(reservation);
       else upcomingReservations.push(reservation);
     });
+    // sort reservations by date
+    pastReservations.sort((a, b) => {
+        if (a.day > b.day) {
+            return -1
+        }
+    })
+    upcomingReservations.sort((a, b) => {
+        if (a.day < b.day) {
+            return -1
+        }
+    })
   }
 
   return (
@@ -36,7 +47,7 @@ const ProfileReservations = ({ loaded }) => {
               {upcomingReservations.map((reservation) => (
                 <ReservationCard
                   key={reservation.id}
-                  reservation={reservation}
+                  props={{reservation, upcoming: true}}
                 />
               ))}
             </div>
@@ -57,7 +68,7 @@ const ProfileReservations = ({ loaded }) => {
               {pastReservations.map((reservation) => (
                 <ReservationCard
                   key={reservation.id}
-                  reservation={reservation}
+                  props={{reservation, upcoming: false}}
                 />
               ))}
             </div>
