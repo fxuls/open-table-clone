@@ -48,3 +48,96 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.restaurant-cards-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: calc(100% - 2rem);
+    margin: auto;
+    gap: 1rem;
+    padding: 0.8rem 0 1.2rem;
+}
+
+.restaurant-card {
+    flex: 0 0 auto;
+    height: 21rem;
+    width: 17rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--light-grey);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 2px 4px #2d333f33;
+    cursor: pointer;
+}
+
+.restaurant-card .card-thumbnail {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+}
+
+.restaurant-card .card-thumbnail img {
+    overflow: hidden;
+    flex-shrink: 0;
+    height: 100%;
+    min-width: 100%;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+}
+
+.restaurant-card .card-info {
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.restaurant-card .card-info p {
+    margin: 0;
+}
+
+.restaurant-card .card-info .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.1rem;
+}
+
+.restaurant-card .card-info .icon {
+    margin-right: 0.4rem;
+}
+
+.restaurant-card .favorite-button {
+    position: absolute;
+    bottom: 9px;
+    right: 9px;
+}
+
+.star-rating {
+    font-size: 1.25rem;
+    color: var(--main-color);
+}
+
+.favorite-button {
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    gap: 0.35rem;
+}
+
+.favorite-button svg {
+    font-size: 1.15rem;
+}
