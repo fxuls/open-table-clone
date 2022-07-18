@@ -2,15 +2,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteMyReservation } from "../../store/reservations";
 
-const ReservationCard = ({ props }) => {
+const ReservationCard = ({ reservation, upcoming }) => {
   const dispatch = useDispatch();
-  const {reservation, upcoming} = props;
-  const { restaurant } = reservation;
-  const date = reservation.day;
-  const [year, month, day] = date.split("-");
-  const formattedDate = [month, day, year].join("/");
+  const { restaurant, day, timeslot, id } = reservation;
+  const formattedDate = day.replaceAll("-", "/");
 
-  const fixTimes = (timeString) => {
+  const fixTime = (timeString) => {
     const stringArr = timeString?.split(":");
     const intArr = [];
     stringArr?.forEach((element) => {
@@ -29,31 +26,54 @@ const ReservationCard = ({ props }) => {
     return `${intArr[0]}:${stringArr[1]} ${amPm}`;
   };
 
-  const time = fixTimes(reservation.timeslot);
+  const time = fixTime(timeslot);
 
   const handleCancelClick = (e) => {
     e.stopPropagation();
-    dispatch(deleteMyReservation(reservation.id))
-    window.alert(`Your reservation to ${restaurant.name} has been successfully deleted`)
-  }
+
+    dispatch(deleteMyReservation(id));
+    window.alert(
+      `Your reservation to ${restaurant.name} has been successfully deleted`
+    );
+  };
 
   return (
     <div className="reservation-card">
-      <div className="reservation-card-left">
-        <Link to={`/restaurants/${restaurant.url}`}>{restaurant.name}</Link>
+      <div className="card-thumbnail">
+        <Link to={`/restaurants/${restaurant.url}`}>
+          <img
+            src={restaurant.preview_image_url}
+            alt={`Preview image for ${restaurant.name}`}
+          />
+        </Link>
+      </div>
+
+      <div className="card-info">
+        <Link
+          to={`/restaurants/${restaurant.url}`}
+          className="main-color-hover"
+        >
+          {restaurant.name}
+        </Link>
+
         <div className="reservation-details">
           Party of {reservation.party_size}, at {time} on {formattedDate}
         </div>
       </div>
-      <div className="reservation-card-right">
-        {upcoming ?
-        <button className="nav-button hover-effect sign-up-button reservation-button" onClick={handleCancelClick}>
-        <span>Cancel Reservation</span>
-        </button>
-        : <button className="nav-button hover-effect sign-up-button reservation-button" >
-        <span>Leave a Review</span>
-        </button>
-        }
+
+      <div className="reservation-card-buttons">
+        {upcoming ? (
+          <button
+            className="nav-button hover-effect sign-up-button reservation-button"
+            onClick={handleCancelClick}
+          >
+            <span>Cancel Reservation</span>
+          </button>
+        ) : (
+          <button className="nav-button hover-effect sign-up-button reservation-button">
+            <span>Leave a Review</span>
+          </button>
+        )}
       </div>
     </div>
   );
