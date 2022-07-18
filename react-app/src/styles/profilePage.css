@@ -92,3 +92,15 @@
 .reservation-card a {
  font-weight: 500;
 }
+
+.reservation-card:hover {
+    box-shadow: 0 2px 4px #2d333f33;
+}
+
+.reservation-card {
+    border-bottom: 1px solid var(--light-grey);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
