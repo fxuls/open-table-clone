@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showModal, hideModal } from "../../store/ui";
+import { hideModal } from "../../store/ui";
 import { newReviewSelector, createReview } from "../../store/reviews";
 import "../../styles/reviewForm.css";
 

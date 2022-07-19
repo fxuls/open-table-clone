@@ -32,7 +32,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
         <Link to={`/restaurants/${restaurant.url}`}>
           <img
             src={restaurant.preview_image_url}
-            alt={`Preview image for ${restaurant.name}`}
+            alt={`Preview for ${restaurant.name}`}
           />
         </Link>
       </div>
@@ -55,7 +55,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
           <p>{`Party of ${party_size}` + (occasion ? ` • ${occasion.type}` : "")}</p>
         </div>
       </div>
-      
+
       <div className="reservation-card-buttons">
         {upcoming ? (
           <button

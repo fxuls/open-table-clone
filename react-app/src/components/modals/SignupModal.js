@@ -53,7 +53,7 @@ const SignupModal = () => {
   const validateConfirmPassword = () => {
     let errorMessage = "";
     if (!confirmPassword) errorMessage = "Please re-enter your password";
-    else if (confirmPassword != password) errorMessage = "Passwords do not match";
+    else if (confirmPassword !== password) errorMessage = "Passwords do not match";
     setConfirmPasswordError(errorMessage);
     return errorMessage === "";
   }

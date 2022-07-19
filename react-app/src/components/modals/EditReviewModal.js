@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showModal, hideModal } from "../../store/ui";
+import { hideModal } from "../../store/ui";
 import { editReviewSelector, editReview } from "../../store/reviews";
 import "../../styles/reviewForm.css";
 
@@ -8,14 +8,12 @@ export const EDIT_MODAL = "ui/modals/edit";
 
 const EditModal = () => {
   const reviewInfo = useSelector(editReviewSelector);
-  const [errors, setErrors] = useState([]);
   const [overallRating, setOverallRating] = useState(reviewInfo.overall_rating);
   const [foodRating, setFoodRating] = useState(reviewInfo.food_rating);
   const [serviceRating, setServiceRating] = useState(reviewInfo.service_rating);
   const [ambienceRating, setAmbienceRating] = useState(reviewInfo.ambience_rating);
   const [valueRating, setValueRating] = useState(reviewInfo.value_rating);
   const [reviewText, setReviewText] = useState(reviewInfo.review_text);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
   const dispatch = useDispatch();
 
 
@@ -25,7 +23,6 @@ const EditModal = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setHasSubmitted(true);
 
     // try to edit the review
     let review = {
@@ -40,7 +37,7 @@ const EditModal = () => {
     if (reviewText) {
       review.review_text = reviewText;
     }
-    setErrors([]);
+
     return dispatch(editReview(review)).then((res) => {
       if (res.ok) {
         dispatch(hideModal());
