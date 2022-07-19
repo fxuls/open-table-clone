@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteReview } from "../../store/reviews";
+import { deleteReview, fetchReview } from "../../store/reviews";
 import { showModal } from "../../store/ui";
-import { REVIEW_MODAL } from "../modals/ReviewModal";
+import { EDIT_MODAL } from "../modals/EditReviewModal";
 
 import "../../styles/reviewCard.css"
 
@@ -15,9 +15,10 @@ const ReviewCard = ({review}) => {
         window.alert("Your review has been successfully deleted")
     }
 
-    const handleEdit = e => {
+    const handleEdit = async e => {
       e.stopPropagation();
-      dispatch(showModal(REVIEW_MODAL))
+      await dispatch(fetchReview(review.id))
+      dispatch(showModal(EDIT_MODAL))
     }
 
     return (

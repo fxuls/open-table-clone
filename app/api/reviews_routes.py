@@ -92,11 +92,11 @@ def create_review():
         db.session.add(review)
         db.session.commit()
 
-        # update restaurant's overall rating to account for new review
-        restaurant_reviews = Review.query.filter(Review.restaurant_id == form.data['restaurant_id']).all()
-        ratings = [rev.overall_rating for rev in restaurant_reviews]
-        restaurant = Restaurant.query.filter(Restaurant.id == form.data['restaurant_id']).first()
-        restaurant.rating = sum(ratings)/len(ratings)
+        # # update restaurant's overall rating to account for new review
+        # restaurant_reviews = Review.query.filter(Review.restaurant_id == form.data['restaurant_id']).all()
+        # ratings = [rev.overall_rating for rev in restaurant_reviews]
+        # restaurant = Restaurant.query.filter(Restaurant.id == form.data['restaurant_id']).first()
+        # restaurant.rating = sum(ratings)/len(ratings)
 
         db.session.commit()
 
@@ -172,11 +172,11 @@ def update_review(review_id):
         review.value_rating = form.data['value_rating'],
         review.review_text = form.data['review_text'],
 
-        # update restaurant's overall rating to account for new rating of this review
-        restaurant_reviews = Review.query.filter(Review.restaurant_id == form.data['restaurant_id']).all()
-        ratings = [rev.overall_rating for rev in restaurant_reviews]
-        restaurant = Restaurant.query.filter(Restaurant.id == form.data['restaurant_id']).first()
-        restaurant.rating = sum(ratings)/len(ratings)
+        # # update restaurant's overall rating to account for new rating of this review
+        # restaurant_reviews = Review.query.filter(Review.restaurant_id == form.data['restaurant_id']).all()
+        # ratings = [rev.overall_rating for rev in restaurant_reviews]
+        # restaurant = Restaurant.query.filter(Restaurant.id == form.data['restaurant_id']).first()
+        # restaurant.rating = sum(ratings)/len(ratings)
 
         db.session.commit()
 

@@ -6,6 +6,7 @@ import LoginModal, { LOGIN_MODAL } from "./LoginModal";
 import SignupModal, { SIGNUP_MODAL } from "./SignupModal";
 import ReservationModal, { RESERVATION_MODAL } from "./ReservationModal";
 import ReviewModal, { REVIEW_MODAL } from "./ReviewModal";
+import EditModal, { EDIT_MODAL } from "./EditReviewModal";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -20,27 +21,30 @@ const Modal = () => {
   let modalToRender;
   switch (modalId) {
     case LOGIN_MODAL:
-        modalToRender = <LoginModal />;
-        break;
+      modalToRender = <LoginModal />;
+      break;
     case SIGNUP_MODAL:
-        modalToRender = <SignupModal />;
-        break;
+      modalToRender = <SignupModal />;
+      break;
     case RESERVATION_MODAL:
-        modalToRender = < ReservationModal />;
-        break;
+      modalToRender = <ReservationModal />;
+      break;
     case REVIEW_MODAL:
-        modalToRender = < ReviewModal />;
-        break;
+      modalToRender = <ReviewModal />;
+      break;
+    case EDIT_MODAL:
+      modalToRender = <EditModal />;
+      break;
     default:
-        closeModal();
-        return null;
+      closeModal();
+      return null;
   }
 
   return (
     <div className="modal-overlay" onMouseDown={closeModal}>
       <div className="modal" onMouseDown={onModalClick}>
         <div className="modal-close" onClick={closeModal}>
-            <FontAwesomeIcon icon={faXmark} size="xl" className="icon" />
+          <FontAwesomeIcon icon={faXmark} size="xl" className="icon" />
         </div>
 
         {modalToRender}
