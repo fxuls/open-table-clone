@@ -154,6 +154,8 @@ export const checkReviewLink = (reviewLink) => async (dispatch) => {
 
 export default function reviewsReducer(state = {}, action) {
     const newState = { ...state };
+    newState.user = {...state.user};
+    newState.restaurant = {...state.restaurant};
 
     switch (action.type) {
 
@@ -182,7 +184,6 @@ export default function reviewsReducer(state = {}, action) {
 
         case DELETE_REVIEW:
             delete newState.user[action.reviewId];
-            delete newState.restaurant[action.review];
             break;
 
         case NEW_REVIEW:
