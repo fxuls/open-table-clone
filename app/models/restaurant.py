@@ -32,13 +32,18 @@ class Restaurant(db.Model):
     reviews = db.relationship("Review", cascade="all, delete-orphan", lazy="joined")
     reservations = db.relationship("Reservation", back_populates="restaurant", cascade="all, delete-orphan", lazy="joined")
 
+    def get_rating(self):
+        if len(self.reviews):
+            return sum([review.overall_rating for review in self.reviews]) / len(self.reviews)
+        return 0
+
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
             'url': self.url,
             'price': self.price,
-            'rating': self.rating,
+            'rating': self.get_rating(),
             'capacity': self.capacity,
             'address_line_1': self.address_line_1,
             'address_line_2': self.address_line_2,
