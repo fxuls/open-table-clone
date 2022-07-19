@@ -188,6 +188,7 @@ const ReservationModal = () => {
             value={timeslot}
             onChange={(e) => setTimeslot(e.target.value)}
           >
+            <option value={""}> -- select an option -- </option>
             {times.map((time) => {
               return (
                 <option key={time.text} value={time.value}>
