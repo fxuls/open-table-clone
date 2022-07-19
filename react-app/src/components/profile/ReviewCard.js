@@ -30,7 +30,7 @@ const ReviewCard = ({review}) => {
             {review.restaurant.name}
           </Link>
           <div className="review-ratings">
-            <span className="rating-span">
+            <span className="rating-span-first">
               <b>Overall </b>
               <span className="rating-score">
                 {review.overall_rating}
