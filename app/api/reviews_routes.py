@@ -85,8 +85,8 @@ def create_review():
             review_text = form.data['review_text'],
         )
 
-        # add user_id from the logged in user
-        if current_user is not None:
+        # if user is logged in add user_id
+        if current_user.is_authenticated:
             review.user_id = current_user.id
 
         db.session.add(review)
