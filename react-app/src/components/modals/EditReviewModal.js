@@ -1,33 +1,32 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal } from "../../store/ui";
-import { newReviewSelector, createReview } from "../../store/reviews";
+import { editReviewSelector, editReview } from "../../store/reviews";
 import "../../styles/reviewForm.css";
 
-export const REVIEW_MODAL = "ui/modals/review";
+export const EDIT_MODAL = "ui/modals/edit";
 
-const ReviewModal = () => {
-  const [errors, setErrors] = useState([]);
-  const [overallRating, setOverallRating] = useState(0);
-  const [foodRating, setFoodRating] = useState(0);
-  const [serviceRating, setServiceRating] = useState(0);
-  const [ambienceRating, setAmbienceRating] = useState(0);
-  const [valueRating, setValueRating] = useState(0);
-  const [reviewText, setReviewText] = useState("");
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+const EditModal = () => {
+  const reviewInfo = useSelector(editReviewSelector);
+  const [overallRating, setOverallRating] = useState(reviewInfo.overall_rating);
+  const [foodRating, setFoodRating] = useState(reviewInfo.food_rating);
+  const [serviceRating, setServiceRating] = useState(reviewInfo.service_rating);
+  const [ambienceRating, setAmbienceRating] = useState(reviewInfo.ambience_rating);
+  const [valueRating, setValueRating] = useState(reviewInfo.value_rating);
+  const [reviewText, setReviewText] = useState(reviewInfo.review_text);
   const dispatch = useDispatch();
 
-  const reservationInfo = useSelector(newReviewSelector);
 
   // GET the restaurant ID for use in the review form
-  const restaurantId = reservationInfo?.restaurant.id;
+  const restaurantId = reviewInfo?.restaurant.id;
+  const reviewId = reviewInfo?.id
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setHasSubmitted(true);
 
-    // try to create the review
+    // try to edit the review
     let review = {
+      reviewId: reviewId,
       restaurant_id: restaurantId,
       overall_rating: overallRating,
       food_rating: foodRating,
@@ -38,19 +37,20 @@ const ReviewModal = () => {
     if (reviewText) {
       review.review_text = reviewText;
     }
-    setErrors([]);
-    return dispatch(createReview(review)).then((res) => {
+
+    return dispatch(editReview(review)).then((res) => {
       if (res.ok) {
         dispatch(hideModal());
-        window.alert("Your review has been posted!")
+        window.alert("Your review has been updated!")
       }
     });
   };
 
+
   return (
     <div className="review-modal">
-      <h1 className="form-header">New Review</h1>
-
+      <h1 className="form-header">Edit Review</h1>
+      <h3 className="form-header">{reviewInfo?.restaurant.name}</h3>
       <form onSubmit={onSubmit}>
         <div className="form-row">
           <p>Overall Rating</p>
@@ -378,4 +378,4 @@ const ReviewModal = () => {
   );
 };
 
-export default ReviewModal;
+export default EditModal;

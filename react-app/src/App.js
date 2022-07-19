@@ -33,7 +33,7 @@ function App() {
         }
       })();
     }
-  }, [dispatch, modal]);
+  }, [dispatch, modal, loaded]);
 
   return (
     <div>
