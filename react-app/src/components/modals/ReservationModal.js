@@ -233,9 +233,6 @@ const ReservationModal = () => {
               );
             })}
           </select>
-          <label htmlFor="timeslot" className="field-error">
-            {timeError}
-          </label>
         </div>
 
         {errors.map((error) => {
@@ -260,12 +257,7 @@ const ReservationModal = () => {
             </div>
             <div className="form-row">
               <label htmlFor="contact_name">Contact Name</label>
-              <input
-                name="contact_name"
-                type="text"
-                maxLength="50"
-                required
-              />
+              <input name="contact_name" type="text" maxLength="50" required />
             </div>
           </>
         ) : null}
@@ -276,26 +268,28 @@ const ReservationModal = () => {
       </form>
 
       <div className="modal-footer">
-        {!user
-        ? <><p>
-        Don't have an account yet?{" "}
-        <a
-          className="text-link"
-          onClick={() => dispatch(showModal(SIGNUP_MODAL))}
-        >
-          Sign up.
-        </a>
-      </p>
-      <p>
-        Already have an account?{" "}
-        <a
-          className="text-link"
-          onClick={() => dispatch(showModal(LOGIN_MODAL))}
-        >
-          Log in.
-        </a>
-      </p></>
-        : null}
+        {!user ? (
+          <>
+            <p>
+              Don't have an account yet?{" "}
+              <a
+                className="text-link"
+                onClick={() => dispatch(showModal(SIGNUP_MODAL))}
+              >
+                Sign up.
+              </a>
+            </p>
+            <p>
+              Already have an account?{" "}
+              <a
+                className="text-link"
+                onClick={() => dispatch(showModal(LOGIN_MODAL))}
+              >
+                Log in.
+              </a>
+            </p>
+          </>
+        ) : null}
       </div>
     </div>
   );
