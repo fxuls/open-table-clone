@@ -93,6 +93,10 @@ const ReservationModal = () => {
             setErrors([
               `Sorry, ${restaurant.name} cannot accommodate a party of that size at the time you requested`,
             ]);
+          } else if (res.status === 401) {
+            setErrors([
+              `Sorry, ${restaurant.name} is not taking any more reservations today`,
+            ]);
           }
         }
       );
