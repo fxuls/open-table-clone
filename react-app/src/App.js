@@ -14,6 +14,7 @@ import { fetchRestaurants } from "./store/restaurants";
 import { fetchFavorites } from "./store/favorites";
 import Modal from "./components/modals/Modal";
 import Spinner from "./components/Spinner";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -62,6 +63,10 @@ function App() {
             <ProtectedRoute path="/profile">
               <UserProfilePage />
             </ProtectedRoute>
+
+            <Route>
+              <PageNotFound />
+            </Route>
           </Switch>
         ) : (
           <div className="fill-screen center-content">
