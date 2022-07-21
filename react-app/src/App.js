@@ -15,6 +15,7 @@ import { fetchFavorites } from "./store/favorites";
 import Modal from "./components/modals/Modal";
 import Spinner from "./components/Spinner";
 import PageNotFound from "./components/PageNotFound";
+import Footer from "./components/Footer";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -69,10 +70,10 @@ function App() {
             </Route>
           </Switch>
         ) : (
-          <div className="fill-screen center-content">
-            <Spinner />
-          </div>
+          <Spinner />
         )}
+
+        <Footer />
       </BrowserRouter>
     </div>
   );
