@@ -10,11 +10,6 @@
   --light-grey-values: 192, 192, 192;
   --light-grey: rgb(var(--light-grey-values));
   --main-color-lightest-shade: rgb(252, 240, 241);
-  --main-to-white-gradient: linear-gradient(
-    to top,
-    var(--main-color) 0%,
-    rgba(255, 255, 255, 1) 39%
-  );
 
   --nav-height: 45px;
 
