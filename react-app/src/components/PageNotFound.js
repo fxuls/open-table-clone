@@ -9,7 +9,7 @@ const PageNotFound = () => {
       <div className="page-not-found card-background">
         <h1 className="unselectable">?</h1>
         <h2>Sorry!</h2>
-        <p>That page is not on the menu yet</p>
+        <p>That page is not on the menu</p>
         <button className="form-submit-button" onClick={redirectToHome}>
           Find something just as good
         </button>
