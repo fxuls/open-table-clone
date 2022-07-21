@@ -95,7 +95,7 @@ const SignupModal = () => {
 
     // if there are no errors make request
     if (!validations.includes(false)) {
-      const data = await dispatch(signUp(firstName, lastName, email, password));
+      const data = await dispatch(signUp(firstName, lastName, email.toLowerCase(), password));
       if (data) setErrors(data);
     }
   };

@@ -62,7 +62,7 @@ const LoginModal = () => {
     // if there are errors dont make request
     if (!emailValidationError && !passwordValidationError) {
       // perform login
-      const data = await dispatch(login(email, password));
+      const data = await dispatch(login(email.toLowerCase(), password));
       if (data) setErrors(data);
     }
   };
