@@ -10,6 +10,8 @@
     --light-grey: rgb(var(--light-grey-values));
     --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
 
+    --nav-height: 45px;
+
     font-family: "Poppins", Helvetica, sans-serif;
     background-color: #f7f7f7;
     color: var(--main-grey);
@@ -69,5 +71,10 @@ ul {
     position: fixed;
     top: 28rem;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
+}
+
+.fill-screen {
+    box-sizing: border-box;
+    height: calc(100vh - var(--nav-height));
 }
