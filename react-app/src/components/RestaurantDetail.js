@@ -8,6 +8,7 @@ import { showModal } from '../store/ui';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import "../styles/restaurantDetail.css"
+import RestaurantGallery from './RestaurantGallery';
 
 
 function RestaurantDetail() {
@@ -79,16 +80,8 @@ const url = match.params.url
             </div>
             : null }
             <div className="restaurant-gallery">
-                <h4>Photo Gallery</h4>
-                <ul>
-                    {restaurant?.images.map(img => {
-                        return (
-                            <li key={img}>
-                                <img src={img} alt="restaurant gallery" className="rest-image-gallery" crossOrigin=""/>
-                            </li>
-                        )
-                    })}
-                </ul>
+                
+                <RestaurantGallery props={{updated, restaurant}} />
             </div>
             <div className="restaurant-reviews">
               <h4>Reviews</h4>
