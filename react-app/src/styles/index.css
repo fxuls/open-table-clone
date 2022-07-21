@@ -1,80 +1,95 @@
 /* Poppins 400 regular, 400 regular italic, 500 regular, 600 regular, 700 bold, and 700 bold italic */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap");
 
 :root {
-    --main-color: rgb(218, 55, 67);
-    --darker-main-color: rgb(184, 34, 45);
-    --main-grey-values: 45, 51, 63;
-    --main-grey: rgb(var(--main-grey-values));
-    --light-grey-values: 192, 192, 192;
-    --light-grey: rgb(var(--light-grey-values));
-    --main-to-white-gradient: linear-gradient(to top, var(--main-color) 0%, rgba(255,255,255,1) 39%);
+  --main-color-values: 218, 55, 67;
+  --main-color: rgb(var(--main-color-values));
+  --darker-main-color: rgb(184, 34, 45);
+  --main-grey-values: 45, 51, 63;
+  --main-grey: rgb(var(--main-grey-values));
+  --light-grey-values: 192, 192, 192;
+  --light-grey: rgb(var(--light-grey-values));
+  --main-color-lightest-shade: rgb(252, 240, 241);
+  --main-to-white-gradient: linear-gradient(
+    to top,
+    var(--main-color) 0%,
+    rgba(255, 255, 255, 1) 39%
+  );
 
-    --nav-height: 45px;
+  --nav-height: 45px;
 
-    font-family: "Poppins", Helvetica, sans-serif;
-    background-color: #f7f7f7;
-    color: var(--main-grey);
+  font-family: "Poppins", Helvetica, sans-serif;
+  background-color: #f7f7f7;
+  color: var(--main-grey);
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
-body, h1 {
-    margin: 0;
+body,
+h1 {
+  margin: 0;
 }
 
 h1 {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 a.text-link {
-    color: var(--main-color);
+  color: var(--main-color);
 }
 
 a.text-link:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .flex-row {
-    display: flex;
+  display: flex;
 }
 
 button {
-    cursor: pointer;
-    background-color: white;
-    border: 0.08rem solid #d8d9db;
-    border-radius: 0.2rem;
+  cursor: pointer;
+  background-color: white;
+  border: 0.08rem solid #d8d9db;
+  border-radius: 0.2rem;
 }
 
 button.hover-effect {
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 button.hover-effect:hover {
-    background-color: var(--main-color);
-    color: white;
+  background-color: var(--main-color);
+  color: white;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 .center-content {
-    position: fixed;
-    top: 28rem;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 28rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .fill-screen {
-    box-sizing: border-box;
-    height: calc(100vh - var(--nav-height));
+  box-sizing: border-box;
+  height: calc(100vh - var(--nav-height));
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
