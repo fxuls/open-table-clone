@@ -45,7 +45,10 @@ const SignupModal = () => {
   };
 
   const validatePassword = () => {
-    let errorMessage = password ? "" : "Password is required";
+    let errorMessage = "";
+    if (!password) errorMessage = "Password is required";
+    else if (password.length < 8) errorMessage = "Password must be at least 8 characters";
+    else if (password.length > 128) errorMessage = "Password must be fewer than 128 characters";
     setPasswordError(errorMessage);
     return errorMessage === "";
   };
