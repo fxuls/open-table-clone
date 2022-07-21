@@ -60,6 +60,7 @@ const ReviewModal = () => {
                 type="radio"
                 name="overall_rating"
                 id="amb1"
+                required
                 value={1}
                 checked={overallRating === 1}
                 onChange={() => setOverallRating(1)}
@@ -121,6 +122,7 @@ const ReviewModal = () => {
                 type="radio"
                 name="food_rating"
                 id="food1"
+                required
                 value={1}
                 checked={foodRating === 1}
                 onChange={() => setFoodRating(1)}
@@ -182,6 +184,7 @@ const ReviewModal = () => {
                 type="radio"
                 name="service_rating"
                 id="amb1"
+                required
                 value={1}
                 checked={serviceRating === 1}
                 onChange={() => setServiceRating(1)}
@@ -243,6 +246,7 @@ const ReviewModal = () => {
                 type="radio"
                 name="ambience_rating"
                 id="amb1"
+                required
                 value={1}
                 checked={ambienceRating === 1}
                 onChange={() => setAmbienceRating(1)}
@@ -304,6 +308,7 @@ const ReviewModal = () => {
                 type="radio"
                 name="value_rating"
                 id="val1"
+                required
                 value={1}
                 checked={valueRating === 1}
                 onChange={() => setValueRating(1)}

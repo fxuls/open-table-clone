@@ -13,10 +13,10 @@ const ProfileReviews = ({ loaded }) => {
 
       <div className="reviews card-background">
         {loaded ? (
-          reviews  ? (
+          Object.values(reviews).length ? (
             <div className="reviews-list">
               {Object.values(reviews).map((review) => {
-                return <ReviewCard  key={review.id} review={review}/>;
+                return <ReviewCard key={review.id} review={review} />;
               })}
             </div>
           ) : (
