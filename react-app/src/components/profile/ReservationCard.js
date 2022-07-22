@@ -47,7 +47,7 @@ const ReservationCard = ({ reservation, upcoming }) => {
 
         <div className="reservation-details">
           <p>
-            <span className="date-string">{date.format("dddd, MMMM D")}</span>
+            <span className="date-string">{date.format("dddd, MMMM D" + (!upcoming ? ", yyyy" : ""))}</span>
             {" at "}
             <span className="date-string">{date.format("h:mm a")}</span>
           </p>
