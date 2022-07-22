@@ -7,6 +7,8 @@ import './styles/modals.css';
 import './styles/forms.css';
 import './styles/profilePage.css';
 import './styles/spinner.css';
+import './styles/pageNotFound.css';
+import './styles/footer.css';
 import App from './App';
 import configureStore from './store';
 

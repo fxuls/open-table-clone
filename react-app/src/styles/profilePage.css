@@ -7,7 +7,7 @@
   grid-template-columns: max(16%, 10rem) 80%;
   grid-template-rows: auto auto;
   max-width: 65rem;
-  margin: auto;
+  margin: 0 auto 2rem;
 }
 
 .profile-header {
