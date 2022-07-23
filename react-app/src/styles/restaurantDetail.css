@@ -38,6 +38,11 @@
   border-bottom: 1px solid var(--light-grey);
   margin: 10px 0;
   min-width: 450px;
+  padding-bottom: 0.4rem;
+}
+
+.review:last-child {
+  border-bottom: 0;
 }
 
 .rating-span {
@@ -95,4 +100,8 @@
   .restHeaderImg {
     height: 296px;
   }
+}
+
+.restDetail {
+  padding-bottom: 0.5rem;
 }
