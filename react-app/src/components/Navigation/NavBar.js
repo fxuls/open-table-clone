@@ -9,9 +9,7 @@ import UnauthenticatedNav from "./UnauthenticatedNav";
 import AuthenticatedNav from "./AuthenticatedNav";
 
 const NavBar = () => {
-
   const sessionUser = useSelector(userSelector);
-
 
   return (
     <nav className="nav-header">
@@ -21,20 +19,17 @@ const NavBar = () => {
             className="masthead"
             src="//cdn.otstatic.com/cfe/9/images/opentable-logo-153e80.svg"
             alt="website logo"
-
           />
         </a>
 
         <div className="nav-location">
           <nav>
-            <FontAwesomeIcon icon={faCompass} size="lg" className="icon"/>
+            <FontAwesomeIcon icon={faCompass} size="lg" className="icon" />
           </nav>
         </div>
       </div>
 
-
       {sessionUser ? <AuthenticatedNav /> : <UnauthenticatedNav />}
-
     </nav>
   );
 };
