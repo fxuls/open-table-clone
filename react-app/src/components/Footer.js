@@ -77,7 +77,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faGithub} />
               </a>
               <a
-                href="https://www.linkedin.com/in/greg-isales-89a672171/"
+                href="https://www.linkedin.com/in/greg-isales33/"
                 target="_blank"
               >
                 LinkedIn
