@@ -9,6 +9,7 @@ import './styles/profilePage.css';
 import './styles/spinner.css';
 import './styles/pageNotFound.css';
 import './styles/footer.css';
+import './styles/scrollbars.css';
 import App from './App';
 import configureStore from './store';
 
